@@ -144,7 +144,7 @@ const BottomHeader = () => {
     {
       id:2,
       name:'Gift ideas',
-      Url:'/shop'
+      Url:'/gift-ideas'
     },
     {
       id:3,

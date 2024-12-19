@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { H6 } from "../common/Heading";
 
-const ProductCard = ({ image, title, price, originalPrice, discount, offerLabel, isSponsored, url }) => {
+const HorizontalCard = ({ image, title, price, originalPrice, discount, offerLabel, isSponsored, url }) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -19,21 +19,13 @@ const ProductCard = ({ image, title, price, originalPrice, discount, offerLabel,
         boxShadow: isHovered ? hoverBoxShadow : defaultBoxShadow,
       }}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)} className="border rounded-md bg-white  overflow-hidden hover:transform hover:translate-y-[-2px]     hover:border-[#e0e0e0] transition-shadow">
+        onMouseLeave={() => setIsHovered(false)} className="border rounded-md bg-white  overflow-hidden hover:transform  sm:h-48 h-auto hover:translate-y-[-2px]  flex  sm:flex-row flex-col   hover:border-[#e0e0e0] transition-shadow">
 
-        <div className="">
-          {offerLabel && (
-            <p className="text-xs font-medium text-gray-500">{offerLabel}</p>
-          )}
-        </div>
-        <img src={image} alt={title} className="w-full  object-contain" />
-        <div className="p-4 h-40 flex flex-col justify-between">
-          {isSponsored && (
-            <span className="text-xs text-white bg-blue-500 px-2 py-1 rounded-full mb-2 inline-block">
-              SPONSORED
-            </span>
-          )}
-
+       <div className=" sm:w-5/12 w-12/12">
+       <img src={image} alt={title} className="w-full h-full  object-center" />
+       </div>
+        <div className="p-4  flex flex-col justify-between">
+          
           <H6>{title}</H6>
           <div className="flex items-center gap-2 mt-2">
             <p className="text-xl font-bold text-black">{price}</p>
@@ -50,4 +42,4 @@ const ProductCard = ({ image, title, price, originalPrice, discount, offerLabel,
   );
 };
 
-export default ProductCard;
+export default HorizontalCard;

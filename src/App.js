@@ -13,6 +13,8 @@ import NewDetails from "./screens/News/NewDetails";
 import Cart from "./screens/Cart";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import SellerStore from "./screens/SellerStore";
+import GiftIdeas from "./screens/GiftIdeas";
 
 function App() {
   return (
@@ -29,8 +31,10 @@ function App() {
       <Route path="/forgot-password" element={<ForgetPassword/>} />
       <Route path="/new-password" element={<NewPassword/>} />
       <Route path="/news" element={<News/>} />
+      <Route path="/seller-store" element={<SellerStore/>} />
       <Route path="/new-details/:id" element={<NewDetails/>} />
       <Route path="/cart" element={<Cart/>} />
+      <Route path="/gift-ideas" element={<GiftIdeas/>} />
      </Routes>
     </>
   );
