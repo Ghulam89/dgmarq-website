@@ -14,20 +14,22 @@ const ProductCard = ({ image, title, price, originalPrice, discount, offerLabel,
 
   return (
     <Link to={url}  >
-      <p className=" uppercase text-[12px] text-gray-500 pb-1">OFFER from 1 seller</p>
+      <p className=" uppercase text-[12px]  text-gray-500 pb-1">OFFER from 1 seller</p>
       <div style={{
         boxShadow: isHovered ? hoverBoxShadow : defaultBoxShadow,
       }}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)} className="border rounded-md bg-white  overflow-hidden hover:transform hover:translate-y-[-2px]     hover:border-[#e0e0e0] transition-shadow">
+        onMouseLeave={() => setIsHovered(false)} className="   rounded-md bg-white  overflow-hidden hover:transform hover:translate-y-[-2px]     hover:border-[#e0e0e0] transition-shadow">
 
         <div className="">
           {offerLabel && (
             <p className="text-xs font-medium text-gray-500">{offerLabel}</p>
           )}
         </div>
-        <img src={image} alt={title} className="w-full  object-contain" />
-        <div className="p-4 h-40 flex flex-col justify-between">
+        <div className="  h-56 w-full">
+        <img src={image} alt={title} className="w-full  h-full  object-cover" />
+        </div>
+        <div className="p-4  h-44 flex flex-col  border justify-between">
           {isSponsored && (
             <span className="text-xs text-white bg-blue-500 px-2 py-1 rounded-full mb-2 inline-block">
               SPONSORED
@@ -35,11 +37,15 @@ const ProductCard = ({ image, title, price, originalPrice, discount, offerLabel,
           )}
 
           <H6>{title}</H6>
-          <div className="flex items-center gap-2 mt-2">
-            <p className="text-xl font-bold text-black">{price}</p>
+          <div className="flex  flex-col mt-2">
+            <p className="text-xl font-bold m-0 text-black">{price}</p>
             {originalPrice ?
-              <p className="text-sm text-gray-500 line-through">{`$ ${originalPrice}`}</p> : null
+              <p className="text-sm text-gray-500 m-0 line-through">{`$ ${originalPrice}`}</p> : null
             }
+             {discount?
+             <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{discount}</button>:null
+             }
+            
 
           </div>
 

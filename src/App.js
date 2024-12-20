@@ -15,6 +15,8 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import SellerStore from "./screens/SellerStore";
 import GiftIdeas from "./screens/GiftIdeas";
+import RandomKeys from "./screens/RandomKeys";
+import SoftwareDealers from "./screens/Software";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
       <Route path="/new-details/:id" element={<NewDetails/>} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/gift-ideas" element={<GiftIdeas/>} />
+      <Route path="/random-keys" element={<RandomKeys/>} />
+      <Route path="/software-dealer" element={<SoftwareDealers/>} />
      </Routes>
     </>
   );

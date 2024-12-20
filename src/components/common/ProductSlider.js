@@ -95,9 +95,9 @@ const ProductSlider = ({
     return (
         <>
             <div className=' relative '>
-                <div className='max-w-7xl overflow-hidden mx-auto'>
+                <div className='max-w-6xl overflow-hidden mx-auto'>
                     <div
-                        className="flex  sm:h-[55vh] h-auto transition-transform ease-out duration-500"
+                        className="flex  sm:h-[65vh] h-auto transition-transform ease-out duration-500"
                         style={{ transform: `translateX(-${curr * 100}%)` }}
                     >
                         {sliders?.map((s) => (
