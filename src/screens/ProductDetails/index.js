@@ -4,6 +4,7 @@ import Footer from '../../components/Footer/Footer'
 import BottomHeader from '../../components/Header/BottomHeader'
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi'
 import Subscription from '../../components/Subscription'
+import { Link } from 'react-router-dom'
 
 const ProductDetails = ({
     children: slides,
@@ -168,12 +169,12 @@ const ProductDetails = ({
                         {/* Price and Buttons */}
                         <div className="mt-6 flex md:w-5/12 w-11/12  relative border p-4 flex-col space-y-2">
                             <div className=' flex gap-2'>
-                                <div className=' relative'>
+                                <Link to={'/seller-store'} className=' relative'>
                                     <img src={'https://images.g2a.com/96x96/1x0x0/aONVWSXh/1621fe27cf004e27a1a5af01'} className=' w-16 h-16 object-cover  border border-secondary p-0.5 object-center rounded-full' alt='' />
                                     <div className=' absolute -top-3 left-0 text-secondary'>
                                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.39 5.544l-.91-1.776-.878 1.792L9.9 9.032l-4.048.608-2.06.309 1.53 1.414 2.923 2.703-.765 3.733-.417 2.034 1.85-.942 3.587-1.826 3.587 1.826 1.85.942-.417-2.034-.765-3.733 2.924-2.703 1.524-1.409-2.052-.314-3.974-.608-1.787-3.488z" fill="currentColor" stroke="#FAFAFA"></path></svg>
                                     </div>
-                                </div>
+                                </Link>
                                 <div>
                                     <p className=' text-black font-semibold m-0'>Onyx2shop</p>
                                     <span className=' text-sm text-black font-bold'>97%  <span className='  text-sm  text-gray-500 font-normal'>Positive feedback</span> | <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className=' text-gray-500' width="1em" height="1em" fill="currentColor" font-size="16"><path d="M6 22a1 1 0 100-2 1 1 0 000 2zm14 0a1 1 0 100-2 1 1 0 000 2zm1.238-12.19L20 16H6L4 1H1m3.667 5H13" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M16.529 4.47a.75.75 0 10-1.06 1.06l2 2a.748.748 0 001.06 0l5-5a.75.75 0 00-1.06-1.06l-4.47 4.47-1.47-1.47z" fill="currentColor"></path><path d="M23.099 6.02a1 1 0 00-1.18.78 4 4 0 11-3.12-4.72 1 1 0 00.4-1.961 6 6 0 104.68 7.081 1.001 1.001 0 00-.78-1.18z" fill="currentColor"></path></svg> 8635 </span>

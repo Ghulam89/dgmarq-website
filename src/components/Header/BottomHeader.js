@@ -149,12 +149,12 @@ const BottomHeader = () => {
     {
       id:3,
       name:'Random Keys',
-      Url:'/'
+      Url:'/random-keys'
     },
     {
       id:4,
       name:'Software',
-      Url:'/'
+      Url:'/software-dealer'
     }
 
   ]
