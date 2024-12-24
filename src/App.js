@@ -17,6 +17,8 @@ import SellerStore from "./screens/SellerStore";
 import GiftIdeas from "./screens/GiftIdeas";
 import RandomKeys from "./screens/RandomKeys";
 import SoftwareDealers from "./screens/Software";
+import DigitalServicesAct from "./screens/DigitalServicesAct/DigitalServicesAct";
+import Reviews from "./components/Reviews/Reviews";
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
       <Route path="/gift-ideas" element={<GiftIdeas/>} />
       <Route path="/random-keys" element={<RandomKeys/>} />
       <Route path="/software-dealer" element={<SoftwareDealers/>} />
+      <Route path="/DigitalServicesAct" element={<DigitalServicesAct/>} />
+      <Route path="/review" element={<Reviews/>} />
      </Routes>
     </>
   );

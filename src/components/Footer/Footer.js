@@ -72,7 +72,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <a href="/DigitalServicesAct" className="hover:underline">
                   Digital Services Act
                 </a>
               </li>
@@ -93,7 +93,7 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <a href="/review" className="hover:underline">
                   Reviews
                 </a>
               </li>
