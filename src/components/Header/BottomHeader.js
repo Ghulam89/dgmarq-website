@@ -11,6 +11,10 @@ import { Base_url } from "../../utils/Base_url";
 const BottomHeader = () => {
   const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
+
+  console.log('====================================');
+  console.log(selectedCategory);
+  console.log('====================================');
   const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
 
   const categories = [
@@ -228,11 +232,11 @@ const BottomHeader = () => {
                   <li
                     key={index}
                     className={`flex items-center gap-2 px-4 py-2 cursor-pointer ${
-                      selectedCategory === category.category
+                      selectedCategory === category.subcategories
                         ? "bg-gray-200"
                         : "hover:bg-gray-100"
                     }`}
-                    onMouseEnter={() => setSelectedCategory(category.category)}
+                    onMouseEnter={() => setSelectedCategory(category.subcategories)}
                     onMouseLeave={() => setHoveredSubMenu(null)}
                   >
                    
@@ -246,14 +250,15 @@ const BottomHeader = () => {
             {/* Subcategories */}
             {selectedCategory && (
               <div className="w-3/4 flex">
-                {categories
-                  .find((cat) => cat.category === selectedCategory)
-                  ?.menu.map((submenu, index) => (
+                {subCategory
+                  .find((cat) => cat.subcategories === selectedCategory)
+                  ?.subcategories.map((submenu, index) => (
+                    
                     <div key={index} className="px-4">
-                      <h3 className="font-semibold text-gray-700">
+                      <Link to={`category/${submenu?._id}`} className="font-semibold text-gray-700">
                         {submenu.title}
-                      </h3>
-                      <ul className="mt-2 space-y-1">
+                      </Link>
+                      {/* <ul className="mt-2 space-y-1">
                         {submenu.items.map((item, itemIndex) => (
                           <li
                             key={itemIndex}
@@ -268,7 +273,7 @@ const BottomHeader = () => {
                               {item.label}
                             </a>
 
-                            {/* Sub-subcategories */}
+                            Sub-subcategories
                             {hoveredSubMenu === item.label &&
                               item.subItems && (
                                 <ul className="absolute w-full left-full top-0 bg-white border shadow-md">
@@ -286,7 +291,7 @@ const BottomHeader = () => {
                               )}
                           </li>
                         ))}
-                      </ul>
+                      </ul> */}
                     </div>
                   ))}
               </div>

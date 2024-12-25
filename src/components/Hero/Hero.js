@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeCard from "../Cards/HomeCard";
 import { FaWindows, FaXbox, FaPlaystation, FaGamepad } from "react-icons/fa";
+import { Base_url } from "../../utils/Base_url";
+import axios from "axios";
 
 const Hero = () => {
   const data = [
@@ -22,11 +24,30 @@ const Hero = () => {
     },
   ];
 
+
+const [slider,setSlider] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${Base_url}/slider/getAll`)
+      .then((res) => {
+        console.log(res);
+
+        setSlider(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+
+
+
+
   return (
     <>
       <div className="  flex justify-center items-center bg-home bg-cover w-full sm:h-screen h-auto py-7">
         <div className=" flex gap-6 justify-center flex-wrap">
-          {data?.map((item, index) => {
+          {slider?.map((item, index) => {
             return <HomeCard item={item} />;
           })}
         </div>

@@ -19,6 +19,9 @@ import RandomKeys from "./screens/RandomKeys";
 import SoftwareDealers from "./screens/Software";
 import DigitalServicesAct from "./screens/DigitalServicesAct/DigitalServicesAct";
 import Reviews from "./components/Reviews/Reviews";
+import Careers from "./screens/Careers/Careers";
+import Partnerships from "./screens/Partnerships/Partnerships";
+import Reliability from "./screens/Reliability/Reliability";
 
 function App() {
   return (
@@ -27,7 +30,7 @@ function App() {
      <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/sellers" element={<Sellers/>} />
-      <Route path="/category" element={<Category/>} />
+      <Route path="/category/:id" element={<Category/>} />
       <Route path="/wishlist" element={<Wishlist/>} />
       <Route path="/product-details/:id" element={<ProductDetails/>} />
       <Route path="/register" element={<Register/>} />
@@ -43,6 +46,9 @@ function App() {
       <Route path="/software-dealer" element={<SoftwareDealers/>} />
       <Route path="/DigitalServicesAct" element={<DigitalServicesAct/>} />
       <Route path="/review" element={<Reviews/>} />
+      <Route path="/careers" element={<Careers/>} />
+      <Route path="/partnerships" element={<Partnerships />} />
+      <Route path="/reliability" element={<Reliability />} />
      </Routes>
     </>
   );

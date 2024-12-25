@@ -24,6 +24,7 @@ module.exports = {
         software_bg2: "url('https://images.g2a.com/uiadminimages/1981x657/1x1x1/16fd854db26b/c68acabdc465457cbf4108d1')",
         discount_bg: "url('./assets/images/discount.avif')",
         Digital: "url('https://images.g2a.com/uiadminimages/1536x266/1x1x1/e5459be94434/a1d955214bc74df1a368645d')",
+        Careers_bg: "url('./assets/images/careers/caeers_bg.png')",
       }
     },
   },

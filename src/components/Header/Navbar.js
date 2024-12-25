@@ -90,8 +90,8 @@ const dispatch = useDispatch();
  
   return (
     <>
-
-      <header className="mx-auto flex  bg-primary  h-20 items-center justify-between px-5">
+     <div className="bg-primary ">
+      <header className="mx-auto flex   container   h-20 items-center justify-between px-5">
         <Link to="/" className="">
           <img
 
@@ -211,6 +211,7 @@ const dispatch = useDispatch();
         </div>
 
       </header>
+      </div>
       {mobileMenuOpen && (
         <section
           className={`block md:hidden absolute left-0 right-0 z-50 h-screen w-full bg-primary ${mobileMenuOpen ? "none" : "block"
