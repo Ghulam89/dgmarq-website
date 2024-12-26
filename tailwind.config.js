@@ -25,6 +25,8 @@ module.exports = {
         discount_bg: "url('./assets/images/discount.avif')",
         Digital: "url('https://images.g2a.com/uiadminimages/1536x266/1x1x1/e5459be94434/a1d955214bc74df1a368645d')",
         Careers_bg: "url('./assets/images/careers/caeers_bg.png')",
+        Reliability_bg: "url('./assets/images/reliability/bg.webp')",
+        Program_bg: "url('./assets/images/program/program_bg.webp')",
       }
     },
   },
