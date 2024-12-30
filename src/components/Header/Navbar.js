@@ -12,6 +12,9 @@ import Button from "../Button";
 import { TbLogout2 } from "react-icons/tb";
 import { removeUser } from "../../store/productSlice";
 import { toast } from "react-toastify";
+import { IoSearch } from "react-icons/io5";
+import { IoMdArrowDropdown } from "react-icons/io";
+import ProfilePopup from "./ProfilePopup";
 const Navbar = () => {
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -84,14 +87,38 @@ const dispatch = useDispatch();
     dispatch(removeUser())
     toast.success('user sign out  successfuly!')
   
+
   }
+
+
+
+  const categories = [
+    "All categories",
+    "Gaming",
+    "Software",
+    "Gift cards",
+    "Subscriptions",
+    "E-Learning",
+    "Charity",
+    "Mobile Games",
+    "For Adults",
+  ];
+  
+ 
+    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+  
+    const handleCategorySelect = (category) => {
+      setSelectedCategory(category);
+      setDropdownOpen(false);
+    };
 
 
  
   return (
     <>
      <div className="bg-primary ">
-      <header className="mx-auto flex   container   h-20 items-center justify-between px-5">
+      <header className="mx-auto flex gap-12   max-w-7xl   h-20 items-center justify-between px-3">
         <Link to="/" className="">
           <img
 
@@ -101,19 +128,46 @@ const dispatch = useDispatch();
           />
 
         </Link>
+        <form className="hidden h-11 w-2/3 bg-white rounded-md overflow-hidden items-center md:flex relative">
+      {/* Search Input */}
+      <input
+        className="hidden w-8/12 p-3 text-sm outline-none md:block"
+        type="search"
+        placeholder="What are you looking for?"
+      />
 
-        <form className="hidden h-11 w-2/4 bg-white rounded-md overflow-hidden items-center border md:flex">
-          <CiSearch className="mx-3" size={20} />
+      {/* Custom Dropdown */}
+      <div
+        className="w-3/12 relative h-full cursor-pointer flex items-center justify-between px-3 border-l border-gray-200"
+        onClick={() => setDropdownOpen(!dropdownOpen)}
+      >
+        <span className="text-sm text-gray-700">{selectedCategory}</span>
+        <IoMdArrowDropdown size={20} className="ml-2 text-gray-500" />
+        {dropdownOpen && (
+          <div className="absolute top-full left-0 w-full bg-white shadow-lg border rounded-md z-10">
+            {categories.map((category) => (
+              <div
+                key={category}
+                className={`px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
+                  selectedCategory === category ? "font-semibold" : ""
+                }`}
+                onClick={() => handleCategorySelect(category)}
+              >
+                {category}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
-          <input
-            className="hidden w-11/12 outline-none md:block"
-            type="search"
-            placeholder="Search"
-          />
-          <button className="ml-auto text-white h-full bg-secondary px-4">
-            Search
-          </button>
-        </form>
+      {/* Search Button */}
+      <button
+        className="ml-auto text-white h-full px-4 bg-secondary flex items-center justify-center"
+        type="submit"
+      >
+        <IoSearch size={20} />
+      </button>
+    </form>
 
         <div className=" flex items-center gap-4">
           {/* <div className="  hidden sm:block bg-slate-800 rounded-full px-2 py-1.5">
@@ -122,71 +176,7 @@ const dispatch = useDispatch();
           <div className=" gap-3 flex  justify-center">
 
             <div className=" flex  gap-2">
-              {userInfo ? (
-                <>
-                  <div onClick={openProfileFun} className=" w-12 h-12 rounded-full overflow-hidden">
-                    <img src="https://static.g2a.com/bLfY1FzJVNuxU2nnuANiNK/avatar_15.svg" className="" />
-                  </div>
-                  <div onClick={openProfileFun} className=" relative sm:block hidden">
-                    <div className="  flex flex-col items-center">
-                      <span className=" text-white text-sm font-semibold">{userInfo?.username}</span>
-                      <span className=" text-white text-[12px] font-semibold">{userInfo?.email}</span>
-                    </div>
-
-                     
-                           {openProfile && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute right-0 z-40  mt-4 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                      role="menu"
-                      aria-orientation="vertical"
-                      aria-labelledby="menu-button"
-                      tabIndex="-1"
-                    >
-                      <div className=" flex gap-2 p-2 items-center">
-                      <div  className=" w-12 h-12 rounded-full overflow-hidden">
-                    <img src="https://static.g2a.com/bLfY1FzJVNuxU2nnuANiNK/avatar_15.svg" className="" />
-                  </div>
-                  <div  className=" relative sm:block hidden">
-                    <div className="  flex flex-col items-center">
-                      <span className=" text-black text-sm font-semibold">{userInfo?.username}</span>
-                      <span className=" text-black text-[12px] font-semibold">{userInfo?.email}</span>
-                    </div>
-                     
-                  </div>
-
-                      </div>
-                      <hr/>
-                       <div className=" p-2">
-                       <Button label={'Sign out'} onClick={()=>removeFun()} className={' w-full bg-secondary my-2'}  IconRight={<TbLogout2  className="" size={24} />} />
-                       </div>
-                    </motion.div>
-                  )}
-                       
-                     
-                  </div>
-
-                  
-                </>
-              ) :
-                <>
-                  <Link
-                    to={'/register'}
-                    className="flex text-white  bg-slate-800 rounded-full sm:w-12 w-10 sm:h-12 h-10 cursor-pointer flex-col items-center justify-center"
-                  >
-                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" font-size="24"><path d="M20.417 23H3v-2.58c0-1.4.79-2.68 2.047-3.292 1.468-.715 3.707-1.461 6.661-1.461 2.955 0 5.194.746 6.662 1.46a3.655 3.655 0 012.047 3.293V23zM16.75 6.042c0 2.784-2.257 5.958-5.042 5.958-2.784 0-5.041-3.174-5.041-5.958a5.041 5.041 0 1110.083 0z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-
-                  </Link>
-                  <div className=" sm:block hidden">
-                    <div className="  flex flex-col items-center">
-                      <span className=" text-white text-sm font-semibold">Sign in</span>
-                      <span className=" text-white text-sm font-semibold">Register</span>
-                    </div>
-                  </div>
-                </>}
+               <ProfilePopup/>
 
             </div>
 

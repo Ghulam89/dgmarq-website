@@ -23,6 +23,7 @@ import Careers from "./screens/Careers/Careers";
 import Partnerships from "./screens/Partnerships/Partnerships";
 import Reliability from "./screens/Reliability/Reliability";
 import AffiliateProgram from "./screens/AffiliateProgram/AffiliateProgram";
+import AboutUs from "./screens/AboutUs";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
       <Route path="/software-dealer" element={<SoftwareDealers/>} />
       <Route path="/DigitalServicesAct" element={<DigitalServicesAct/>} />
       <Route path="/review" element={<Reviews/>} />
+      <Route path="/about-us" element={<AboutUs/>} />
       <Route path="/careers" element={<Careers/>} />
       <Route path="/partnerships" element={<Partnerships />} />
       <Route path="/reliability" element={<Reliability />} />

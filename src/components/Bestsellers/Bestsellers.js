@@ -4,6 +4,7 @@ import ProductCard from "../Cards/ProductCard";
 const products = [
   {
     id: 1,
+    discount:'4%',
     title: "Call of Duty: Modern Warfare III",
     subtitle: "(PC) - Steam Account",
     price: "$34.35",
@@ -14,6 +15,8 @@ const products = [
   },
   {
     id: 2,
+    
+    discount:'8%',
     title: "Random Black Friday 1 Key",
     subtitle: "(PC) - Steam Key - GLOBAL",
     price: "$5.87",
@@ -23,6 +26,8 @@ const products = [
   },
   {
     id: 3,
+    
+    discount:'9%',
     title: "Battlefield 2042",
     subtitle: "(Xbox Series X/S) - Xbox Live Key",
     price: "$12.06",
@@ -32,6 +37,8 @@ const products = [
   },
   {
     id: 4,
+    
+    discount:'2%',
     title: "Max Payne (PC)",
     subtitle: "Steam Key - GLOBAL",
     price: "$4.77",
@@ -41,6 +48,8 @@ const products = [
   },
   {
     id: 5,
+    
+    discount:'8%',
     title: "Grand Theft Auto V (PC)",
     subtitle: "Rockstar Key - GLOBAL",
     price: "$12.22",
@@ -50,6 +59,8 @@ const products = [
   },
   {
     id: 6,
+    
+    discount:'5%',
     title: "Darktide",
     subtitle: "(PC)",
     price: "$11.41",
@@ -70,7 +81,7 @@ const Bestsellers = () => {
       <section className=" py-10">
       <div className="max-w-7xl mx-auto px-4">
          {/* Categories */}
-      <div className="flex overflow-x-auto  nav_item space-x-4 my-6 px-4">
+      <div className="flex overflow-x-auto  nav_item">
   {[
     "Bestsellers",
     "Gaming gift cards",
@@ -83,23 +94,31 @@ const Bestsellers = () => {
   ].map((category) => (
     <button
       key={category}
-      className="py-2 px-4 bg-white border rounded-md shadow-sm text-gray-700 whitespace-nowrap hover:bg-gray-100"
+      className="py-3 px-5 bg-white border  shadow-sm text-gray-700 whitespace-nowrap hover:bg-gray-100"
     >
       {category}
     </button>
   ))}
 </div>
-      <div className=" py-6">
-        <h2 className="text-2xl font-bold">Bestsellers</h2>
+      <div className=" py-6 flex  justify-between">
+       <div>
+       <h2 className="text-2xl font-bold">Bestsellers</h2>
         <p className="text-gray-500">
           The hottest items on our marketplace – discover what captured our
           users' hearts!
         </p>
+       </div>
+
+       <div>
+       <button className="py-2 px-6 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600">
+          Discover all
+        </button>
+       </div>
       </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {products.map((product, index) => (
             
-            <ProductCard image={product?.image}  title={product?.title} price={product?.price}  />
+            <ProductCard image={product?.image} discount={product?.discount}  originalPrice={product?.price}  title={product?.title} price={product?.price}  />
 
           ))}
         </div>
@@ -110,12 +129,7 @@ const Bestsellers = () => {
         </div>
       </div>
     </section>
-      {/* Discover All Button */}
-      <div className="text-center mt-6">
-        <button className="py-2 px-6 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-          Discover all
-        </button>
-      </div>
+     
     </div>
 
 

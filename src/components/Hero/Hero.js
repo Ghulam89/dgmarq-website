@@ -45,15 +45,15 @@ const [slider,setSlider] = useState([]);
 
   return (
     <>
-      <div className="  flex justify-center items-center bg-home bg-cover w-full sm:h-screen h-auto py-7">
-        <div className=" flex gap-6 justify-center flex-wrap">
+      <div className="  flex justify-center    items-center bg-home bg-cover w-full py-8">
+        <div className=" flex gap-6 justify-center  max-w-7xl mx-auto flex-wrap">
           {slider?.map((item, index) => {
             return <HomeCard item={item} />;
           })}
         </div>
       </div>
       <div className="bg-gray-100 ">
-        <div className="py-6  w-10/12  mx-auto flex sm:flex-row flex-col justify-between items-center">
+        <div className="py-6   max-w-7xl mx-auto  px-3 flex sm:flex-row flex-col justify-between items-center">
           <h2 className="text-2xl font-bold mb-4">Choose your platform</h2>
           <div className="flex sm:flex-row flex-col space-x-8">
             {/* PC */}

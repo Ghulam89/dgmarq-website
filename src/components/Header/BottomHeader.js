@@ -185,12 +185,12 @@ const BottomHeader = () => {
     <>
       {/* Top Nav */}
       <nav className="hidden md:block  bg-primary">
-        <div className="container mx-auto flex items-center  gap-6 h-14">
+        <div className=" max-w-7xl mx-auto flex items-center px-3  gap-6 h-14">
           {/* Categories Button */}
           
 
           {/* Nav Links */}
-          <div className="flex justify-between  w-full items-center gap-8">
+          <div className="flex justify-between  w-full items-center gap-2">
           <button
             onClick={toggleDesktopMenu}
             className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-md"
@@ -202,7 +202,7 @@ const BottomHeader = () => {
               (item, index) => (
                 <Link
                   key={index}
-                  className="text-white bg-[#212121] py-2 rounded-md w-full text-center hover:border-b  hover:text-[#EAE5D5]"
+                  className="text-white bg-[#212121] py-2  text-sm rounded-sm w-full text-center hover:border-b  hover:text-[#EAE5D5]"
                   to={`${item?.Url}`}
                 >
                   {item?.name}
@@ -211,7 +211,7 @@ const BottomHeader = () => {
             )}
              <Link
                 
-                  className="text-white  bg-secondary py-2 rounded-md w-full text-center hover:border-b  hover:text-[#EAE5D5]"
+                  className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-center hover:border-b  hover:text-[#EAE5D5]"
                   to={'#'}
                 >
                   Save more with G2A Plus

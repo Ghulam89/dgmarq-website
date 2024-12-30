@@ -64,21 +64,21 @@ const products = [
 
 
 const FavoriteItem = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${Base_url}/products/getAll?page=1`)
-      .then((res) => {
-        console.log(res);
+  // const [products, setProducts] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${Base_url}/products/getAll?page=1`)
+  //     .then((res) => {
+  //       console.log(res);
 
-        setProducts(res?.data?.data?.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  //       setProducts(res?.data?.data?.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
 
 
-  }, []);
+  // }, []);
    
 
 
