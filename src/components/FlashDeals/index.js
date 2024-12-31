@@ -82,10 +82,10 @@ const FlashDeals = () => {
 
 
   return (
-    <div className=" bg-Flash_bg hidden sm:block   w-full h-[80vh] relative bg-cover bg-center">
+    <div className=" bg-Flash_bg hidden sm:block py-5   w-full h-auto relative bg-cover bg-center">
       <div className="flex max-w-7xl items-center gap-12 mx-auto justify-center">
         {/* Flash Deal Section */}
-        <div className=" w-4/12    ml-6  rounded-lg p-6 mt-12 text-white">
+        <div className=" w-4/12    rounded-lg  p-12  text-white">
           <h2 className="text-xl font-bold text-center mb-4">Flash Deal - Starts in</h2>
           <div className="flex  justify-center items-center space-x-2 text-2xl mb-4">
             <div className=" leading-5" >
@@ -119,11 +119,11 @@ const FlashDeals = () => {
         </div>
 
         {/* Currently Trending Offers */}
-        <div className="w-8/12">
-          <h2 className="text-2xl  pt-14 font-bold text-white">
+        <div className="w-6/12">
+          <h2 className="text-2xl  font-bold text-white">
             More currently trending offers
           </h2>
-          <p className=" text-white mb-6">Don't miss out – grab them while you still have the chance!</p>
+          <p className=" text-white">Don't miss out – grab them while you still have the chance!</p>
           <div className="grid grid-cols-2 gap-4">
            
            {data?.map((product,index)=>{
