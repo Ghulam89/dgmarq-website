@@ -247,7 +247,7 @@ const Category = () => {
                                     <Link to={`/product-details/${item?._id}`} className=" border flex  gap-4   p-3">
 
                                         <div className=" w-2/12">
-                                            <img src={item?.images[0]} className=" w-full h-auto" alt="" />
+                                            <img src={item?.images[0]} className=" w-full h-44" alt="" />
                                         </div>
 
                                         <div className=" w-10/12">

@@ -4,7 +4,12 @@ import Footer from '../../components/Footer/Footer'
 import BottomHeader from '../../components/Header/BottomHeader'
 import { TfiAngleLeft, TfiAngleRight } from 'react-icons/tfi'
 import Subscription from '../../components/Subscription'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
+import { Base_url } from '../../utils/Base_url'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { addToCart } from '../../store/productSlice'
 
 const ProductDetails = ({
     children: slides,
@@ -12,7 +17,12 @@ const ProductDetails = ({
     autoSlideInterval = 3000,
 }) => {
 
+    const { id } = useParams();
     const [allProduct, setAllProduct] = useState({});
+
+
+    const { userInfo } = useSelector((state) => state.next);
+    console.log(userInfo);
 
     const [curr, setCurr] = useState(0);
     const prev = () =>
@@ -36,6 +46,55 @@ const ProductDetails = ({
     ];
 
 
+    const [products, setProducts] = useState({});
+
+    useEffect(() => {
+
+        axios.get(`${Base_url}/products/get/${id}`).then((res) => {
+
+            setProducts(res?.data?.data)
+
+        }).catch((res) => {
+
+        })
+
+    }, [])
+
+
+     const navigate = useNavigate();
+
+
+     const dispatch = useDispatch();
+
+
+    
+
+      const handleWhitelist = async () => {
+          if(userInfo){
+
+            try {
+                const response = await axios.post(`${Base_url}/wishlist/add`, {
+                  productId:products?._id,
+                  userId:userInfo?._id,
+                });
+                 
+                if (response.status===201) {
+                 toast.success('Product added to your wishlist!');
+                } else {
+                }
+              } catch (error) {
+                console.error('Error adding to wishlist:', error);
+                toast.error(error?.response?.data?.message)
+              }
+
+          }else{
+            toast.error('Please register your account');
+            navigate('/register')
+          }
+          
+        };
+         
+
     return (
         <>
             <Navbar />
@@ -45,9 +104,9 @@ const ProductDetails = ({
                     {/* Product Title */}
                     <div className=' flex sm:flex-row gap-5 flex-col  justify-between '>
                         <h1 className="text-3xl font-bold text-gray-800">
-                            Microsoft Windows 11 Pro (PC) - Microsoft Key - GLOBAL
+                            M{products?.title}
                         </h1>
-                        <div className=' bg-gray-200 w-12 h-12 rounded-full flex justify-center items-center'>
+                        <div  onClick={handleWhitelist} className=' bg-gray-200 w-12 h-12 cursor-pointer rounded-full flex justify-center items-center'>
                             <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="indexes__StyledWishlistHeart-vomwzh-2 fUnRFQ"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.0521 3.05014C4.78562 0.316619 9.21779 0.316619 11.9513 3.05014C11.968 3.06688 11.9847 3.08369 12.0012 3.10055C12.0177 3.08369 12.0344 3.06689 12.0511 3.05014C14.7846 0.316619 19.2168 0.316619 21.9503 3.05014C24.6838 5.78367 24.6838 10.2158 21.9503 12.9494L12.7073 22.1924C12.5198 22.3799 12.2654 22.4853 12.0001 22.4853C11.7349 22.4852 11.4805 22.3799 11.293 22.1923L2.0521 12.9494C2.05207 12.9493 2.05205 12.9493 2.05202 12.9493C-0.681428 10.2158 -0.681402 5.78364 2.0521 3.05014ZM10.5371 4.46436C8.58462 2.51188 5.41879 2.51188 3.46631 4.46436C1.51383 6.41683 1.51383 9.58267 3.46631 11.5351L3.46639 11.5352L12.0003 20.071L20.5361 11.5351C22.4886 9.58267 22.4886 6.41683 20.5361 4.46436C18.5836 2.51188 15.4178 2.51188 13.4653 4.46436C13.2255 4.70415 13.0163 4.96306 12.8344 5.23719C12.6491 5.5164 12.3363 5.68425 12.0012 5.68425C11.6661 5.68425 11.3533 5.5164 11.168 5.23719C10.9861 4.96316 10.776 4.70323 10.5371 4.46436Z" fill="currentColor"></path></svg>
                         </div>
                     </div>
@@ -78,7 +137,7 @@ const ProductDetails = ({
                                     className="flex  transition-transform ease-out duration-500"
                                     style={{ transform: `translateX(-${curr * 100}%)` }}
                                 >
-                                    {images?.map((image, i) => {
+                                    {products?.images?.map((image, i) => {
                                         console.log(image, "slider image============>>>>>>>>>>>>>>");
                                         return (
                                             <div key={i} className="flex-none h-96 rounded-lg overflow-hidden w-full">
@@ -109,7 +168,7 @@ const ProductDetails = ({
                             </div>
                             <div className=" mt-5 ">
                                 <div className="flex items-center justify-center gap-2">
-                                    {images?.map((_, i) => (
+                                    {products?.images?.map((_, i) => (
                                         <div
                                             key={i}
                                             onClick={() => goToSlide(i)}
@@ -185,7 +244,20 @@ const ProductDetails = ({
                             <div className="text-sm text-gray-500">
                                 Save <span className="font-semibold text-green-600">$2.48</span> with G2A Plus
                             </div>
-                            <button className=" bg-secondary text-white py-2 w-full rounded-md hover:bg-blue-700">
+                            <button   onClick={()=>{
+              dispatch(
+                addToCart({
+                  _id:products?._id,
+                  image:products?.images[0],
+                  description:products?.description,
+                  title:products?.title,
+                  quantity:1,
+                  price:products?.discountPrice
+                })
+              )
+
+              toast.success('Product add to cart successfuly!')
+            }}     className=" bg-secondary text-white py-2 w-full rounded-md hover:bg-blue-700">
                                 Add to Cart
                             </button>
                             <span className=' absolute -top-5 text-gray-500 bg-white'>OFFER FROM BUSINESS SELLER</span>

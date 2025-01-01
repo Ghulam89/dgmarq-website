@@ -26,6 +26,7 @@ import AffiliateProgram from "./screens/AffiliateProgram/AffiliateProgram";
 import AboutUs from "./screens/AboutUs";
 import BuyerSupport from "./screens/Buyer/BuyerSupport";
 import SellerSupport from "./screens/Sellers/SellerSupport";
+import Dashboard from "./screens/BuyerDashboard/dashboard";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
       <Route path="/reliability" element={<Reliability />} />
       <Route path="/affiliate_program" element={<AffiliateProgram />} />
       <Route path="/buyer-support" element={<BuyerSupport />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/seller-support" element={<SellerSupport />} />
      </Routes>
     </>
