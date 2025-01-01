@@ -24,6 +24,8 @@ import Partnerships from "./screens/Partnerships/Partnerships";
 import Reliability from "./screens/Reliability/Reliability";
 import AffiliateProgram from "./screens/AffiliateProgram/AffiliateProgram";
 import AboutUs from "./screens/AboutUs";
+import BuyerSupport from "./screens/Buyer/BuyerSupport";
+import SellerSupport from "./screens/Sellers/SellerSupport";
 
 function App() {
   return (
@@ -53,6 +55,8 @@ function App() {
       <Route path="/partnerships" element={<Partnerships />} />
       <Route path="/reliability" element={<Reliability />} />
       <Route path="/affiliate_program" element={<AffiliateProgram />} />
+      <Route path="/buyer-support" element={<BuyerSupport />} />
+      <Route path="/seller-support" element={<SellerSupport />} />
      </Routes>
     </>
   );

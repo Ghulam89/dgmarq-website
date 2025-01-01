@@ -30,6 +30,8 @@ module.exports = {
         Flash_bg: "url('./assets/images/flash.webp')",
         deal_bg: "url('https://images.g2a.com/uiadminimages/1920x475/1x1x1/cc084de359bd/3050d51e89ed4abba25301d4')",
         game_bg: "url('https://images.g2a.com/uiadminimages/1920x475/1x1x1/b11bfaa0e370/fd33af599e384df9a7faf2c5')",
+        support_bg: "url('./assets/images/support.jpg')",
+        activate_bg: "url('./assets/images/activate_product_background.jpg')",
       }
     },
   },
