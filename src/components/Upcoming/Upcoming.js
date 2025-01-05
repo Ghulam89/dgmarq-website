@@ -79,7 +79,7 @@ const Upcoming = () => {
      </H2>
 
      </div>
-      <div className=' flex sm:flex-row flex-col justify-between items-center w-full'>
+      <div className=' flex sm:flex-row flex-col  sm:gap-0 gap-2 justify-between items-center w-full'>
         <div className=' sm:w-6/12 w-12/12'>
          <div className=' relative'>
           <img src='https://images.g2a.com/uiadminimages/960x438/1x1x1/bdf4fa33651a/bd677977c4d04d82bdd9978a' className=' w-full' alt='' /> 

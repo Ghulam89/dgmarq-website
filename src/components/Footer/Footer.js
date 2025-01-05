@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-white text-gray-600 text-sm">
@@ -47,34 +48,34 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-2">DGMARQ</h3>
             <ul className="space-y-1">
               <li>
-                <a href="/about-us" className="hover:underline">
+                <Link to="/about-us" className="hover:underline">
                   About us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/news" className="hover:underline">
+                <Link to="/news" className="hover:underline">
                   Newsroom
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Contact
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/careers" className="hover:underline">
+                <Link to="/careers" className="hover:underline">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/reliability" className="hover:underline">
+                <Link to="/reliability" className="hover:underline">
                   Reliability
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/DigitalServicesAct" className="hover:underline">
+                <Link to="/DigitalServicesAct" className="hover:underline">
                   Digital Services Act
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -83,19 +84,19 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-2">Cooperation</h3>
             <ul className="space-y-1">
               <li>
-                <a href="/partnerships" className="hover:underline">
+                <Link to="/partnerships" className="hover:underline">
                   Marketing Partnership
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="#" className="hover:underline">
                   Affiliate Program
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/review" className="hover:underline">
+                <Link to="/review" className="hover:underline">
                   Reviews
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -103,45 +104,45 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-2">For Buyers</h3>
             <ul className="space-y-1">
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="/buyer-support" className="hover:underline">
                   Buyers Support
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="/how-to-buy" className="hover:underline">
                   How to Buy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="/stay-safe" className="hover:underline">
                   Stay Safe
-                </a>
+                </Link>
               </li>
-              <li>
-                <a href="#" className="hover:underline">
+              {/* <li>
+                <Link to="#" className="hover:underline">
                   Sitemap
-                </a>
-              </li>
+                </Link>
+              </li> */}
             </ul>
           </div>
           <div>
             <h3 className="font-semibold text-gray-800 mb-2">For Sellers</h3>
             <ul className="space-y-1">
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="/seller-support" className="hover:underline">
                   Sellers Support
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="/how-to-buy" className="hover:underline">
                   How to Sell
-                </a>
+                </Link>
               </li>
-              <li>
-                <a href="#" className="hover:underline">
+              {/* <li>
+                <Link to="#" className="hover:underline">
                   Business Center
-                </a>
-              </li>
+                </Link>
+              </li> */}
              
             </ul>
           </div>
@@ -151,14 +152,14 @@ const Footer = () => {
             </h3>
             <ul className="space-y-1">
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="/terms-conditions" className="hover:underline">
                   Terms & Conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="/privacy-policy" className="hover:underline">
                   Privacy and Cookies Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -166,14 +167,14 @@ const Footer = () => {
             <h3 className="font-semibold text-gray-800 mb-2">Our Products</h3>
             <ul className="space-y-1">
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="#" className="hover:underline">
                 DGMARQ Plus
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to="#" className="hover:underline">
                 DGMARQ News
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -273,8 +274,8 @@ const Footer = () => {
 
           <div>
           <div className=" flex  gap-4">
-  <a
-    href="#"
+  <Link
+    to="#"
     title="G2A.COM Facebook"
   >
     <img
@@ -284,9 +285,9 @@ const Footer = () => {
       width={28}
       height={28}
     />
-  </a>
-  <a
-    href="#"
+  </Link>
+  <Link
+    to="#"
     title="G2A.COM X"
   >
     <img
@@ -296,10 +297,10 @@ const Footer = () => {
       width={28}
       height={28}
     />
-  </a>
-  <a
+  </Link>
+  <Link
     
-    href="#"
+    to="#"
     title="G2A.COM Youtube"
   >
     <img
@@ -309,9 +310,9 @@ const Footer = () => {
       width={28}
       height={28}
     />
-  </a>
-  <a
-    href="#"
+  </Link>
+  <Link
+    to="#"
     title="G2A.COM Instagram"
   >
     <img
@@ -321,9 +322,9 @@ const Footer = () => {
       width={28}
       height={28}
     />
-  </a>
-  <a
-    href="#"
+  </Link>
+  <Link
+    to="#"
     title="G2A.COM  LinkedIn"
   >
     <img
@@ -333,9 +334,9 @@ const Footer = () => {
       width={28}
       height={28}
     />
-  </a>
-  <a
-    href="#"
+  </Link>
+  <Link
+    to="#"
     title="G2A.COM Twitch"
   >
     <img
@@ -345,9 +346,9 @@ const Footer = () => {
       width={28}
       height={28}
     />
-  </a>
-  <a
-    href="#"
+  </Link>
+  <Link
+    to="#"
     title="G2A.COM Reddit"
   >
     <img
@@ -357,7 +358,7 @@ const Footer = () => {
       width={28}
       height={28}
     />
-  </a>
+  </Link>
 </div>
 
           </div>
@@ -369,13 +370,13 @@ const Footer = () => {
         <div className="border-t mt-8 pt-6 text-center">
           <p className="text-xs">
             Using the DGMARQ.COM portal constitutes acceptance of the{" "}
-            <a href="#" className="underline">
+            <Link to="#" className="underline">
               Regulations
-            </a>
+            </Link>
             . See how we process your data in our{" "}
-            <a href="#" className="underline">
+            <Link to="#" className="underline">
               Privacy and Cookies Policy
-            </a>
+            </Link>
             .
           </p>
           <p className="mt-4 text-xs">© 2024 DGMARQ Group. All rights reserved.</p>

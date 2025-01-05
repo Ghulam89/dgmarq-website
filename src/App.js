@@ -26,8 +26,11 @@ import AffiliateProgram from "./screens/AffiliateProgram/AffiliateProgram";
 import AboutUs from "./screens/AboutUs";
 import BuyerSupport from "./screens/Buyer/BuyerSupport";
 import SellerSupport from "./screens/Sellers/SellerSupport";
-import Dashboard from "./screens/BuyerDashboard/dashboard";
-
+import TermsConditions from "./screens/TermsConditions";
+import PrivacyPolicy from "./screens/PrivacyPolicy";
+import HowToBuy from "./screens/HowToBuy";
+import StaySafe from "./screens/StaySafe";
+import Dashboard from './screens/buyerDashboard/dashboard'
 function App() {
   return (
     <>
@@ -57,9 +60,13 @@ function App() {
       <Route path="/reliability" element={<Reliability />} />
       <Route path="/affiliate_program" element={<AffiliateProgram />} />
       <Route path="/buyer-support" element={<BuyerSupport />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/how-to-buy" element={<HowToBuy />} />
+      <Route path="/stay-safe" element={<StaySafe />} />
+      <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/seller-support" element={<SellerSupport />} />
-     </Routes>
+      <Route path="/terms-conditions" element={<TermsConditions />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+     </Routes> 
     </>
   );
 }
