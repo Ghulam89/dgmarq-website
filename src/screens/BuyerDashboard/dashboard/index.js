@@ -107,7 +107,7 @@ const Dashboard = () => {
 
                                   <div className=' px-3 py-2.5  rounded-sm bg-gray-200'>
 
-                                   <p className=' m-0 text-sm flex  items-center gap-2'> <FaStar color='gray' />                                   Your ticket list is empty</p>
+                                   <p className=' m-0 text-sm flex  items-center gap-2'> <FaStar color='gray' />   Your ticket list is empty</p>
 
                                   </div>
 
