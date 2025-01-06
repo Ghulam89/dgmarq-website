@@ -1,5 +1,4 @@
 import React from 'react'
-import Wrapper from '../Wrapper'
 import { H1, H5} from '../../../components/common/Heading'
 import { FaPlus, FaStar } from 'react-icons/fa'
 import { PiShoppingCartSimpleFill } from 'react-icons/pi'
@@ -8,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { LuMessagesSquare } from 'react-icons/lu'
 import { IoMdCloseCircleOutline } from 'react-icons/io'
 import { useSelector } from 'react-redux'
+import Wrapper from '../../BuyerDashboard/Wrapper'
 
 const Dashboard = () => {
     const { userInfo } = useSelector((state) => state.next);
