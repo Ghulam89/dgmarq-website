@@ -30,7 +30,7 @@ const SellerSupport = () => {
      <Navbar/>
      <BottomHeader/>
      <div
-      className="bg-cover bg-support_bg bg-center h-[80vh] text-white"
+      className="bg-cover bg-support_bg bg-center sm:h-[80vh] h-[50vh] text-white"
       
     >
       <div className="h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
@@ -43,7 +43,8 @@ const SellerSupport = () => {
             I'm selling
           </button>
         </div>
-        <div className="w-full relative max-w-2xl">
+        <div className=' px-4 w-full'>
+        <div className="w-full mx-auto relative max-w-2xl">
           <input
             type="text"
             placeholder="Enter a keyword"
@@ -54,6 +55,8 @@ const SellerSupport = () => {
 
           </div>
         </div>
+        </div>
+       
       </div>
     </div>
 

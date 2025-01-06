@@ -10,6 +10,9 @@ import { Base_url } from '../../utils/Base_url'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { addToCart } from '../../store/productSlice'
+import Gather from '../../components/Gather/Gather'
+import ProductCard from '../../components/Cards/ProductCard'
+import { FaStar } from 'react-icons/fa'
 
 const ProductDetails = ({
     children: slides,
@@ -93,6 +96,95 @@ const ProductDetails = ({
           }
           
         };
+
+
+
+        const products2 = [
+            {
+              id: 1,
+              discount:'4%',
+              title: "Call of Duty: Modern Warfare III",
+              subtitle: "(PC) - Steam Account",
+              price: "$34.35",
+              oldPrice: "$39.99",
+              tag: "SPONSORED",
+              image:
+                "https://images.g2a.com/170x228/1x1x0/call-of-duty-modern-warfare-iii-pc-steam-account-global/2f43247ed73c4f05ae9139bc", // Replace with the actual image
+            },
+            {
+              id: 2,
+              
+              discount:'8%',
+              title: "Random Black Friday 1 Key",
+              subtitle: "(PC) - Steam Key - GLOBAL",
+              price: "$5.87",
+              tag: "SPONSORED",
+              image:
+                "https://images.g2a.com/170x228/1x1x0/random-black-friday-1-key-pc-steam-key-global/999a67334db34f62879f2b78",
+            },
+            {
+              id: 3,
+              
+              discount:'9%',
+              title: "Battlefield 2042",
+              subtitle: "(Xbox Series X/S) - Xbox Live Key",
+              price: "$12.06",
+              tag: "OFFER FROM 6 SELLERS",
+              image:
+                "https://images.g2a.com/170x228/1x1x0/battlefield-2042-xbox-series-x-s-xbox-live-key-global/3e8c0e6bb7f543dca6744e91",
+            },
+            {
+              id: 4,
+              
+              discount:'2%',
+              title: "Max Payne (PC)",
+              subtitle: "Steam Key - GLOBAL",
+              price: "$4.77",
+              tag: "OFFER FROM 23 SELLERS",
+              image:
+                "https://images.g2a.com/170x228/1x1x0/max-payne-pc-steam-key-global/5910dfe6ae653a5436160135",
+            },
+            {
+              id: 5,
+              
+              discount:'8%',
+              title: "Grand Theft Auto V (PC)",
+              subtitle: "Rockstar Key - GLOBAL",
+              price: "$12.22",
+              tag: "SPONSORED",
+              image:
+                "https://images.g2a.com/170x228/1x1x0/grand-theft-auto-v-rockstar-key-global/59e5efeb5bafe304c4426c47",
+            },
+            {
+              id: 6,
+              
+              discount:'5%',
+              title: "Darktide",
+              subtitle: "(PC)",
+              price: "$11.41",
+              tag: "SPONSORED",
+              image:
+                "https://images.g2a.com/170x228/1x1x0/warhammer-40000-darktide-pc-steam-key-global/59ba02c95c434f6da1267962",
+            },
+          ];
+
+
+
+
+          const reviews = [
+            {
+              id: 1,
+              name: "ZeZoo",
+              rating: 5,
+              date: "Jan 2, 2025",
+              platform: "Steam",
+              recommendation: true,
+              helpfulVotes: { yes: 2, no: 0 },
+              verified: true,
+            },
+            
+          ];
+          
          
 
     return (
@@ -128,7 +220,7 @@ const ProductDetails = ({
                         <span className="text-sm ml-2 text-gray-600">(4 reviews)</span>
                     </div>
 
-                    <div className=' flex md:flex-row flex-col gap-5 justify-between items-center'>
+                    <div className=' flex md:flex-row flex-col gap-5 justify-between '>
 
                         {/* Product Image */}
                         <div className=' md:w-6/12 w-11/12'>
@@ -140,7 +232,7 @@ const ProductDetails = ({
                                     {products?.images?.map((image, i) => {
                                         console.log(image, "slider image============>>>>>>>>>>>>>>");
                                         return (
-                                            <div key={i} className="flex-none h-96 rounded-lg overflow-hidden w-full">
+                                            <div key={i} className="flex-none h-80 rounded-lg overflow-hidden w-full">
                                                 <img
                                                     //   onClick={openSlider}
                                                     src={image}
@@ -154,13 +246,13 @@ const ProductDetails = ({
 
                                 <button
                                     onClick={prev}
-                                    className=" w-12 h-16 shadow  absolute left-0 top-44 flex  justify-center items-center bg-white/80 text-gray-800 hover:bg-white"
+                                    className=" w-12 h-16 shadow  absolute left-0 top-32 flex  justify-center items-center bg-white/80 text-gray-800 hover:bg-white"
                                 >
                                     <TfiAngleLeft size={20} className="" />
                                 </button>
                                 <button
                                     onClick={next}
-                                    className=" w-12 h-16  absolute right-0 top-44 flex justify-center items-center shadow bg-white/80 text-gray-800 hover:bg-white"
+                                    className=" w-12 h-16  absolute right-0 top-32 flex justify-center items-center shadow bg-white/80 text-gray-800 hover:bg-white"
                                 >
                                     <TfiAngleRight size={20} />
                                 </button>
@@ -226,7 +318,7 @@ const ProductDetails = ({
 
 
                         {/* Price and Buttons */}
-                        <div className="mt-6 flex md:w-5/12 w-11/12  relative border p-4 flex-col space-y-2">
+                        <div className="mt-6 flex md:w-5/12 w-11/12 h-64  relative border p-4 flex-col space-y-2">
                             <div className=' flex gap-2'>
                                 <Link to={'/seller-store'} className=' relative'>
                                     <img src={'https://images.g2a.com/96x96/1x0x0/aONVWSXh/1621fe27cf004e27a1a5af01'} className=' w-16 h-16 object-cover  border border-secondary p-0.5 object-center rounded-full' alt='' />
@@ -268,7 +360,7 @@ const ProductDetails = ({
                 </div>
             </section>
 
-            <section className=' max-w-4xl mx-auto py-12'>
+            <section className=' max-w-7xl mx-auto pb-12'>
                 <h1 className=' text-2xl font-semibold pb-4 text-black'>Product description</h1>
                 <p className=' text-gray-400'>Farming Simulator 25 is an immersive agricultural simulation game and the ninth installment of the Farming Simulator franchise released on PC. This amazing, realistic farming sim is developed and self-published by Giants Software, and its release date is set to the 12th of November, 2024. Be the first to experience FS25 and get your key right now!
 
@@ -276,6 +368,236 @@ const ProductDetails = ({
 
             </section>
 
+           <div className=' mx-auto max-w-7xl pb-7'>
+
+           <div className=" py-6 flex  justify-between">
+       <div>
+       <h2 className="text-2xl font-bold">Other products you may like</h2>
+       
+       </div>
+
+      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {products2.map((product, index) => (
+            
+            <ProductCard image={product?.image} discount={product?.discount}  originalPrice={product?.price}  title={product?.title} price={product?.price}  />
+
+          ))}
+        </div>
+
+           </div>
+
+
+           <div className="bg-white px-3  max-w-7xl mx-auto">
+      <h2 className="text-2xl font-bold mb-2">Reviews</h2>
+      <p className="text-gray-600 mb-4">
+        Check what our customers think of this title
+      </p>
+
+      {/* Overall Rating */}
+      <div className="flex md:flex-row flex-col border  rounded-md flex-wrap justify-between items-center border-b pb-4 mb-4">
+       
+       <div className=" sm:w-7/12 w-12/12 p-4 flex sm:flex-row flex-col gap-4">
+        <div className=''>
+        <h2 className=' font-semibold text-black'>Overall item rating</h2>
+         <div className=' flex  items-center py-2 gap-3'>
+         <div className="text-5xl font-bold text-black">5</div>
+         <div>
+         <div className=' flex gap-1 items-center'>
+         <FaStar className=' text-yellow-500' size={20} />
+         <FaStar className=' text-yellow-500' size={20} />
+         <FaStar className=' text-yellow-500' size={20} />
+         <FaStar className=' text-yellow-500' size={20} />
+         <FaStar className=' text-yellow-500' size={20} />
+         </div>
+         <div className="text-black text-sm   font-medium  pt-1">9 reviews</div>
+         </div>
+         </div>
+          <div>
+            
+            <div className="text-gray-600 text-sm">
+              9 out of 9  <span className=' text-green-500'>(100%)</span> reviewers recommend this item
+            </div>
+          </div>
+        </div>
+        <div className=' sm:w-5/12 w-12/12'>
+        <div className=' py-1  flex  items-center justify-between'>
+        <h2 className=' font-semibold text-black'>Rating</h2>
+        <p className=' text-sm text-gray-500'>Select a row to filter reviews</p>
+        </div>
+        <div className=' flex flex-col gap-2'>
+       {[5, 4, 3, 2, 1].map((star, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <span className="text-black font-bold items-center flex  gap-2">{star} <FaStar className=' text-yellow-500' /> </span>
+            <div className="w-full bg-gray-300  rounded h-3">
+              <div
+                className="bg-black h-3 w-full rounded"
+                style={{ width: star === 5 ? "100%" : "0%" }}
+              ></div>
+            </div>
+            <span className="text-gray-600 text-sm">{star === 5 ? "9" : "0"}</span>
+          </div>
+        ))}
+       </div>
+        </div>
+        
+        </div>
+
+     
+    
+        <div className=' bg-[#F2F8FE] px-8 py-10 h-full sm:w-4/12 w-12/12'>
+        <h2 className=' font-semibold text-lg text-black'>Review this item</h2>
+          <p className="text-sm text-gray-500 mt-1">
+            Get a 5% discount on your next purchase as a thank you
+          </p>
+          <button className="bg-blue-500 text-white w-full px-4 py-2 mt-2 rounded-sm hover:bg-blue-600">
+            Review item
+          </button>
+          <p className='text-[12px] pt-1'>Signed-in customers with at least 1 purchase can review
+          </p>
+        </div>
+      </div>
+
+
+      {/* Reviews List */}
+      <div>
+        {reviews.map((review) => (
+          <div
+            key={review.id}
+            className="border rounded-lg p-4 mb-4 flex sm:flex-row flex-col gap-4 sm:h-32 h-auto flex-wrap justify-between items-start"
+          >
+            <div>
+              <h4 className="">{review.name}</h4>
+              <p className="text-sm text-gray-500">
+                Reviewed on: {review.date}
+              </p>
+             
+            </div>
+            <div className=' flex flex-col justify-between items-center h-full'>
+            <div className=' flex justify-between gap-2'>
+            <ul className=' m-0 flex gap-1'>
+              <li><FaStar className=' text-yellow-500' size={18} /></li>
+              <li><FaStar className=' text-yellow-500' size={18} /></li>
+              <li><FaStar className=' text-yellow-500' size={18} /></li>
+              <li><FaStar className=' text-yellow-500' size={18} /></li>
+              <li><FaStar className=' text-yellow-500' size={18} /></li>    
+            </ul>    
+            <p className="text-sm text-gray-500 flex  gap-2">{review.platform}  <img src='https://static.g2a.com/_/pc-drmGaming/steam.svg' className=' w-4 h-4' alt='' /> </p>
+            </div>
+             <div className=' flex  items-center gap-2'>
+             <p className="text-sm text-black">
+                {review.recommendation ? "Recommends this item" : "Doesn't recommend this item"}
+              </p>
+              {review.verified && (
+                <span className="text-sm text-green-500 flex items-center gap-1 mt-1">
+                  <span className="material-icons flex  items-center gap-1"> <p className=' m-0 text-black'>Yes</p> <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width="1em"
+  height="1em"
+  fill="currentColor"
+>
+  <g
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth={2}
+    stroke="currentColor"
+    fill="none"
+    strokeMiterlimit={10}
+  >
+    <path d="M6 12l4 4 8-8" />
+    <circle cx={12} cy={12} r={11} />
+  </g>
+</svg>
+ </span>
+                
+                </span>
+              )}
+             </div>
+            </div>
+            <div className=" h-full flex flex-col justify-between items-center">
+              <div></div>
+              <div className=' flex text-sm  items-center gap-1'>
+              <svg
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  width="1.5em"
+  height="1.5em"
+  fill="currentColor"
+>
+  <path
+    d="M6 22a1 1 0 100-2 1 1 0 000 2zm14 0a1 1 0 100-2 1 1 0 000 2zm1.238-12.19L20 16H6L4 1H1m3.667 5H13"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeMiterlimit={10}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    fill="none"
+  />
+  <path
+    d="M16.529 4.47a.75.75 0 10-1.06 1.06l2 2a.748.748 0 001.06 0l5-5a.75.75 0 00-1.06-1.06l-4.47 4.47-1.47-1.47z"
+    fill="currentColor"
+  />
+  <path
+    d="M23.099 6.02a1 1 0 00-1.18.78 4 4 0 11-3.12-4.72 1 1 0 00.4-1.961 6 6 0 104.68 7.081 1.001 1.001 0 00-.78-1.18z"
+    fill="currentColor"
+  />
+</svg>
+Verified purchase
+              </div>
+            </div>
+
+            <div  className='  border-l pl-2'>
+                <p className=' m-0  text-sm'>Was this review helpful?</p>
+                <div className="flex justify-center items-center gap-4 mt-2">
+              <button className="flex items-center text-blue-500 gap-2">
+              <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 16 16"
+  width="1.5em"
+  height="1.5em"
+  fill="currentColor"
+>
+  <g
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M.5 7.5h3v8h-3zM5.5 15.5h6.9a2 2 0 001.952-1.566l1.111-5A2 2 0 0013.507 6.5H9.5v-4a2 2 0 00-2-2l-2 6" />
+  </g>
+</svg>
+ <p  className=' text-black pt-1 m-0'>{review.helpfulVotes.yes}</p>
+              </button>
+              <button className="flex items-center text-blue-500 gap-2">
+              <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 16 16"
+  width="1.5em"
+  height="1.5em"
+  fill="currentColor"
+>
+  <g
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M.5.5h3v8h-3zM5.5.5h6.9a2 2 0 011.952 1.566l1.111 5A2 2 0 0113.507 9.5H9.5v4a2 2 0 01-2 2l-2-6" />
+  </g>
+</svg>
+ <p className=' text-black pt-1 m-0'>{review.helpfulVotes.no}</p>
+              </button>
+            </div>
+            </div>
+            
+          </div>
+        ))}
+      </div>
+    </div>
+
+
+            <Gather/>
             <Subscription />
             <Footer />
         </>

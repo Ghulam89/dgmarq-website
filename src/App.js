@@ -30,7 +30,7 @@ import TermsConditions from "./screens/TermsConditions";
 import PrivacyPolicy from "./screens/PrivacyPolicy";
 import HowToBuy from "./screens/HowToBuy";
 import StaySafe from "./screens/StaySafe";
-import Dashboard from './screens/buyerDashboard/dashboard'
+import Dashboard from "./screens/BuyerDashboard/Dashboard";
 function App() {
   return (
     <>

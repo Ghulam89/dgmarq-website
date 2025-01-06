@@ -45,8 +45,8 @@ const [slider,setSlider] = useState([]);
 
   return (
     <>
-      <div className="  flex justify-center    items-center bg-home bg-cover w-full py-8">
-        <div className=" flex gap-6 justify-center  max-w-7xl mx-auto flex-wrap">
+      <div className="  flex justify-center  items-center bg-home bg-cover bg-center w-full py-8">
+        <div className=" flex gap-6  md:justify-between justify-center w-full px-3 max-w-7xl mx-auto flex-wrap">
           {slider?.map((item, index) => {
             return <HomeCard item={item} />;
           })}

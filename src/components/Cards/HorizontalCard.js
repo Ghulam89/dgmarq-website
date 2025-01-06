@@ -19,7 +19,7 @@ const HorizontalCard = ({ image, title, price, originalPrice, discount, offerLab
         boxShadow: isHovered ? hoverBoxShadow : defaultBoxShadow,
       }}
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)} className="border rounded-md bg-white  overflow-hidden hover:transform  sm:h-48 h-auto hover:translate-y-[-2px]  flex  sm:flex-row flex-col   hover:border-[#e0e0e0] transition-shadow">
+        onMouseLeave={() => setIsHovered(false)} className="border rounded-sm bg-white  overflow-hidden hover:transform  sm:h-48 h-auto hover:translate-y-[-2px]  flex  sm:flex-row flex-col   hover:border-[#e0e0e0] transition-shadow">
 
        <div className=" sm:w-5/12 w-12/12">
        <img src={image} alt={title} className="w-full h-full  object-center" />

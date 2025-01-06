@@ -19,7 +19,6 @@ const BuyerSupport = () => {
       ];
 
 
-
       const cards2 = [
         { title: "How to contact the seller?", icon: "https://i.ytimg.com/vi/mu-YHtwTawc/sddefault.jpg" },
         { title: "I purchased a digital item- how I claim it?", icon: "https://i.ytimg.com/vi/q0ikwOb_i30/sddefault.jpg" },
@@ -30,7 +29,7 @@ const BuyerSupport = () => {
      <Navbar/>
      <BottomHeader/>
      <div
-      className="bg-cover bg-support_bg bg-center h-[80vh] text-white"
+      className="bg-cover bg-support_bg bg-center sm:h-[70vh] h-[50vh] text-white"
       
     >
       <div className="h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
@@ -43,7 +42,8 @@ const BuyerSupport = () => {
             I'm selling
           </button>
         </div>
-        <div className="w-full relative max-w-2xl">
+        <div className=' px-4 w-full'>
+        <div className="w-full relative mx-auto max-w-2xl">
           <input
             type="text"
             placeholder="Enter a keyword"
@@ -53,6 +53,7 @@ const BuyerSupport = () => {
           <IoSearchSharp color='black' size={20}  />
 
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -117,6 +118,8 @@ const BuyerSupport = () => {
          </div>
         </div>
      </div>
+      
+      
      <Footer/>
     </>
   )

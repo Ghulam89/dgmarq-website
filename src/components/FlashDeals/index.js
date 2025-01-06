@@ -82,11 +82,12 @@ const FlashDeals = () => {
 
 
   return (
-    <div className=" bg-Flash_bg hidden sm:block py-5   w-full h-auto relative bg-cover bg-center">
-      <div className="flex max-w-7xl items-center gap-12 mx-auto justify-center">
+    <div className=" bg-Flash_bg hidden sm:block py-10  w-full h-auto relative bg-cover bg-center">
+      <div className="flex max-w-7xl items-center gap-12 mx-auto  justify-center">
         {/* Flash Deal Section */}
-        <div className=" w-4/12    rounded-lg  p-12  text-white">
-          <h2 className="text-xl font-bold text-center mb-4">Flash Deal - Starts in</h2>
+        <div className=" w-4/12    rounded-lg  relative  text-white">
+         <div className=" absolute -top-[214px] w-64 right-4">
+         <h2 className="text-xl font-bold text-center mb-4">Flash Deal - Starts in</h2>
           <div className="flex  justify-center items-center space-x-2 text-2xl mb-4">
             <div className=" leading-5" >
             <span className=" text-black bg-white w-16 h-16 flex justify-center  items-center rounded-sm "><span className=" text-4xl font-bold">{String(timeLeft.hours).padStart(2, "0")}</span></span>
@@ -116,10 +117,11 @@ const FlashDeals = () => {
           <div className="h-2 bg-gray-700 mt-2 rounded">
             <div className="bg-blue-500 h-full w-1/2 rounded"></div>
           </div>
+         </div>
         </div>
 
         {/* Currently Trending Offers */}
-        <div className="w-6/12">
+        <div className="w-7/12">
           <h2 className="text-2xl  font-bold text-white">
             More currently trending offers
           </h2>

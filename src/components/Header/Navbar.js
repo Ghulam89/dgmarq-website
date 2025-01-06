@@ -13,7 +13,7 @@ import { TbLogout2 } from "react-icons/tb";
 import { removeUser } from "../../store/productSlice";
 import { toast } from "react-toastify";
 import { IoSearch } from "react-icons/io5";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { IoMdArrowDropdown, IoMdArrowDropright, IoMdClose } from "react-icons/io";
 import ProfilePopup from "./ProfilePopup";
 const Navbar = () => {
   
@@ -104,14 +104,80 @@ const dispatch = useDispatch();
     "For Adults",
   ];
   
- 
+ const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+    const [Category, setCategory] = useState(null);
     const [dropdownOpen, setDropdownOpen] = useState(false);
   
     const handleCategorySelect = (category) => {
-      setSelectedCategory(category);
+      setCategory(category);
       setDropdownOpen(false);
     };
+
+
+
+    const toggleDesktopMenu = () => {
+      setDesktopMenuOpen((prev) => !prev);
+    };
+
+
+
+
+    
+  const Items =[
+    {
+      id:1,
+      name:'Bestsellers',
+      Url:'/sellers'
+    },
+    {
+      id:2,
+      name:'Gift ideas',
+      Url:'/gift-ideas'
+    },
+    {
+      id:3,
+      name:'Random Keys',
+      Url:'/random-keys'
+    },
+    {
+      id:4,
+      name:'Software',
+      Url:'/software-dealer'
+    }
+
+
+  ]
+
+
+  const [subCategory, setSubCategory] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${Base_url}/category/getAll`)
+      .then((res) => {
+        console.log(res);
+
+        setSubCategory(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+  }, []);
+
+
+
+  const closeSubMenu = () => {
+    setDesktopMenuOpen(false);
+    setSelectedCategory(null);
+  };
+
+
+
+   const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
+  
 
 
  
@@ -220,7 +286,7 @@ const dispatch = useDispatch();
                 </a>
               ))}
             </div> */}
-            <form className="my-4 mx-5 flex h-12 items-center border">
+            {/* <form className="my-4 mx-5 flex h-12 items-center border">
               <CiSearch className="mx-3 h-4 w-4" />
 
               <input
@@ -234,15 +300,135 @@ const dispatch = useDispatch();
               >
                 Search
               </button>
-            </form>
-            <ul className="text-center font-medium">
+            </form> */}
+            {/* <ul className="text-center font-medium">
               {links.map((link, index) => (
                 <li key={index} className="py-2 text-white">
                   <Link className=" text-white" to={link.url}>{link.name}</Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
+
+
+              {/* Nav Links */}
+                      <div className="flex flex-col justify-between  px-4 items-center gap-2">
+                      <button
+                        onClick={toggleDesktopMenu}
+                        className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-sm"
+                      >
+                        <RxHamburgerMenu className=" w-5 h-5" />
+                        Categories
+                      </button>
+                        {Items?.map(
+                          (item, index) => (
+                            <Link
+                              key={index}
+                              className="text-white bg-[#212121] py-2  px-3 text-sm rounded-sm w-full text-left hover:border-b  hover:text-[#EAE5D5]"
+                              to={`${item?.Url}`}
+                            >
+                              {item?.name}
+                            </Link>
+                          )
+                        )}
+                         <Link
+                            
+                              className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-left px-3 hover:border-b  hover:text-[#EAE5D5]"
+                              to={'#'}
+                            >
+                              Save more with G2A Plus
+                            </Link>
+                      </div>
+
+
           </div>
+
+
+            {/* Desktop Menu */}
+                {desktopMenuOpen && (
+                  <section className=" fixed h-full  top-0 z-50 left-0 right-0 bg-white border">
+                    <div className="container mx-auto flex py-5">
+                      {/* Categories List */}
+                      <div className="w-1/4 border-r">
+                        <ul className=" flex justify-between flex-col w-full">
+                          {subCategory?.map((category, index) => (
+                            <li
+                              key={index}
+                              className={`flex items-center gap-2 px-4 py-2 cursor-pointer ${
+                                Category === category.subcategories
+                                  ? "bg-gray-200"
+                                  : "hover:bg-gray-100"
+                              }`}
+                              onMouseEnter={() => setCategory(category.subcategories)}
+                              onMouseLeave={() => setHoveredSubMenu(null)}
+                            >
+                             
+                              {category.title}
+                              <IoMdArrowDropright className="ml-auto" />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+          
+                      {/* Subcategories */}
+                      {Category && (
+                        <div className="w-3/4 flex">
+                          {subCategory
+                            .find((cat) => cat.subcategories === Category)
+                            ?.subcategories.map((submenu, index) => (
+                              
+                              <div key={index} className="px-4">
+                                <Link to={`category/${submenu?._id}`} className="font-semibold text-gray-700">
+                                  {submenu.title}
+                                </Link>
+                                {/* <ul className="mt-2 space-y-1">
+                                  {submenu.items.map((item, itemIndex) => (
+                                    <li
+                                      key={itemIndex}
+                                      className="relative group"
+                                      onMouseEnter={() => setHoveredSubMenu(item.label)}
+                                      onMouseLeave={() => setHoveredSubMenu(null)}
+                                    >
+                                      <a
+                                        href={item.href}
+                                        className="block px-2 py-1 hover:bg-gray-100"
+                                      >
+                                        {item.label}
+                                      </a>
+          
+                                      Sub-subcategories
+                                      {hoveredSubMenu === item.label &&
+                                        item.subItems && (
+                                          <ul className="absolute w-full left-full top-0 bg-white border shadow-md">
+                                            {item.subItems.map((subItem, subIndex) => (
+                                              <li key={subIndex}>
+                                                <a
+                                                  href={subItem.href}
+                                                  className="block px-3 py-1 hover:bg-gray-100"
+                                                >
+                                                  {subItem.label}
+                                                </a>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        )}
+                                    </li>
+                                  ))}
+                                </ul> */}
+                              </div>
+                            ))}
+                        </div>
+                      )}
+          
+                      {/* Close Button */}
+                      <button
+                        onClick={closeSubMenu}
+                        className="absolute top-3 right-3 text-gray-700"
+                      >
+                        <IoMdClose className="w-6 h-6" />
+                      </button>
+                    </div>
+                  </section>
+                )}
         </section>
       )}
     </>

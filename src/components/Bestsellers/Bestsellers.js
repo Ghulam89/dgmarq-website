@@ -94,7 +94,7 @@ const Bestsellers = () => {
   ].map((category) => (
     <button
       key={category}
-      className="py-3 px-5 bg-white border  shadow-sm text-gray-700 whitespace-nowrap hover:bg-gray-100"
+      className="py-3 px-5 bg-white border  font-semibold shadow-sm text-gray-700 whitespace-nowrap hover:bg-gray-100"
     >
       {category}
     </button>
@@ -103,14 +103,14 @@ const Bestsellers = () => {
       <div className=" py-6 flex  justify-between">
        <div>
        <h2 className="text-2xl font-bold">Bestsellers</h2>
-        <p className="text-gray-500">
+        <p className=" text-sm pt-1">
           The hottest items on our marketplace – discover what captured our
           users' hearts!
         </p>
        </div>
 
        <div>
-       <button className="py-2 px-6 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600">
+       <button className="py-1.5 px-6 bg-blue-500 text-white font-semibold text-sm rounded-md hover:bg-blue-600">
           Discover all
         </button>
        </div>

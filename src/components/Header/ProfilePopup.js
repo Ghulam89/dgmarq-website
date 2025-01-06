@@ -50,8 +50,8 @@ const ProfilePopup = () => {
           </div>
           <div onClick={openProfileFun} className=" relative sm:block hidden">
             <div className="  flex flex-col items-center">
-              <span className=" text-white text-sm font-semibold">{userInfo?.username}</span>
-              <span className=" text-white text-[12px] font-semibold">{userInfo?.email}</span>
+              <span className=" text-white text-[11px]  font-medium">{userInfo?.username}</span>
+              <span className=" text-white text-[11px]  font-medium">{userInfo?.email}</span>
             </div>
 
 

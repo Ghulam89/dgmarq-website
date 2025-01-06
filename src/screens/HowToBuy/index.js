@@ -23,13 +23,14 @@ const HowToBuy = () => {
 
 
      <div
-          className="bg-cover bg-support_bg bg-center h-[55vh] text-white"
+          className="bg-cover bg-support_bg bg-center sm:h-[55vh] h-[50vh]  text-white"
           
         >
           <div className="h-full flex flex-col justify-center items-center bg-black bg-opacity-50">
             <h1 className="text-4xl md:text-5xl font-bold mb-8">How can we help you?</h1>
            
-            <div className="w-full relative max-w-2xl">
+           <div className=' px-3 w-full'>
+           <div className="w-full mx-auto relative max-w-2xl">
               <input
                 type="text"
                 placeholder="Enter a keyword"
@@ -40,12 +41,13 @@ const HowToBuy = () => {
     
               </div>
             </div>
+           </div>
           </div>
         </div>
 
 
-        <div className=' flex'>
-            <div className=' w-8/12'>
+        <div className=' flex sm:flex-row flex-col'>
+            <div className=' sm:w-8/12 w-12/12'>
             <div className=' pt-5  w-10/12 mx-auto'>
             <ul className=' flex items-center gap-2'>
                     <li className=' text-gray-500'>
@@ -142,7 +144,7 @@ const HowToBuy = () => {
             </div>
                 
             </div>
-            <div className=' w-4/12'>
+            <div className=' sm:w-4/12 w-12/12'>
               <div className=' pt-3 bg-gray-100 h-full  border-l p-4'>
                 <h1 className=' text-2xl pt-4 font-semibold text-center'>Search by category</h1>
 

@@ -185,7 +185,7 @@ const BottomHeader = () => {
     <>
       {/* Top Nav */}
       <nav className="hidden md:block  bg-primary">
-        <div className=" max-w-7xl mx-auto flex items-center px-3  gap-6 h-14">
+        <div className=" max-w-7xl mx-auto flex items-center px-3  gap-6  pt-1">
           {/* Categories Button */}
           
 
@@ -193,7 +193,7 @@ const BottomHeader = () => {
           <div className="flex justify-between  w-full items-center gap-2">
           <button
             onClick={toggleDesktopMenu}
-            className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-md"
+            className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-sm"
           >
             <RxHamburgerMenu className=" w-5 h-5" />
             Categories
@@ -296,7 +296,7 @@ const BottomHeader = () => {
                   ))}
               </div>
             )}
-
+            
             {/* Close Button */}
             <button
               onClick={closeSubMenu}
