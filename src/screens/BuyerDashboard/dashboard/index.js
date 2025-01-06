@@ -1,6 +1,6 @@
 import React from 'react'
 import Wrapper from '../Wrapper'
-import { H1, H5, H6 } from '../../../components/common/Heading'
+import { H1, H5} from '../../../components/common/Heading'
 import { FaPlus, FaStar } from 'react-icons/fa'
 import { PiShoppingCartSimpleFill } from 'react-icons/pi'
 import { FaCircleDollarToSlot } from 'react-icons/fa6'
@@ -11,12 +11,8 @@ import { useSelector } from 'react-redux'
 
 const Dashboard = () => {
     const { userInfo } = useSelector((state) => state.next);
-  console.log(userInfo);
+    console.log(userInfo);
 
-
-
-  
-    
     return (
         <>
             <Wrapper>
