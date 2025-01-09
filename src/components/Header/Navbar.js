@@ -184,7 +184,7 @@ const dispatch = useDispatch();
   return (
     <>
      <div className="bg-primary ">
-      <header className="mx-auto flex gap-12   max-w-7xl   h-20 items-center justify-between px-3">
+      <header className="mx-auto flex gap-12   max-w-[1170px]   h-20 items-center justify-between md:px-3 px-0">
         <Link to="/" className="">
           <img
 

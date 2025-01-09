@@ -80,6 +80,9 @@ const [slider,setSlider] = useState([]);
               <span className="text-sm">Nintendo</span>
             </div>
           </div>
+          <div>
+            
+          </div>
         </div>
       </div>
 

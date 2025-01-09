@@ -185,7 +185,7 @@ const BottomHeader = () => {
     <>
       {/* Top Nav */}
       <nav className="hidden md:block  bg-primary">
-        <div className=" max-w-7xl mx-auto flex items-center px-3  gap-6  pt-1">
+        <div className=" max-w-[1170px] mx-auto flex items-center md:px-3 px-0  gap-6  pt-1">
           {/* Categories Button */}
           
 
@@ -214,7 +214,7 @@ const BottomHeader = () => {
                   className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-center hover:border-b  hover:text-[#EAE5D5]"
                   to={'#'}
                 >
-                  Save more with G2A Plus
+                  Save more with DGMARQ
                 </Link>
           </div>
 
