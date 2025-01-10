@@ -212,7 +212,7 @@ const dispatch = useDispatch();
         <span className="text-sm text-gray-500">{selectedCategory}</span>
         <FaAngleDown  className="ml-2 text-gray-400" />
         {dropdownOpen && (
-            <div className="absolute top-full left-0 w-52 bg-white shadow-lg border rounded-sm z-10">
+            <div className="absolute top-full left-0  w-60 bg-white shadow-lg border rounded-sm z-10">
               {categories.map((category) => (
               <div
                 key={category}
@@ -242,9 +242,9 @@ const dispatch = useDispatch();
          <span className=" text-white text-sm">EN / USD</span>
          </div> */}
           <div className=" gap-3 flex  items-center justify-center">
-            <div className=" pt-3.5">
+            {/* <div className=" pt-3.5">
               <TranslateComponent/>
-            </div>
+            </div> */}
             <div className="">
                <ProfilePopup/>
 

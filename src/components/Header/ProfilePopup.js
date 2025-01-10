@@ -40,7 +40,7 @@ const ProfilePopup = () => {
   }
 
   return (
-    <>
+    <div className=' flex gap-1 items-center'>
       {userInfo ? (
         <div className=' flex items-center gap-2'>
           <div onClick={openProfileFun} className=" w-12 cursor-pointer h-12 rounded-full overflow-hidden">
@@ -397,15 +397,15 @@ const ProfilePopup = () => {
           </div>
           <div className=" sm:block hidden">
             <div className="  flex flex-col items-center">
-              <span className=" text-white text-sm font-semibold">Sign in</span>
-              <span className=" text-white text-sm font-semibold">Register</span>
+              <span className=" text-white text-[12px] font-semibold">Sign in</span>
+              <span className=" text-white text-[12px] font-semibold">Register</span>
             </div>
           </div>
 
 
 
         </>}
-    </>
+    </div>
   )
 }
 
