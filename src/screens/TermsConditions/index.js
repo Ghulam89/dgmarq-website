@@ -49,7 +49,7 @@ const TermsConditions = () => {
     <>
         <Navbar/>
         <BottomHeader/>
-        <div className='   max-w-7xl mx-auto  px-3'>
+        <div className='   max-w-[1170px] mx-auto  px-3'>
         <div className=' py-5'>
             <img src='https://images.DGMARQ.com/uiadminimages/1170x90/1x1x1/c4f9013b13fb/3739744f7d1f4e66b8f67e30' className=' mx-auto' alt='' />
         </div>

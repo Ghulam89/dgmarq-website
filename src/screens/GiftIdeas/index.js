@@ -237,7 +237,7 @@ const GiftIdeas = () => {
             </div>
             {/* holiday vouchers */}
             <section className=" py-10">
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <H3 className=''>G2A Holiday Vouchers</H3>
@@ -262,7 +262,7 @@ const GiftIdeas = () => {
 
              {/* ideal for: */}
              <section className=" py-10">
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <H3 className=''>IDEAL FOR:</H3>
@@ -282,7 +282,7 @@ const GiftIdeas = () => {
 
                {/* holiday vouchers */}
                <section className=" py-10">
-                <div className="max-w-7xl mx-auto overflow-hidden px-4">
+                <div className="max-w-[1170px] mx-auto overflow-hidden px-4">
 
                     <div className=" py-6">
                         <H3 className=''>Choose our bestsellers!</H3>
@@ -303,7 +303,7 @@ const GiftIdeas = () => {
             
              {/* ideal for: */}
              <section className=" py-10">
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <H3 className=''>Spark your inspiration!:</H3>
@@ -323,7 +323,7 @@ const GiftIdeas = () => {
 
               {/* ideal for: */}
               <section className=" py-10">
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <H3 className=''>Select your price range!</H3>
@@ -344,7 +344,7 @@ const GiftIdeas = () => {
 
              {/* holiday vouchers */}
              <section className=" pb-10 bg-gift_bg">
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <H3 className=''>Most popular gift cards</H3>

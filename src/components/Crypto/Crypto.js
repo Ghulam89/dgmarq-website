@@ -140,7 +140,7 @@ const Crypto = () => {
       <div className="relative w-full h-full">
        
         {/* Overlay Content */}
-        <div className="  max-w-7xl mx-auto px-4 inset-0 flex flex-col">
+        <div className="  max-w-[1170px] mx-auto px-4 inset-0 flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
             {/* Text Content */}
             <div>
@@ -183,7 +183,7 @@ const Crypto = () => {
         />
 
         {/* Overlay Content */}
-        <div className="sm:absolute  inset-0 max-w-7xl mx-auto px-4 inset-0 flex flex-col">
+        <div className="sm:absolute  inset-0 max-w-[1170px] mx-auto px-4 inset-0 flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
             {/* Text Content */}
             <div>
@@ -227,7 +227,7 @@ const Crypto = () => {
         />
 
         {/* Overlay Content */}
-        <div className="sm:absolute  max-w-7xl mx-auto px-4 inset-0 flex flex-col">
+        <div className="sm:absolute  max-w-[1170px] mx-auto px-4 inset-0 flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
             {/* Text Content */}
             <div>

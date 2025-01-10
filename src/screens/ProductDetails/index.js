@@ -192,7 +192,7 @@ const ProductDetails = ({
             <Navbar />
             <BottomHeader />
             <section className=' py-14'>
-                <div className="max-w-7xl mx-auto bg-white  border-gray-300  p-4">
+                <div className="max-w-[1170px] mx-auto bg-white  border-gray-300  p-4">
                     {/* Product Title */}
                     <div className=' flex sm:flex-row gap-5 flex-col  justify-between '>
                         <h1 className="text-3xl font-bold text-gray-800">
@@ -360,7 +360,7 @@ const ProductDetails = ({
                 </div>
             </section>
 
-            <section className=' max-w-7xl mx-auto pb-12'>
+            <section className=' max-w-[1170px] mx-auto pb-12'>
                 <h1 className=' text-2xl font-semibold pb-4 text-black'>Product description</h1>
                 <p className=' text-gray-400'>Farming Simulator 25 is an immersive agricultural simulation game and the ninth installment of the Farming Simulator franchise released on PC. This amazing, realistic farming sim is developed and self-published by Giants Software, and its release date is set to the 12th of November, 2024. Be the first to experience FS25 and get your key right now!
 
@@ -368,7 +368,7 @@ const ProductDetails = ({
 
             </section>
 
-           <div className=' mx-auto max-w-7xl pb-7'>
+           <div className=' mx-auto max-w-[1170px] pb-7'>
 
            <div className=" py-6 flex  justify-between">
        <div>
@@ -388,7 +388,7 @@ const ProductDetails = ({
            </div>
 
 
-           <div className="bg-white px-3  max-w-7xl mx-auto">
+           <div className="bg-white px-3  max-w-[1170px] mx-auto">
       <h2 className="text-2xl font-bold mb-2">Reviews</h2>
       <p className="text-gray-600 mb-4">
         Check what our customers think of this title

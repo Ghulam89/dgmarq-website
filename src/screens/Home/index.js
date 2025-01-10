@@ -28,7 +28,7 @@ const Home = () => {
       <Crypto/>
       <WhyG2A/>
     <section className="bg-game_bg py-12 bg-cover bg-center">
-  <div className="max-w-7xl mx-auto px-4">
+  <div className="max-w-[1170px] mx-auto px-4">
   <div className="grid gap-6 sm:grid-cols-[1fr,2fr,1fr] grid-cols-1">
   {/* First Column */}
   <div className="flex flex-col gap-3">

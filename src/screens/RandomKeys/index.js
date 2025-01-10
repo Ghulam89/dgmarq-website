@@ -320,7 +320,7 @@ const RandomKeys = () => {
      
        {/* holiday vouchers */}
        <section className=" bg-black">
-        <div className="max-w-7xl mx-auto  h-[70vh] bg-random_bg  pb-20">
+        <div className="max-w-[1170px] mx-auto  h-[70vh] bg-random_bg  pb-20">
         <div className=" relative">
             <div className=" left-36 top-8 absolute">
             <img src="https://images.g2a.com/uiadminimages/380x380/1x1x1/7573479365a3/47d7f6d302924530afa6c538" alt="" />
@@ -610,7 +610,7 @@ const RandomKeys = () => {
 
       {/* holiday vouchers */}
       <section className=" pb-10 bg-random_bg1 bg-cover   bg-center">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-[1170px] mx-auto px-4">
           <div className=" py-6">
             <div className=" flex  justify-between items-center">
               <div>
@@ -642,7 +642,7 @@ const RandomKeys = () => {
 
         {/* holiday vouchers */}
         <section className=" pb-10 bg-random_bg2 bg-cover   bg-center">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-[1170px] mx-auto px-4">
           <div className=" py-6">
             <div className=" flex  justify-between items-center">
               <div>
@@ -676,7 +676,7 @@ This section is packed with awesome items for these two popular games - let's se
 
         {/* holiday vouchers */}
         <section className=" pb-10 bg-random_bg3 bg-cover   bg-center">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-[1170px] mx-auto px-4">
           <div className=" py-6">
             <div className=" flex  justify-between items-center">
               <div>
@@ -712,7 +712,7 @@ Go for 3 randoms!</H3>
 
         {/* holiday vouchers */}
         <section className=" pb-10 bg-random_bg4 bg-cover   bg-center">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-[1170px] mx-auto px-4">
           <div className=" py-6">
             <div className=" flex  justify-between items-center">
               <div>

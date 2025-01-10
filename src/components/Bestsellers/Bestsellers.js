@@ -79,7 +79,7 @@ const Bestsellers = () => {
     
 
       <section className=" py-10">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1170px] mx-auto px-4">
          {/* Categories */}
       <div className="flex overflow-x-auto  nav_item">
   {[

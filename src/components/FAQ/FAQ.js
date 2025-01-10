@@ -69,7 +69,7 @@ const FAQ = () => {
   };
   return (
     <div className=" bg-white     bg-no-repeat w-full bg-cover   h-auto py-20">
-      <div className="  max-w-7xl mx-auto">
+      <div className="  max-w-[1170px] mx-auto">
         <div className="row items-center">
           <div className="col-lg-6 col-md-12">
             <h1 className=" font-medium text-4xl sm:text-start text-center  text-black">

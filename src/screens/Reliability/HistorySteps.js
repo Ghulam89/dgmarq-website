@@ -70,7 +70,7 @@ const HistorySteps = () => {
   ];
 
   return (
-    <div className=" max-w-7xl px-3  mx-auto py-10">
+    <div className=" max-w-[1170px] px-3  mx-auto py-10">
       <h2 className="text-3xl font-bold text-orange-600 text-center mb-8">
         G2A History
       </h2>

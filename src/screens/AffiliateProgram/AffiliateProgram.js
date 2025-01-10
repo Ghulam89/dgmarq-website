@@ -11,7 +11,7 @@ const AffiliateProgram = () => {
      <Navbar/>
        <BottomHeader/>
        <section className=' bg-Program_bg bg-center bg-cover'> 
-          <div  className=' max-w-7xl mx-auto py-12'>
+          <div  className=' max-w-[1170px] mx-auto py-12'>
              <img src={require('../../assets/images/logo-footer.png')} className=' w-28 mb-2' alt='' />
              <H2 className=' text-white'>Referral Program</H2>
 

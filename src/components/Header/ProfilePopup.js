@@ -42,16 +42,17 @@ const ProfilePopup = () => {
   return (
     <>
       {userInfo ? (
-        <>
+        <div className=' flex items-center gap-2'>
           <div onClick={openProfileFun} className=" w-12 cursor-pointer h-12 rounded-full overflow-hidden">
-            <img src="https://static.g2a.com/bLfY1FzJVNuxU2nnuANiNK/avatar_15.svg" className="" />
+            <img src="https://static.g2a.com/bLfY1FzJVNuxU2nnuANiNK/avatar_15.svg" className=" w-full h-full bg-center object-cover" />
 
 
           </div>
           <div onClick={openProfileFun} className=" relative sm:block hidden">
             <div className="  flex flex-col items-center">
-              <span className=" text-white text-[11px]  font-medium">{userInfo?.username}</span>
-              <span className=" text-white text-[11px]  font-medium">{userInfo?.email}</span>
+              {/* <span className=" text-white text-[11px]  font-medium">{userInfo?.username}</span> */}
+              {/* <span className=" text-white text-[11px]  font-medium">{userInfo?.email}</span> */}
+              <span className=" text-white text-[11px]   whitespace-nowrap font-medium">Your Dgmarq</span>
             </div>
 
 
@@ -257,7 +258,7 @@ const ProfilePopup = () => {
           </div>
 
 
-        </>
+        </div>
       ) :
         <>
           <div

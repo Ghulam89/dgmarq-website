@@ -221,7 +221,7 @@ const SoftwareDealers = () => {
      
     {/* holiday vouchers */}
     <section className=" bg-software_bg1">
-                <div className="max-w-7xl mx-auto pb-4 overflow-hidden px-4">
+                <div className="max-w-[1170px] mx-auto pb-4 overflow-hidden px-4">
 
                     <div className=" py-6">
                         <H3 className=''>Microsoft products</H3>
@@ -241,7 +241,7 @@ const SoftwareDealers = () => {
 
 
             <section className="  bg-software_bg2 py-10">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1170px] mx-auto px-4">
         <h2 className="text-2xl font-bold text-white mb-2">
 Utilities</h2>
         <p className="text-sm text-white mb-6">
@@ -258,7 +258,7 @@ Utilities</h2>
 
                 {/* ideal for: */}
                 <section className=" py-10">
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <H3 className=''>
@@ -280,7 +280,7 @@ Utilities</h2>
 
       {/* holiday vouchers */}
       <section className=" pb-10">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-[1170px] mx-auto px-4">
           <div className=" py-6">
             <div className=" flex  justify-between items-center">
               <div>

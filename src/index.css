@@ -12,3 +12,28 @@
     display:  none !important;
 }
 
+
+
+
+.VIpgJd-ZVi9od-l4eHX-hSRGPd{
+    display:none !important;
+  }
+  
+  .goog-te-combo{
+    padding: 10px !important;
+     border-radius: 50px !important;
+     width: 150px !important;
+     background-color: #1E293B !important;
+     color: white !important;
+  }
+  
+  
+  
+  .goog-te-combo:nth-child(2){
+    display: none !important;
+  }
+  
+  .skiptranslate:nth-child(2){
+    display: none !important;
+  }
+

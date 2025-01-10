@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-white text-gray-600 text-sm">
-      <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="max-w-[1170px] mx-auto px-3 py-10">
         {/* Payment Methods */}
        <div className=" flex sm:flex-row flex-col   items-center  justify-between pb-3">
         <div>

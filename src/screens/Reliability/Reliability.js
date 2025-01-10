@@ -16,7 +16,7 @@ const Reliability = () => {
 
       <section className=' bg-Reliability_bg sm:h-96 py-12 h-auto flex justify-center items-center bg-cover bg-center'>
 
-        <div className=' max-w-7xl px-3'>
+        <div className=' max-w-[1170px] px-3'>
 
           <div className=''>
             <div className=' sm:w-7/12 w-12/12'>
@@ -35,7 +35,7 @@ const Reliability = () => {
       </section>
 
       <section className=' border-b py-3'>
-        <div className=' border-l max-w-7xl mx-auto'>
+        <div className=' border-l max-w-[1170px] mx-auto'>
         <ul className="flex gap-8 px-3 overflow-x-auto whitespace-nowrap md:whitespace-normal scrollbar-hide">
         <li className=' flex  border-r   px-3 items-center gap-2'>
               <img src={require('../../assets/images/reliability/cat1.png')} alt='' />
@@ -72,7 +72,7 @@ const Reliability = () => {
       <SafetyFeatures />
 
       <section>
-        <div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-7xl'>
+        <div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-[1170px]'>
 
           <div className=' sm:w-6/12 w-12/12'>
             <H2 className=' text-[#F05F00] pb-2'>Key numbers</H2>
@@ -90,7 +90,7 @@ const Reliability = () => {
 
         </div>
 
-        <div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-7xl'>
+        <div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-[1170px]'>
 
 
 <div className=' sm:w-6/12 w-12/12'>
@@ -110,7 +110,7 @@ const Reliability = () => {
 
 </div>
 
-<div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-7xl'>
+<div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-[1170px]'>
 
 
 
@@ -132,7 +132,7 @@ const Reliability = () => {
 
 </div>
 
-<div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-7xl'>
+<div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-[1170px]'>
 
 
 <div className=' sm:w-6/12 w-12/12'>
@@ -157,7 +157,7 @@ const Reliability = () => {
 </div>
 
 
-<div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-7xl'>
+<div className=' mx-auto gap-6 py-6 flex sm:flex-row flex-col px-3 justify-between items-center max-w-[1170px]'>
 
 
 
@@ -190,7 +190,7 @@ const Reliability = () => {
       <FAQ/>
 
       <section>
-        <div className=' flex border  pt-4 mb-11 justify-center items-center gap-5 max-w-7xl mx-auto px-3 pb-12'>
+        <div className=' flex border  pt-4 mb-11 justify-center items-center gap-5 max-w-[1170px] mx-auto px-3 pb-12'>
            <div>
             <img src={require('../../assets/images/reliability/support.webp')} alt='' />
           </div> 

@@ -55,7 +55,7 @@ const PrivacyPolicy = () => {
     <>
     <Navbar/>
     <BottomHeader/>
-         <div className="max-w-7xl mx-auto p-6">
+         <div className="max-w-[1170px] mx-auto p-6">
       <h1 className="text-5xl  font-semibold text-left mb-8">Privacy policy</h1>
       <h2 className="text-2xl font-semibold mb-6">Privacy and cookies policy</h2>
 

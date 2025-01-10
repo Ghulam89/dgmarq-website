@@ -72,7 +72,7 @@ const Sellers = () => {
             </div>
             <section className='  bg-[#9cb6ad] py-12 bg-seller_bg bg-cover'>
 
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <h2 className="text-2xl font-bold">Bestsellers</h2>
@@ -95,7 +95,7 @@ const Sellers = () => {
 
             <section className='  bg-[#50727b] py-12 bg-key_bg bg-cover bg-center'>
 
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <h2 className="text-2xl  pb-3 font-bold">Can't find anything you like? Try some random keys!</h2>
@@ -115,7 +115,7 @@ const Sellers = () => {
 
             <section className='  bg-[#50727b] py-12 bg-software_bg bg-cover bg-center'>
 
-                <div className="max-w-7xl mx-auto px-4">
+                <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
                         <h2 className="text-2xl text-white font-bold">Software Bestsellers</h2>
@@ -134,7 +134,7 @@ const Sellers = () => {
             </section>
             <section className='bg-gray-100'>
             <Gather />
-            <section className="max-w-7xl py-12 mx-auto px-4">
+            <section className="max-w-[1170px] py-12 mx-auto px-4">
 
             <h2 className="text-2xl  pb-3 font-bold">Popular topics</h2>
             <ul className=' flex gap-3 flex-wrap items-center'>

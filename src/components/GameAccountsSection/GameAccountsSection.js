@@ -79,7 +79,7 @@ const GameAccountsSection = () => {
     
 
       <section className=" py-10">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1170px] mx-auto px-4">
       
       <div className=" py-6 flex  justify-between">
        <div>

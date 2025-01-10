@@ -11,7 +11,7 @@ const Partnerships = () => {
             <BottomHeader />
             <section className=' py-12 bg-black'>
 
-                <div className=' max-w-7xl  px-3 mx-auto'>
+                <div className=' max-w-[1170px]  px-3 mx-auto'>
                     <span className=' text-[#F1521B] tracking-widest pb-6 text-sm uppercase leading-7'>.COM / Affiliate and Marketing Cooperation</span>
                     <h2 className=' text-white sm:text-6xl text-3xl font-bold      leading-tight uppercase'>Affiliate and Marketing Cooperation</h2>
 
@@ -22,7 +22,7 @@ const Partnerships = () => {
 
             <section className=' pb-12'>
 
-                <div className=' max-w-7xl my-10  flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
+                <div className=' max-w-[1170px] my-10  flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
 
                     <div className=' sm:w-6/12 mx-auto w-12/12'>
 
@@ -54,7 +54,7 @@ const Partnerships = () => {
 
 
 
-                <div className=' max-w-7xl mt-4 flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
+                <div className=' max-w-[1170px] mt-4 flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
                 <div className=' sm:w-6/12 mx-auto w-12/12'>
     <img src={'https://g2acowebproddata.blob.core.windows.net/g2acowebproddata/2020/06/influencers.png'} className='  mx-auto' alt='' />
 </div>
@@ -81,7 +81,7 @@ const Partnerships = () => {
 </div>
 
 
-<div className=' max-w-7xl mt-4 flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
+<div className=' max-w-[1170px] mt-4 flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
         
 <div className=' sm:w-6/12 mx-auto w-12/12'>
 
@@ -112,7 +112,7 @@ const Partnerships = () => {
 </div>
 
 
-<div className=' max-w-7xl mt-4 flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
+<div className=' max-w-[1170px] mt-4 flex   sm:flex-row flex-col gap-3  justify-between py-5 items-center mx-auto px-3'>
 <div className=' sm:w-6/12 mx-auto w-12/12'>
     <img src={'https://g2acowebproddata.blob.core.windows.net/g2acowebproddata/2020/06/partners_wall-690x400.jpg'} className='  mx-auto' alt='' />
 </div>

@@ -75,7 +75,7 @@ const AboutUs = () => {
     </div>
 
 
-    <div className=" w-full pt-12 max-w-7xl mx-auto">
+    <div className=" w-full pt-12 max-w-[1170px] mx-auto">
       <div className="flex flex-col md:flex-row items-start  md:items-center justify-between" >
         <div className="flex flex-col ">
           <p className="text-[#2f82fb] text-sm tracking-[1rem] uppercase  text-center md:text-start">
@@ -100,7 +100,7 @@ const AboutUs = () => {
     </div>
 
     <div className="  bg-[#212121]   py-11  text-[#fff]">
-      <div className=' flex sm:flex-row flex-col  items-center gap-4  max-w-7xl  mx-auto'>
+      <div className=' flex sm:flex-row flex-col  items-center gap-4  max-w-[1170px]  mx-auto'>
       <div className=" sm:w-6/12 w-12/12 ">
       <p className="text-[#2f82fb]  uppercase mt-[2.5rem] md:mb-0 text-center md:text-start ">
         We want you! 

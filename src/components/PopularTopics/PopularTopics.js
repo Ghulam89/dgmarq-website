@@ -13,10 +13,10 @@ const PopularTopics = () => {
 
   return (
     <div className=" py-12">
-      <div className="max-w-7xl px-3 mx-auto text-center mb-8">
+      <div className="max-w-[1170px] px-3 mx-auto text-center mb-8">
         <h2 className="text-2xl font-semibold">Popular topics</h2>
       </div>
-      <ul className="max-w-7xl px-3 mx-auto bg-white  rounded-lg divide-y divide-gray-200">
+      <ul className="max-w-[1170px] px-3 mx-auto bg-white  rounded-lg divide-y divide-gray-200">
         {topics.map((topic, index) => (
           <li
             key={index}

@@ -4,7 +4,7 @@ import { FaTag, FaPaperPlane, FaPercentage } from "react-icons/fa";
 const G2AFeatures = () => {
   return (
     <div className="bg-black text-white py-4 flex justify-center">
-      <div className="flex  sm:flex-row flex-col justify-between w-full max-w-7xl mx-auto px-3 items-center space-x-6 ">
+      <div className="flex  sm:flex-row flex-col justify-between w-full max-w-[1170px] mx-auto px-3 items-center space-x-6 ">
         {/* QR Code */}
         <div className="w-36 h-32 bg-white rounded-md overflow-hidden flex items-center justify-center">
           {/* Replace this with an actual QR code image */}

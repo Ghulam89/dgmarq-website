@@ -84,7 +84,7 @@ const FavoriteItem = () => {
 
   return (
     <section className=" py-10">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1170px] mx-auto px-4">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Our customers' favorite items
         </h2>

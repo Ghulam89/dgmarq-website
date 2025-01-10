@@ -165,7 +165,7 @@ const Careers = () => {
             <BottomHeader/>
             <section className=' py-12 bg-black'>
 
-                <div className=' max-w-7xl  px-3 mx-auto'>
+                <div className=' max-w-[1170px]  px-3 mx-auto'>
                     <span className=' text-[#F1521B] text-sm'>G 2 A . CO / J O B O F F E R</span>
                     <h2 className=' text-white sm:text-6xl text-3xl font-bold      leading-tight uppercase'>G2A.COM a Gate2Adventure in the world of digital entertainment for over 30M users with more than 75k digital items.</h2>
                     <p className='  pt-2 text-white'>Pretty impresive numbers, aren’t they? But it’s the people who make up the G2A.COM team we want to brag about instead 🙂
@@ -177,7 +177,7 @@ const Careers = () => {
 
             <section className=''>
 
-                <div className=" max-w-7xl px-3 mx-auto py-8">
+                <div className=" max-w-[1170px] px-3 mx-auto py-8">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {articles.map((article, index) => (
                             <div
@@ -203,7 +203,7 @@ const Careers = () => {
             </section>
             <section className=' py-12 bg-[#F3F3F3]'>
 
-                <div className=' max-w-7xl  px-3 mx-auto'>
+                <div className=' max-w-[1170px]  px-3 mx-auto'>
                     <h2 className=' text-black text-3xl font-bold      leading-tight uppercase'>We don’t limit anyone – choose remote or hybrid model– stay passionate at work and after hours
 
                     </h2>
@@ -213,7 +213,7 @@ const Careers = () => {
             </section>
             <section className=' py-12 bg-[#f1521b]'>
 
-                <div className=' max-w-7xl  px-3 mx-auto'>
+                <div className=' max-w-[1170px]  px-3 mx-auto'>
                     <h2 className=' text-white sm:text-6xl text-3xl font-bold       leading-snug uppercase'>Are you looking for new, incredible challenges? Do you want to co-create a global business?</h2>
                     <p className='  pt-2 text-white'>Join our 400 exceptional experts. Check out our job offers!
 
@@ -224,7 +224,7 @@ const Careers = () => {
 
 
             <div className="bg-gray-100 py-10 px-6">
-                <div className=" max-w-7xl mx-auto">
+                <div className=" max-w-[1170px] mx-auto">
                     <h2 className="text-4xl font-bold text-center mb-8">
                         TEAM SPOTLIGHTS
                     </h2>
@@ -287,7 +287,7 @@ const Careers = () => {
 
      <OurStories/>
 
-            <div className=' max-w-7xl py-12  mx-auto px-3'>
+            <div className=' max-w-[1170px] py-12  mx-auto px-3'>
                 <h2 className="text-5xl uppercase font-bold text-left mb-8">
                     G2A | GATE 2 ADVENTURE
 
@@ -298,7 +298,7 @@ const Careers = () => {
 
 
             <div className="bg-gray-100 bg-Careers_bg py-10  bg-cover bg-center">
-                <div className=" max-w-7xl mx-auto">
+                <div className=" max-w-[1170px] mx-auto">
                     <h2 className="text-4xl uppercase font-bold text-center mb-8">
                         G2A DNA - Our core values
 
@@ -337,12 +337,12 @@ const Careers = () => {
 
 
             <div className="  py-10 ">
-                <div className=" max-w-7xl mx-auto">
+                <div className=" max-w-[1170px] mx-auto">
                     <h2 className="text-4xl uppercase font-bold  mb-8">
                         The simplest way!
 
                     </h2>
-                    <div className=' max-w-7xl mx-auto'>
+                    <div className=' max-w-[1170px] mx-auto'>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
                             {Simplest.map((item, index) => (
                                 <div className=' w-full '>
@@ -371,7 +371,7 @@ const Careers = () => {
             </div>
 
             <div className="  py-10 ">
-                <div className=" max-w-7xl mx-auto">
+                <div className=" max-w-[1170px] mx-auto">
 
                     <div className=' mx-auto'>
                         <h2 className="text-4xl uppercase font-bold  mb-8">

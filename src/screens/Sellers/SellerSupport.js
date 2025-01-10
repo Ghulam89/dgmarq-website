@@ -62,7 +62,7 @@ const SellerSupport = () => {
 
 
     <div className="bg-gray-100 py-10">
-      <div className="max-w-7xl px-3 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="max-w-[1170px] px-3 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {cards.map((card, index) => (
           <div
             key={index}
@@ -86,7 +86,7 @@ const SellerSupport = () => {
      <div className=' bg-activate_bg bg-center flex justify-center items-center h-[50vh] bg-cover'>
         <div className=' max-w-4xl mx-auto'>
         <h1 className="text-4xl md:text-5xl font-bold text-center text-white mb-8">Want to activate your item?</h1>
-         <div className=' flex  max-w-7xl gap-2 items-center'>
+         <div className=' flex  max-w-[1170px] gap-2 items-center'>
             <div className=' w-full'>
               <input className=' outline-none w-full rounded-sm p-2' placeholder='Type platform name' /> 
             </div>

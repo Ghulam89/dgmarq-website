@@ -15,6 +15,8 @@ import { toast } from "react-toastify";
 import { IoSearch } from "react-icons/io5";
 import { IoMdArrowDropdown, IoMdArrowDropright, IoMdClose } from "react-icons/io";
 import ProfilePopup from "./ProfilePopup";
+import TranslateComponent from "../translator/TranslateComponent";
+import { FaAngleDown } from "react-icons/fa";
 const Navbar = () => {
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -184,7 +186,7 @@ const dispatch = useDispatch();
   return (
     <>
      <div className="bg-primary ">
-      <header className="mx-auto flex gap-12   max-w-[1170px]   h-20 items-center justify-between md:px-3 px-0">
+      <header className="mx-auto flex gap-8  max-w-[1170px]   h-20 items-center justify-between md:px-3 px-0">
         <Link to="/" className="">
           <img
 
@@ -194,10 +196,10 @@ const dispatch = useDispatch();
           />
 
         </Link>
-        <form className="hidden h-11 w-2/3 bg-white rounded-md overflow-hidden items-center md:flex relative">
+        <form className="hidden h-11    w-full bg-white rounded-md  items-center md:flex relative">
       {/* Search Input */}
       <input
-        className="hidden w-8/12 p-3 text-sm outline-none md:block"
+        className="hidden w-8/12 p-3 rounded-tl-md rounded-bl-md text-sm outline-none md:block"
         type="search"
         placeholder="What are you looking for?"
       />
@@ -207,15 +209,15 @@ const dispatch = useDispatch();
         className="w-3/12 relative h-full cursor-pointer flex items-center justify-between px-3 border-l border-gray-200"
         onClick={() => setDropdownOpen(!dropdownOpen)}
       >
-        <span className="text-sm text-gray-700">{selectedCategory}</span>
-        <IoMdArrowDropdown size={20} className="ml-2 text-gray-500" />
+        <span className="text-sm text-gray-500">{selectedCategory}</span>
+        <FaAngleDown  className="ml-2 text-gray-400" />
         {dropdownOpen && (
-          <div className="absolute top-full left-0 w-full bg-white shadow-lg border rounded-md z-10">
-            {categories.map((category) => (
+            <div className="absolute top-full left-0 w-52 bg-white shadow-lg border rounded-sm z-10">
+              {categories.map((category) => (
               <div
                 key={category}
-                className={`px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
-                  selectedCategory === category ? "font-semibold" : ""
+                className={`px-3 py-2   text-[12px] text-gray-700 hover:bg-gray-100 ${
+                  selectedCategory === category ? "" : ""
                 }`}
                 onClick={() => handleCategorySelect(category)}
               >
@@ -228,7 +230,7 @@ const dispatch = useDispatch();
 
       {/* Search Button */}
       <button
-        className="ml-auto text-white h-full px-4 bg-secondary flex items-center justify-center"
+        className="ml-auto text-white h-full rounded-tr-md rounded-br-md px-5 bg-secondary flex items-center justify-center"
         type="submit"
       >
         <IoSearch size={20} />
@@ -239,13 +241,15 @@ const dispatch = useDispatch();
           {/* <div className="  hidden sm:block bg-slate-800 rounded-full px-2 py-1.5">
          <span className=" text-white text-sm">EN / USD</span>
          </div> */}
-          <div className=" gap-3 flex  justify-center">
-
-            <div className=" flex  gap-2">
+          <div className=" gap-3 flex  items-center justify-center">
+            <div className=" pt-3.5">
+              <TranslateComponent/>
+            </div>
+            <div className="">
                <ProfilePopup/>
 
             </div>
-
+            
             {iconLinks.map((link, index) => (
               <Link
                 key={index}

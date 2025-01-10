@@ -30,7 +30,7 @@ const cards = [
 const Gather = () => {
   return (
     <section className="bg-gray-100 py-10">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-[1170px] mx-auto px-3">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Looking for something else? Get inspired by our articles!
 

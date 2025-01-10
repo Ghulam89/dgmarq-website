@@ -35,7 +35,7 @@ const NewDetails = () => {
         <h1 className="text-4xl text-white font-bold uppercase mb-6">{blogs?.title}</h1>
         </div>
        </div>
-       <div className=" max-w-7xl pb-32 -translate-y-8 mx-auto">
+       <div className=" max-w-[1170px] pb-32 -translate-y-8 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
          
             <Link

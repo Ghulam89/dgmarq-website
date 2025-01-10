@@ -16,7 +16,7 @@ const Dashboard = () => {
     return (
         <>
             <Wrapper>
-                <div className=' max-w-7xl flex gap-7 mx-auto'>
+                <div className=' max-w-[1170px] flex gap-7 mx-auto'>
                     <div className=' w-7/12'>
                         <H1>Dashboard</H1>
                         <div className=' mt-5 bg-white rounded-md'>

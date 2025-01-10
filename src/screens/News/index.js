@@ -34,7 +34,7 @@ const News = () => {
         <h1 className="text-5xl text-white font-bold mb-6">NEWSROOM</h1>
         </div>
        </div>
-       <div className=" max-w-7xl pb-32 -translate-y-8 mx-auto">
+       <div className=" max-w-[1170px] pb-32 -translate-y-8 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {blogs.map((article, index) => (
             <Link

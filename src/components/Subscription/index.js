@@ -3,7 +3,7 @@ import React from 'react';
 const Subscription = () => {
   return (
     <div className="bg-blue-50 py-6">
-      <div className=" max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-4 lg:px-0">
+      <div className=" max-w-[1170px] mx-auto flex flex-col lg:flex-row items-center justify-between px-4 lg:px-0">
         {/* Text Section */}
         <div className="lg:mr-4">
           <h2 className="text-lg font-bold text-black">

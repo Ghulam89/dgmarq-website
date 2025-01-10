@@ -83,10 +83,10 @@ const FlashDeals = () => {
 
   return (
     <div className=" bg-Flash_bg hidden sm:block py-10  w-full h-auto relative bg-cover bg-center">
-      <div className="flex max-w-7xl items-center gap-12 mx-auto  justify-center">
+      <div className="flex max-w-[1170px] items-center gap-12 mx-auto  justify-center">
         {/* Flash Deal Section */}
         <div className=" w-4/12    rounded-lg  relative  text-white">
-         <div className=" absolute -top-[214px] w-64 right-4">
+         <div className=" absolute -top-[214px]  w-72 right-4">
          <h2 className="text-xl font-bold text-center mb-4">Flash Deal - Starts in</h2>
           <div className="flex  justify-center items-center space-x-2 text-2xl mb-4">
             <div className=" leading-5" >
