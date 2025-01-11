@@ -9,7 +9,7 @@ module.exports = {
         blue:'#2F82FB',
       },
       backgroundImage:{
-        home: "url('./assets/images/home.webp')",
+        home: "url('./assets/images/home.jpeg')",
         Crypto: "url('./assets/images/crypto_bg.avif')",
         seller_bg: "url('./assets/images/seller-bg.jpg')",
         key_bg: "url('./assets/images/key_bg.avif')",
