@@ -153,8 +153,11 @@ const Crypto = () => {
             </div>
             {/* Discover Button */}
             <div>
-              <Button label={'Discover all'} className="bg-secondary px-4 py-2 rounded-md text-white" />
-            </div>
+            <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
+          Discover all
+        </button>       
+        </div>
+            
           </div>
 
           {/* Card Section */}
@@ -169,21 +172,25 @@ const Crypto = () => {
              })}
               {/* Repeat more cards similarly */}
             </div>
+
+
+            <div className="text-center mt-6">
+          <button className="text-blue-600 mb-3 text-sm text-blue font-medium hover:underline">
+            Show more
+          </button>
+          <hr/>
+        </div>
          
         </div>
       </div>
 
 
       {/* Background Image */}
-      <div className="relative w-full h-full">
-        <img
-          src={require('../../assets/images/crypto_bg.avif')}
-          alt="Crypto Background"
-          className="w-full  hidden sm:block h-auto object-cover"
-        />
+      <div className="relative bg-Crypto w-full h-full">
+       
 
         {/* Overlay Content */}
-        <div className="sm:absolute  inset-0 max-w-[1170px] mx-auto px-4 inset-0 flex flex-col">
+        <div className=" max-w-[1170px] mx-auto px-4  flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
             {/* Text Content */}
             <div>
@@ -197,8 +204,9 @@ const Crypto = () => {
             </div>
             {/* Discover Button */}
             <div>
-              <Button label={'Discover all'} className="bg-secondary px-4 py-2 rounded-md text-white" />
-            </div>
+            <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
+          Discover all
+        </button>             </div>
           </div>
 
           {/* Card Section */}
@@ -213,21 +221,24 @@ const Crypto = () => {
              })}
               {/* Repeat more cards similarly */}
             </div>
+
+
+            <div className="text-center mt-6">
+          <button className="text-blue-600 mb-3 text-sm text-blue font-medium hover:underline">
+            Show more
+          </button>
+          <hr/>
+        </div>
          
         </div>
       </div>
 
 
         {/* Background Image */}
-        <div className="relative w-full h-full">
-        <img
-          src={'https://images.g2a.com/uiadminimages/1920x720/1x1x1/5958f49c30ef/5e910817f32449c2b21a897b'}
-          alt="Crypto Background"
-          className="w-full  hidden sm:block h-auto object-cover"
-        />
-
+        <div className=" bg-random_keys pb-14 bg-cover  bg-center  w-full h-full">
+       
         {/* Overlay Content */}
-        <div className="sm:absolute  max-w-[1170px] mx-auto px-4 inset-0 flex flex-col">
+        <div className="  max-w-[1170px] mx-auto px-4 flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
             {/* Text Content */}
             <div>
@@ -240,8 +251,9 @@ const Crypto = () => {
             </div>
             {/* Discover Button */}
             <div>
-              <Button label={'Discover all'} className="bg-secondary px-4 py-2 rounded-md text-white" />
-            </div>
+            <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
+          Discover all
+        </button>              </div>
           </div>
 
           {/* Card Section */}

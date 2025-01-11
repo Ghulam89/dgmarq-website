@@ -8,13 +8,13 @@ const HomeCard = ({item}) => {
       <div className=" ">
       <img src={item?.slider} className="  w-full h-full" alt="" />
       <div className=" absolute flex justify-end  rounded-md items-end h-full hover:bg-[rgba(0,0,0,0.2)] bottom-0 w-full">
-        <div>
-
-        </div>
+        <div className=" mx-auto w-[65%]">
         <Button
           label={"Explore the deals"}
-          className={" bg-secondary px-12 mb-6  mx-auto rounded-md text-sm"}
-        />
+          className="bg-blue hover:bg-secondary mb-6 w-full mx-auto rounded-sm text-sm transition duration-300 ease-in-out"
+          />
+        </div>
+        
       </div>
       </div>
      

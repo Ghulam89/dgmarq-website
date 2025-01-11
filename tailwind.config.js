@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       colors:{
         primary:'#000000',
-        secondary:'#0868F3'
+        secondary:'#0868F3',
+        blue:'#2F82FB',
       },
       backgroundImage:{
         home: "url('./assets/images/home.webp')",
@@ -14,6 +15,7 @@ module.exports = {
         key_bg: "url('./assets/images/key_bg.avif')",
         software_bg: "url('./assets/images/software_bg.avif')",
         gift_bg: "url('https://images.g2a.com/uiadminimages/1920x958/1x1x1/7b9beccebb1f/8965c8477e00461f81967638')",
+        random_keys: "url('https://images.g2a.com/uiadminimages/1920x720/1x1x1/5958f49c30ef/5e910817f32449c2b21a897b')",
         random_bg: "url('https://images.g2a.com/uiadminimages/1170x450/1x1x1/6cd3dd3a8614/9f9db6b2cda3441b8dc8283f')",
         random_bg1: "url('https://images.g2a.com/uiadminimages/1920x710/1x1x1/27d9e9ec050d/c5413b2cb77a4f16ba2f07ea')",
         random_bg2: "url('https://images.g2a.com/uiadminimages/1920x710/1x1x1/29fbcc9858b6/108b41364b484bb0be79369c')",

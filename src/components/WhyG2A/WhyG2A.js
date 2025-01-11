@@ -36,10 +36,8 @@ const WhyG2A = () => {
       <h2 className="text-2xl font-bold mb-6">Why G2A?</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="flex flex-row gap-3 items-start space-y-2 border-l border-gray-700 pl-4"
-            >
+                    <div className="flex border-r  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
+
               <div className="text-orange-500 text-2xl">{feature.icon}</div>
               <div>
               <h3 className="text-lg font-semibold">{feature.title}</h3>

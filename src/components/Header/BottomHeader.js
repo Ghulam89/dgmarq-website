@@ -214,7 +214,7 @@ const BottomHeader = () => {
                   className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-center hover:border-b  hover:text-[#EAE5D5]"
                   to={'#'}
                 >
-                  Save more with DGMARQ
+                  Save more with DGMARQ 
                 </Link>
           </div>
 

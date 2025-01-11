@@ -57,26 +57,26 @@ const [slider,setSlider] = useState([]);
           <h2 className="text-2xl font-bold mb-4">Choose your platform</h2>
           <div className="flex sm:flex-row flex-col space-x-8">
             {/* PC */}
-            <div className="flex sm:flex-row flex-col gap-3 items-center cursor-pointer hover:text-blue-600">
-              <FaWindows className="text-3xl mb-2" />
+            <div className="flex sm:flex-row flex-col gap-3 px-2.5 py-1.5 rounded-md items-center cursor-pointer hover:bg-gray-200">
+              <FaWindows className="text-3xl" />
               <span className="text-sm">PC</span>
             </div>
 
             {/* Xbox */}
-            <div className="flex flex-row gap-3 items-center cursor-pointer hover:text-green-600">
-              <FaXbox className="text-3xl mb-2" />
+            <div className="flex sm:flex-row flex-col gap-3 px-2.5 py-1.5  rounded-md items-center cursor-pointer hover:bg-gray-200">
+              <FaXbox className="text-3xl" />
               <span className="text-sm">Xbox</span>
             </div>
 
             {/* PlayStation */}
-            <div className="flex flex-row gap-3 items-center cursor-pointer hover:text-blue-400">
-              <FaPlaystation className="text-3xl mb-2" />
+            <div className="flex sm:flex-row flex-col gap-3  px-2.5 py-1.5  rounded-md items-center cursor-pointer hover:bg-gray-200">
+              <FaPlaystation className="text-3xl" />
               <span className="text-sm">PlayStation</span>
             </div>
 
             {/* Nintendo */}
-            <div className="flex flex-row gap-3 items-center cursor-pointer hover:text-red-600">
-              <FaGamepad className="text-3xl mb-2" />
+            <div className="flex sm:flex-row flex-col gap-3  px-2.5 py-1.5  rounded-md items-center cursor-pointer hover:bg-gray-200">
+              <FaGamepad className="text-3xl" />
               <span className="text-sm">Nintendo</span>
             </div>
           </div>

@@ -92,7 +92,7 @@ const GameAccountsSection = () => {
        </div>
 
        <div>
-       <button className="py-1.5 px-6 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600">
+       <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
           Discover all
         </button>
        </div>
@@ -105,9 +105,10 @@ const GameAccountsSection = () => {
           ))}
         </div>
         <div className="text-center mt-6">
-          <button className="text-blue-600 font-medium hover:underline">
-            Discover all
+          <button className="text-blue-600 mb-3 text-sm text-blue font-medium hover:underline">
+            Show more
           </button>
+          <hr/>
         </div>
       </div>
     </section>

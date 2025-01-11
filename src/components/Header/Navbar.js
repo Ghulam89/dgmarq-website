@@ -17,6 +17,7 @@ import { IoMdArrowDropdown, IoMdArrowDropright, IoMdClose } from "react-icons/io
 import ProfilePopup from "./ProfilePopup";
 import TranslateComponent from "../translator/TranslateComponent";
 import { FaAngleDown } from "react-icons/fa";
+import { BsArrowUpLeft, BsGraphUpArrow } from "react-icons/bs";
 const Navbar = () => {
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -181,7 +182,23 @@ const dispatch = useDispatch();
    const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
   
 
-
+   const [searchQuery, setSearchQuery] = useState("");
+   const [suggestions, setSuggestions] = useState([
+     "gta",
+     "steam",
+     "minecraft",
+     "fortnite",
+     "rust",
+     "xbox",
+   ]);
+ 
+   const handleInputChange = (event) => {
+     setSearchQuery(event.target.value);
+   };
+ 
+   const filteredSuggestions = suggestions.filter((suggestion) =>
+     suggestion.toLowerCase().includes(searchQuery.toLowerCase())
+   );
  
   return (
     <>
@@ -199,6 +216,9 @@ const dispatch = useDispatch();
         <form className="hidden h-11    w-full bg-white rounded-md  items-center md:flex relative">
       {/* Search Input */}
       <input
+
+value={searchQuery}
+onChange={handleInputChange}
         className="hidden w-8/12 p-3 rounded-tl-md rounded-bl-md text-sm outline-none md:block"
         type="search"
         placeholder="What are you looking for?"
@@ -230,11 +250,35 @@ const dispatch = useDispatch();
 
       {/* Search Button */}
       <button
-        className="ml-auto text-white h-full rounded-tr-md rounded-br-md px-5 bg-secondary flex items-center justify-center"
+        className="ml-auto text-white h-full rounded-tr-md rounded-br-md px-5 bg-blue flex items-center justify-center"
         type="submit"
       >
         <IoSearch size={20} />
       </button>
+
+
+
+       {/* Suggestions Dropdown */}
+       {searchQuery && (
+        <ul className="absolute left-0 top-10 right-0 mt-2 bg-white border border-gray-300 rounded-sm shadow-lg">
+          {filteredSuggestions.map((suggestion, index) => (
+            <li
+              key={index}
+              className="flex border-b items-center px-4 py-2 cursor-pointer hover:bg-gray-100"
+            >
+              <span className="mr-2 text-gray-500">
+              <BsGraphUpArrow />
+
+              </span>
+              {suggestion}
+              <span className="ml-auto text-gray-500">
+              <BsArrowUpLeft size={20} />
+
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </form>
 
         <div className=" flex items-center gap-4">

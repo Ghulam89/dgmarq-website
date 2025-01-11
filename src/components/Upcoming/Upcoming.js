@@ -95,8 +95,8 @@ const Upcoming = () => {
               </p>
               <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">-32%</button> 
             </div>
-              <button className="text-white bg-blue-600 px-5 rounded-md py-2 font-medium hover:underline">
-               Add to Cart
+            <button type='button' className="text-blue-600 mb-3 text-sm bg-blue px-6 rounded-sm py-2.5 text-white font-medium hover:underline">
+            Add to Cart
           </button>
              </div>
             
@@ -112,15 +112,15 @@ const Upcoming = () => {
                 <img src='https://images.g2a.com/uiadminimages/116x60/1x1x1/fb885a4a3c87/d33c3c02448e4bf88569e3b8' alt='' />
                 <H4 className=' text-white pt-6'>Path of Exile 2 | Early Access Supporter Pack (PC) - Steam Account - GLOBAL</H4>
 
-                <H3 className=' text-white pt-2'>$ 20.67</H3>
+                <H3 className=' text-white pt-4 pb-0'>$ 20.67</H3>
              <div className=' flex justify-between gap-3 items-center'>
-            <div className=' flex  flex-col gap-1'>
-            <p className=" text-gray-500 line-through  flex">$ 30.22    
+            <div className=' flex  flex-col '>
+            <p className=" text-gray-500 line-through  pb-1 flex">$ 30.22    
               </p>
               <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">-32%</button> 
             </div>
-              <button className="text-white bg-blue-600 px-5 rounded-md py-2 font-medium hover:underline">
-               Add to Cart
+               <button type='button' className="text-blue-600 mb-3 text-sm bg-blue px-6 rounded-sm py-2.5 text-white font-medium hover:underline">
+            Add to Cart
           </button>
              </div>
             
@@ -146,7 +146,7 @@ const Upcoming = () => {
        </div>
 
        <div>
-       <button className="py-1.5 px-6 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600">
+       <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
           Discover all
         </button>
        </div>
@@ -159,9 +159,10 @@ const Upcoming = () => {
           ))}
         </div>
         <div className="text-center mt-6">
-          <button className="text-blue-600 font-medium hover:underline">
-            Discover all
+          <button className="text-blue-600 mb-3 text-sm text-blue font-medium hover:underline">
+            Show more
           </button>
+          <hr/>
         </div>
       </div>
     </section>
@@ -179,7 +180,7 @@ const Upcoming = () => {
       className="w-full rounded-lg"
     />
      <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'View Items'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'Explore the deals'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
     </div>
    </div>
     <div className=' h-full relative'>
@@ -189,7 +190,7 @@ const Upcoming = () => {
       className="w-full h-full rounded-lg"
     />
      <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'View Items'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'View Items'} className={' bg-blue rounded-md hover:bg-secondary px-3'} />
     </div>
     </div>
    
@@ -204,7 +205,7 @@ const Upcoming = () => {
       className="w-full h-full rounded-lg"
     />
      <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'View Items'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'View Items'} className={' bg-blue rounded-md hover:bg-secondary px-3'} />
     </div>
   </div>
 
@@ -216,7 +217,7 @@ const Upcoming = () => {
       className="w-full rounded-lg"
     />
      <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'View Items'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'View Items'} className={' bg-blue rounded-sm hover:bg-secondary px-3'} />
     </div>
   </div>
 </div>

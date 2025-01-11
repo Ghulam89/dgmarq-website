@@ -85,9 +85,15 @@ const FavoriteItem = () => {
   return (
     <section className=" py-10">
       <div className="max-w-[1170px] mx-auto px-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">
+       <div className=" flex  justify-between items-center">
+       <h2 className="text-2xl font-bold text-gray-800 mb-6">
           Our customers' favorite items
         </h2>
+        <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
+          Discover all
+        </button>
+       </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {products.map((product, index) => (
             
@@ -96,9 +102,13 @@ const FavoriteItem = () => {
           ))}
         </div>
         <div className="text-center mt-6">
-          <button className="text-blue-600 font-medium hover:underline">
-            Discover all
+        
+        <div className="text-center mt-6">
+          <button className="text-blue-600 mb-3 text-sm text-blue font-medium hover:underline">
+            Show more
           </button>
+          <hr/>
+        </div>
         </div>
       </div>
     </section>

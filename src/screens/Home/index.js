@@ -39,7 +39,7 @@ const Home = () => {
       className="w-full rounded-lg"
     />
     <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'Check details'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'Check details'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
     </div>
     </div>
     <div className='  h-full relative'>
@@ -49,7 +49,7 @@ const Home = () => {
       className="w-full h-full rounded-lg"
     />
      <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'Check details'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'Check details'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
     </div>
     </div>
    
@@ -63,7 +63,7 @@ const Home = () => {
       className="w-full h-full rounded-lg"
     />
     <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'Check details'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'Check details'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
     </div>
   </div>
 
@@ -75,7 +75,7 @@ const Home = () => {
       className="w-full rounded-lg"
     />
        <div className=' absolute bottom-5 w-full flex justify-center items-center'>
-      <Button label={'Check details'} className={' bg-blue-600 rounded-md px-3'} />
+      <Button label={'Check details'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
     </div>
   </div>
 </div>
