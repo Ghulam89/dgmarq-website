@@ -32,11 +32,14 @@ const WhyG2A = () => {
     <>
    
     <div className="bg-[#212121] text-white py-10">
-      <div className="max-w-[1170px] mx-auto px-4">
-      <h2 className="text-2xl font-bold mb-6">Why G2A?</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="max-w-[1170px] mx-auto px-3">
+     
+        <div className=" flex md:flex-row flex-col gap-1">
+          <div className=" p-4">
+          <h2 className="text-2xl font-bold mb-6 whitespace-nowrap">Why G2A?</h2>
+          </div>
           {features.map((feature, index) => (
-                    <div className="flex border-r  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
+                    <div className="flex border-r  border-[#3b3b3b] p-3 hover:bg-[#3b3b3b] items-start space-x-4  rounded-md">
 
               <div className="text-orange-500 text-2xl">{feature.icon}</div>
               <div>

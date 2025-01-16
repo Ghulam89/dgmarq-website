@@ -174,8 +174,8 @@ const Crypto = () => {
             </div>
 
 
-            <div className="text-center mt-6">
-          <button className="text-blue-600 mb-3 text-sm text-blue font-medium hover:underline">
+            <div className="text-center mt-10 ">
+          <button className="mb-3 text-sm text-blue font-medium   hover:text-secondary hover:underline">
             Show more
           </button>
           <hr/>
@@ -223,8 +223,8 @@ const Crypto = () => {
             </div>
 
 
-            <div className="text-center mt-6">
-          <button className="text-blue-600 mb-3 text-sm text-blue font-medium hover:underline">
+            <div className="text-center mt-10 ">
+          <button className="mb-3 text-sm text-blue font-medium   hover:text-secondary hover:underline">
             Show more
           </button>
           <hr/>

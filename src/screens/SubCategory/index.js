@@ -12,7 +12,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Base_url } from "../../utils/Base_url";
 import BottomHeader from "../../components/Header/BottomHeader";
-const Category = () => {
+const SubCategory = () => {
     const {id} = useParams();
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [products,setProducts] = useState([])
@@ -81,7 +81,7 @@ const Category = () => {
 
 
     useEffect(()=>{
-      axios.get(`${Base_url}/products/brand/${id}`).then((res)=>{
+      axios.get(`${Base_url}/products/category/${id}`).then((res)=>{
       console.log(res);
       setProducts(res?.data?.data)
       }).catch((error)=>{
@@ -294,4 +294,4 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default SubCategory;

@@ -31,6 +31,8 @@ import PrivacyPolicy from "./screens/PrivacyPolicy";
 import HowToBuy from "./screens/HowToBuy";
 import StaySafe from "./screens/StaySafe";
 import Dashboard from "./screens/Buyer/Dashboard";
+import SubCategory from "./screens/SubCategory";
+import SubSubCategory from "./screens/SubSubCategory";
 function App() {
   return (
     <>
@@ -39,6 +41,8 @@ function App() {
       <Route path="/" element={<Home/>} />
       <Route path="/sellers" element={<Sellers/>} />
       <Route path="/category/:id" element={<Category/>} />
+      <Route path="/sub-category/:id" element={<SubCategory/>} />
+      <Route path="/sub-sub-category/:id" element={<SubSubCategory/>} />
       <Route path="/wishlist" element={<Wishlist/>} />
       <Route path="/product-details/:id" element={<ProductDetails/>} />
       <Route path="/register" element={<Register/>} />

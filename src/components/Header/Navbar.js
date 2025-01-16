@@ -19,7 +19,7 @@ import TranslateComponent from "../translator/TranslateComponent";
 import { FaAngleDown } from "react-icons/fa";
 import { BsArrowUpLeft, BsGraphUpArrow } from "react-icons/bs";
 const Navbar = () => {
-  
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const { userInfo } = useSelector((state) => state.next);
@@ -74,22 +74,22 @@ const Navbar = () => {
   ];
 
 
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 
 
-  const [openProfile,setOpenProfile] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
 
-  const openProfileFun = ()=>{
+  const openProfileFun = () => {
     setOpenProfile(!openProfile)
   }
 
 
-  const removeFun = ()=>{
+  const removeFun = () => {
 
     dispatch(removeUser())
     toast.success('user sign out  successfuly!')
-  
+
 
   }
 
@@ -106,47 +106,50 @@ const dispatch = useDispatch();
     "Mobile Games",
     "For Adults",
   ];
+
+
   
- const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-    const [Category, setCategory] = useState(null);
-    const [dropdownOpen, setDropdownOpen] = useState(false);
-  
-    const handleCategorySelect = (category) => {
-      setCategory(category);
-      setDropdownOpen(false);
-    };
+
+  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [Category, setCategory] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleCategorySelect = (category) => {
+    setCategory(category);
+    setDropdownOpen(false);
+  };
 
 
 
-    const toggleDesktopMenu = () => {
-      setDesktopMenuOpen((prev) => !prev);
-    };
+  const toggleDesktopMenu = () => {
+    setDesktopMenuOpen((prev) => !prev);
+  };
 
 
 
 
-    
-  const Items =[
+
+  const Items = [
     {
-      id:1,
-      name:'Bestsellers',
-      Url:'/sellers'
+      id: 1,
+      name: 'Bestsellers',
+      Url: '/sellers'
     },
     {
-      id:2,
-      name:'Gift ideas',
-      Url:'/gift-ideas'
+      id: 2,
+      name: 'Gift ideas',
+      Url: '/gift-ideas'
     },
     {
-      id:3,
-      name:'Random Keys',
-      Url:'/random-keys'
+      id: 3,
+      name: 'Random Keys',
+      Url: '/random-keys'
     },
     {
-      id:4,
-      name:'Software',
-      Url:'/software-dealer'
+      id: 4,
+      name: 'Software',
+      Url: '/software-dealer'
     }
 
 
@@ -179,142 +182,162 @@ const dispatch = useDispatch();
 
 
 
-   const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
-  
+  const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
 
-   const [searchQuery, setSearchQuery] = useState("");
-   const [suggestions, setSuggestions] = useState([
-     "gta",
-     "steam",
-     "minecraft",
-     "fortnite",
-     "rust",
-     "xbox",
-   ]);
- 
-   const handleInputChange = (event) => {
-     setSearchQuery(event.target.value);
-   };
- 
-   const filteredSuggestions = suggestions.filter((suggestion) =>
-     suggestion.toLowerCase().includes(searchQuery.toLowerCase())
-   );
- 
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([
+    "gta",
+    "steam",
+    "minecraft",
+    "fortnite",
+    "rust",
+    "xbox",
+  ]);
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredSuggestions = suggestions.filter((suggestion) =>
+    suggestion.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+
+
+  const [allCategory, setAllCategory] = useState([]);
+
+  console.log(allCategory);
+
+  useEffect(() => {
+    axios
+      .get(`${Base_url}/brands/getAll`)
+      .then((res) => {
+        console.log(res);
+
+        setAllCategory(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+  }, []);
+
   return (
     <>
-     <div className="bg-primary ">
-      <header className="mx-auto flex gap-8  max-w-[1170px]   h-20 items-center justify-between md:px-3 px-0">
-        <Link to="/" className="">
-          <img
+      <div className="bg-primary ">
+        <header className="mx-auto flex gap-8  max-w-[1170px]   h-20 items-center justify-between md:px-3 px-0">
+          <Link to="/" className="">
+            <img
 
-            className="cursor-pointer h-12  sm:w-auto w-28"
-            src={logo}
-            alt="company logo"
-          />
+              className="cursor-pointer h-20  object-contain sm:w-auto w-28"
+              src={logo}
+              alt="company logo"
+            />
 
-        </Link>
-        <form className="hidden h-11    w-full bg-white rounded-md  items-center md:flex relative">
-      {/* Search Input */}
-      <input
+          </Link>
+          <form className="hidden h-11    w-full bg-white rounded-md  items-center md:flex relative">
+            {/* Search Input */}
+            <input
 
-value={searchQuery}
-onChange={handleInputChange}
-        className="hidden w-8/12 p-3 rounded-tl-md rounded-bl-md text-sm outline-none md:block"
-        type="search"
-        placeholder="What are you looking for?"
-      />
+              value={searchQuery}
+              onChange={handleInputChange}
+              className="hidden w-8/12 p-3 rounded-tl-md rounded-bl-md text-sm outline-none md:block"
+              type="search"
+              placeholder="What are you looking for?"
+            />
 
-      {/* Custom Dropdown */}
-      <div
-        className="w-3/12 relative h-full cursor-pointer flex items-center justify-between px-3 border-l border-gray-200"
-        onClick={() => setDropdownOpen(!dropdownOpen)}
-      >
-        <span className="text-sm text-gray-500">{selectedCategory}</span>
-        <FaAngleDown  className="ml-2 text-gray-400" />
-        {dropdownOpen && (
-            <div className="absolute top-full left-0  w-60 bg-white shadow-lg border rounded-sm z-10">
-              {categories.map((category) => (
-              <div
-                key={category}
-                className={`px-3 py-2   text-[12px] text-gray-700 hover:bg-gray-100 ${
-                  selectedCategory === category ? "" : ""
-                }`}
-                onClick={() => handleCategorySelect(category)}
-              >
-                {category}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Search Button */}
-      <button
-        className="ml-auto text-white h-full rounded-tr-md rounded-br-md px-5 bg-blue flex items-center justify-center"
-        type="submit"
-      >
-        <IoSearch size={20} />
-      </button>
-
-
-
-       {/* Suggestions Dropdown */}
-       {searchQuery && (
-        <ul className="absolute left-0 top-10 right-0 mt-2 bg-white border border-gray-300 rounded-sm shadow-lg">
-          {filteredSuggestions.map((suggestion, index) => (
-            <li
-              key={index}
-              className="flex border-b items-center px-4 py-2 cursor-pointer hover:bg-gray-100"
+            {/* Custom Dropdown */}
+            <div
+              className="w-3/12 relative h-full cursor-pointer flex items-center justify-between px-3 border-l border-gray-200"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              <span className="mr-2 text-gray-500">
-              <BsGraphUpArrow />
+              <span className="text-sm text-gray-500">{selectedCategory}</span>
+              <FaAngleDown className="ml-2 text-gray-400" />
+              {dropdownOpen && (
+                <div className="absolute top-full left-0  w-60 bg-white shadow-lg border rounded-sm z-10">
+                  {categories.map((category) => (
+                    <div
+                      key={category}
+                      className={`px-3 py-2   text-[12px] text-gray-700 hover:bg-gray-100 ${selectedCategory === category ? "" : ""
+                        }`}
+                      onClick={() => handleCategorySelect(category)}
+                    >
+                      {category}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
-              </span>
-              {suggestion}
-              <span className="ml-auto text-gray-500">
-              <BsArrowUpLeft size={20} />
+            {/* Search Button */}
+            <button
+              className="ml-auto text-white h-full rounded-tr-md rounded-br-md px-5 bg-blue flex items-center justify-center"
+              type="submit"
+            >
+              <IoSearch size={20} />
+            </button>
 
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </form>
 
-        <div className=" flex items-center gap-4">
-          {/* <div className="  hidden sm:block bg-slate-800 rounded-full px-2 py-1.5">
+
+            {/* Suggestions Dropdown */}
+            {searchQuery && (
+              <ul className="absolute left-0 z-50 top-10 right-0 mt-2 bg-white border border-gray-300 rounded-sm shadow-lg">
+                {filteredSuggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    className="flex border-b items-center px-4 py-2 cursor-pointer hover:bg-gray-100"
+                  >
+                    <span className="mr-2 text-gray-500">
+                      <BsGraphUpArrow />
+
+                    </span>
+                    {suggestion}
+                    <span className="ml-auto text-gray-500">
+                      <BsArrowUpLeft size={20} />
+
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </form>
+
+          <div className=" flex items-center gap-4">
+            {/* <div className="  hidden sm:block bg-slate-800 rounded-full px-2 py-1.5">
          <span className=" text-white text-sm">EN / USD</span>
          </div> */}
-          <div className=" gap-3 flex  items-center justify-center">
-            {/* <div className=" pt-3.5">
+            <div className=" gap-3 flex  items-center justify-center">
+              {/* <div className=" pt-3.5">
               <TranslateComponent/>
             </div> */}
-            <div className="">
-               <ProfilePopup/>
+              <div className="">
+                <ProfilePopup />
+
+              </div>
+
+              {iconLinks.map((link, index) => (
+                <Link
+                  key={index}
+                  to={link.href}
+                  className="flex text-white  bg-slate-800 rounded-full sm:w-12 w-10 sm:h-12 h-10 cursor-pointer flex-col items-center justify-center"
+                >
+                  {link.icon}
+                  {/* <p className="text-xs text-white">{link.text}</p> */}
+                </Link>
+              ))}
+
 
             </div>
-            
-            {iconLinks.map((link, index) => (
-              <Link
-                key={index}
-                to={link.href}
-                className="flex text-white  bg-slate-800 rounded-full sm:w-12 w-10 sm:h-12 h-10 cursor-pointer flex-col items-center justify-center"
-              >
-                {link.icon}
-                {/* <p className="text-xs text-white">{link.text}</p> */}
-              </Link>
-            ))}
-
-
+            <div className="md:hidden">
+              <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                <RxHamburgerMenu className="w-7 text-white h-7" />
+              </button>
+            </div>
           </div>
-          <div className="md:hidden">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              <RxHamburgerMenu className="w-7 text-white h-7" />
-            </button>
-          </div>
-        </div>
 
-      </header>
+        </header>
       </div>
       {mobileMenuOpen && (
         <section
@@ -358,77 +381,76 @@ onChange={handleInputChange}
             </ul> */}
 
 
-              {/* Nav Links */}
-                      <div className="flex flex-col justify-between  px-4 items-center gap-2">
-                      <button
-                        onClick={toggleDesktopMenu}
-                        className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-sm"
-                      >
-                        <RxHamburgerMenu className=" w-5 h-5" />
-                        Categories
-                      </button>
-                        {Items?.map(
-                          (item, index) => (
-                            <Link
-                              key={index}
-                              className="text-white bg-[#212121] py-2  px-3 text-sm rounded-sm w-full text-left hover:border-b  hover:text-[#EAE5D5]"
-                              to={`${item?.Url}`}
-                            >
-                              {item?.name}
-                            </Link>
-                          )
-                        )}
-                         <Link
-                            
-                              className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-left px-3 hover:border-b  hover:text-[#EAE5D5]"
-                              to={'#'}
-                            >
-                              Save more with G2A Plus
-                            </Link>
-                      </div>
+            {/* Nav Links */}
+            <div className="flex flex-col justify-between  px-4 items-center gap-2">
+              <button
+                onClick={toggleDesktopMenu}
+                className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-sm"
+              >
+                <RxHamburgerMenu className=" w-5 h-5" />
+                Categories
+              </button>
+              {Items?.map(
+                (item, index) => (
+                  <Link
+                    key={index}
+                    className="text-white bg-[#212121] py-2  px-3 text-sm rounded-sm w-full text-left hover:border-b  hover:text-[#EAE5D5]"
+                    to={`${item?.Url}`}
+                  >
+                    {item?.name}
+                  </Link>
+                )
+              )}
+              <Link
+
+                className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-left px-3 hover:border-b  hover:text-[#EAE5D5]"
+                to={'#'}
+              >
+                Save more with G2A Plus
+              </Link>
+            </div>
 
 
           </div>
 
 
-            {/* Desktop Menu */}
-                {desktopMenuOpen && (
-                  <section className=" fixed h-full  top-0 z-50 left-0 right-0 bg-white border">
-                    <div className="container mx-auto flex py-5">
-                      {/* Categories List */}
-                      <div className="w-1/4 border-r">
-                        <ul className=" flex justify-between flex-col w-full">
-                          {subCategory?.map((category, index) => (
-                            <li
-                              key={index}
-                              className={`flex items-center gap-2 px-4 py-2 cursor-pointer ${
-                                Category === category.subcategories
-                                  ? "bg-gray-200"
-                                  : "hover:bg-gray-100"
-                              }`}
-                              onMouseEnter={() => setCategory(category.subcategories)}
-                              onMouseLeave={() => setHoveredSubMenu(null)}
-                            >
-                             
-                              {category.title}
-                              <IoMdArrowDropright className="ml-auto" />
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-          
-                      {/* Subcategories */}
-                      {Category && (
-                        <div className="w-3/4 flex">
-                          {subCategory
-                            .find((cat) => cat.subcategories === Category)
-                            ?.subcategories.map((submenu, index) => (
-                              
-                              <div key={index} className="px-4">
-                                <Link to={`category/${submenu?._id}`} className="font-semibold text-gray-700">
-                                  {submenu.title}
-                                </Link>
-                                {/* <ul className="mt-2 space-y-1">
+          {/* Desktop Menu */}
+          {desktopMenuOpen && (
+            <section className=" fixed h-full  top-0 z-50 left-0 right-0 bg-white border">
+              <div className="container mx-auto flex py-5">
+                {/* Categories List */}
+                <div className="w-1/4 border-r">
+                  <ul className=" flex justify-between flex-col w-full">
+                    {subCategory?.map((category, index) => (
+                      <li
+                        key={index}
+                        className={`flex items-center gap-2 px-4 py-2 cursor-pointer ${Category === category.subcategories
+                            ? "bg-gray-200"
+                            : "hover:bg-gray-100"
+                          }`}
+                        onMouseEnter={() => setCategory(category.subcategories)}
+                        onMouseLeave={() => setHoveredSubMenu(null)}
+                      >
+
+                        {category.title}
+                        <IoMdArrowDropright className="ml-auto" />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Subcategories */}
+                {Category && (
+                  <div className="w-3/4 flex">
+                    {subCategory
+                      .find((cat) => cat.subcategories === Category)
+                      ?.subcategories.map((submenu, index) => (
+
+                        <div key={index} className="px-4">
+                          <Link to={`category/${submenu?._id}`} className="font-semibold text-gray-700">
+                            {submenu.title}
+                          </Link>
+                          {/* <ul className="mt-2 space-y-1">
                                   {submenu.items.map((item, itemIndex) => (
                                     <li
                                       key={itemIndex}
@@ -462,21 +484,21 @@ onChange={handleInputChange}
                                     </li>
                                   ))}
                                 </ul> */}
-                              </div>
-                            ))}
                         </div>
-                      )}
-          
-                      {/* Close Button */}
-                      <button
-                        onClick={closeSubMenu}
-                        className="absolute top-3 right-3 text-gray-700"
-                      >
-                        <IoMdClose className="w-6 h-6" />
-                      </button>
-                    </div>
-                  </section>
+                      ))}
+                  </div>
                 )}
+
+                {/* Close Button */}
+                <button
+                  onClick={closeSubMenu}
+                  className="absolute top-3 right-3 text-gray-700"
+                >
+                  <IoMdClose className="w-6 h-6" />
+                </button>
+              </div>
+            </section>
+          )}
         </section>
       )}
     </>

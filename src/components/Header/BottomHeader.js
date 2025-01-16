@@ -7,14 +7,14 @@ import { MdOutdoorGrill } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Base_url } from "../../utils/Base_url";
+import { LiaAngleRightSolid } from "react-icons/lia";
+import { H1, H2 } from "../common/Heading";
 
 const BottomHeader = () => {
   const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
-  console.log('====================================');
-  console.log(selectedCategory);
-  console.log('====================================');
+  
+  const [productDetails,setProductsDetails] = useState({})
   const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
 
   const categories = [
@@ -164,11 +164,14 @@ const BottomHeader = () => {
   ]
 
 
-  const [subCategory, setSubCategory] = useState([]);
+  const [subCategory, setSubCategory] = useState(null);
+  const [subSubCategory, setSubSubCategory] = useState([]);
+
+  console.log(subSubCategory);
 
   useEffect(() => {
     axios
-      .get(`${Base_url}/category/getAll`)
+      .get(`${Base_url}/brands/getAll`)
       .then((res) => {
         console.log(res);
 
@@ -181,6 +184,9 @@ const BottomHeader = () => {
 
   }, []);
 
+
+  
+
   return (
     <>
       {/* Top Nav */}
@@ -190,19 +196,164 @@ const BottomHeader = () => {
           
 
           {/* Nav Links */}
-          <div className="flex justify-between  w-full items-center gap-2">
+          <div className="flex justify-between relative  w-full items-center gap-2">
           <button
             onClick={toggleDesktopMenu}
-            className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-sm"
+            className="flex text-white text-sm bg-[#212121] gap-4 font-semibold items-center w-full uppercase px-12 py-2.5 hover:bg-[rgb(66,66,66)] hover:bg-[rgb(66, 66, 66)] rounded-sm"
           >
             <RxHamburgerMenu className=" w-5 h-5" />
             Categories
           </button>
+
+           {/* Desktop Menu */}
+      {desktopMenuOpen && (
+
+                      <>
+
+{selectedCategory?
+  <div className="fixed top-0 left-0 right-0 bottom-0 z-50 overflow-hidden bg-[rgba(0,0,0,0.6)]"></div>:null
+}
+
+
+<section className="absolute z-50 left-0 right-0   top-10 h-full ">
+  <div className=" flex">
+  {/* Categories List */}
+  <div className="  w-64 overflow-y-auto  h-96 bg-white border">
+  <ul className=" flex justify-between flex-col w-full">
+        {subCategory?.map((category, index) => (
+          <Link 
+            to={`/category/${category?._id}`}
+            key={index}
+            className={`flex items-center font-normal text-sm gap-2 px-4 py-2.5 cursor-pointer ${
+              selectedCategory === category.midcategories
+                ? " border-t border-b"
+                : "hover:bg-gray-100"
+            }`}
+            onMouseEnter={() => {setSelectedCategory(category.midcategories)
+              setProductsDetails(category)
+            }}
+            onMouseLeave={() => {setProductsDetails({})
+       
+            
+            // setSelectedCategory(null);
+
+            
+             
+          }}
+          >
+           
+            {category.name}
+
+            {subCategory?.length >0?
+            <LiaAngleRightSolid className="ml-auto" size={12} />:null
+            
+          }
+            
+
+          </Link>
+        ))}
+      </ul>
+    </div>
+
+    {/* Subcategories */}
+    {selectedCategory?.length > 0 ? (
+      <div className=" flex bg-white h-96   pt-3  w-72  overflow-y-auto  flex-col">
+     
+        {subCategory
+          .find((cat) => cat.midcategories === selectedCategory)
+          ?.midcategories.map((submenu, index) => (
+            <>
+              <Link to={`/sub-category/${submenu?._id}`}
+                
+                  onMouseEnter={() => {setSubSubCategory(submenu.subcategories)}}
+
+              
+                
+                key={index}
+                className="px-4  cursor-pointer py-2 flex "
+              >
+                <h3 className="   text-sm flex  w-full text-gray-700">
+                  {submenu.title}
+                </h3>
+
+                {subCategory?.length >0?
+            <LiaAngleRightSolid className="ml-auto" size={12} />:null
+            
+          }
+              </Link>
+            </>
+          ))}
+      </div>
+    ) : null}
+
+
+
+
+
+     {/* Subcategories */}
+     {subSubCategory?.length > 0 ? (
+      <div className=" flex bg-white h-96   pt-3  w-72  overflow-y-auto  flex-col">
+     
+        {subSubCategory?.map((submenu, index) => (
+            <>
+              <Link
+                  to={`/sub-sub-category/${submenu?._id}`}
+               
+                key={index}
+                className="px-4  cursor-pointer py-2 flex "
+              >
+                <h3 className="   text-sm flex  w-full text-gray-700">
+                  {submenu.title}
+                </h3>
+
+                {/* <LiaAngleRightSolid  size={12} className="ml-auto" /> */}
+              </Link>
+            </>
+          ))}
+      </div>
+    ) : null}
+
+
+     {/* Subcategories */}
+     {Object.keys(productDetails).length > 0? (
+      <Link to={`/category/${productDetails?._id}`} className=" flex border-l bg-white h-96    w-72   flex-col">
+          
+
+          <div className=" h-48">
+            <img src={productDetails?.image} className="   object-center h-full w-full" alt="" />
+          </div>
+
+          <div className=" h-28 flex justify-center items-center">
+
+            <H2 className=" uppercase">{productDetails?.name}</H2>
+
+          </div>
+        
+      </Link>
+    ) : null}
+
+
+
+
+
+    {/* Close Button */}
+    {/* <button
+      onClick={closeSubMenu}
+      className="absolute top-3 right-3 text-gray-700"
+    >
+      <IoMdClose className="w-6 h-6" />
+    </button> */}
+  </div>
+</section>
+                      
+                      </>
+      )}
+
             {Items?.map(
               (item, index) => (
                 <Link
                   key={index}
-                  className="text-white bg-[#212121] py-2  text-sm rounded-sm w-full text-center hover:border-b  hover:text-[#EAE5D5]"
+                  className="text-white bg-[#212121] hover:bg-[rgb(66,66,66)] py-2  text-sm rounded-sm w-full text-center"
                   to={`${item?.Url}`}
                 >
                   {item?.name}
@@ -211,7 +362,7 @@ const BottomHeader = () => {
             )}
              <Link
                 
-                  className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-center hover:border-b  hover:text-[#EAE5D5]"
+                  className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-center   hover:bg-[rgb(113,27,236)]"
                   to={'#'}
                 >
                   Save more with DGMARQ 
@@ -221,92 +372,7 @@ const BottomHeader = () => {
         </div>
       </nav>
 
-      {/* Desktop Menu */}
-      {desktopMenuOpen && (
-        <section className="absolute z-50 left-0 right-0 bg-white border">
-          <div className="container mx-auto flex py-5">
-            {/* Categories List */}
-            <div className="w-1/4 border-r">
-              <ul className=" flex justify-between flex-col w-full">
-                {subCategory?.map((category, index) => (
-                  <li
-                    key={index}
-                    className={`flex items-center gap-2 px-4 py-2 cursor-pointer ${
-                      selectedCategory === category.subcategories
-                        ? "bg-gray-200"
-                        : "hover:bg-gray-100"
-                    }`}
-                    onMouseEnter={() => setSelectedCategory(category.subcategories)}
-                    onMouseLeave={() => setHoveredSubMenu(null)}
-                  >
-                   
-                    {category.title}
-                    <IoMdArrowDropright className="ml-auto" />
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Subcategories */}
-            {selectedCategory && (
-              <div className="w-3/4 flex">
-                {subCategory
-                  .find((cat) => cat.subcategories === selectedCategory)
-                  ?.subcategories.map((submenu, index) => (
-                    
-                    <div key={index} className="px-4">
-                      <Link to={`category/${submenu?._id}`} className="font-semibold text-gray-700">
-                        {submenu.title}
-                      </Link>
-                      {/* <ul className="mt-2 space-y-1">
-                        {submenu.items.map((item, itemIndex) => (
-                          <li
-                            key={itemIndex}
-                            className="relative group"
-                            onMouseEnter={() => setHoveredSubMenu(item.label)}
-                            onMouseLeave={() => setHoveredSubMenu(null)}
-                          >
-                            <a
-                              href={item.href}
-                              className="block px-2 py-1 hover:bg-gray-100"
-                            >
-                              {item.label}
-                            </a>
-
-                            Sub-subcategories
-                            {hoveredSubMenu === item.label &&
-                              item.subItems && (
-                                <ul className="absolute w-full left-full top-0 bg-white border shadow-md">
-                                  {item.subItems.map((subItem, subIndex) => (
-                                    <li key={subIndex}>
-                                      <a
-                                        href={subItem.href}
-                                        className="block px-3 py-1 hover:bg-gray-100"
-                                      >
-                                        {subItem.label}
-                                      </a>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                          </li>
-                        ))}
-                      </ul> */}
-                    </div>
-                  ))}
-              </div>
-            )}
-            
-            {/* Close Button */}
-            <button
-              onClick={closeSubMenu}
-              className="absolute top-3 right-3 text-gray-700"
-            >
-              <IoMdClose className="w-6 h-6" />
-            </button>
-          </div>
-        </section>
-      )}
+     
     </>
   );
 };
