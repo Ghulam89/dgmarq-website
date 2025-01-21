@@ -27,10 +27,10 @@ const ProductCard = ({ image, title, price, originalPrice, discount, offerLabel,
           )}
         </div>
         <div className=" relative  h-56 w-full">
-        <img src={image} alt={title} className="w-full  h-full  object-cover" />
-         <div className=" absolute  bg-[rgba(0,0,0,0)] group-hover:bg-[rgba(0,0,0,0.1)] top-0  w-full h-full">
+          <img src={image} alt={title} className="w-full  h-full  object-cover" />
+          <div className=" absolute  bg-[rgba(0,0,0,0)] group-hover:bg-[rgba(0,0,0,0.1)] top-0  w-full h-full">
 
-         </div>
+          </div>
         </div>
         <div className="p-4  h-44 flex flex-col  border justify-between">
           {isSponsored && (
@@ -39,17 +39,17 @@ const ProductCard = ({ image, title, price, originalPrice, discount, offerLabel,
             </span>
           )}
 
-<h6>{title.split(" ").slice(0, 5).join(" ")}</h6>
+          <h6>{title?.split(" ")?.slice(0, 5)?.join(" ")}</h6>
 
           <div className="flex  flex-col mt-2">
             <p className="text-xl font-bold m-0 text-black">{price}</p>
             {originalPrice ?
               <p className="text-sm text-gray-500 m-0 line-through">{`$ ${originalPrice}`}</p> : null
             }
-             {discount?
-             <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{discount}</button>:null
-             }
-            
+            {discount ?
+              <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">${discount}</button> : null
+            }
+
 
           </div>
 

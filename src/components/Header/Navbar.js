@@ -21,7 +21,7 @@ import { BsArrowUpLeft, BsGraphUpArrow } from "react-icons/bs";
 const Navbar = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const productData = useSelector((state) => state?.next?.productData);
   const { userInfo } = useSelector((state) => state.next);
   console.log(userInfo);
 
@@ -69,6 +69,9 @@ const Navbar = () => {
       href: "/cart",
       icon: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" font-size="20"><g stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"><circle cx="6" cy="22" r="1" stroke="none"></circle><circle cx="20" cy="22" r="1" stroke="none"></circle><circle cx="6" cy="22" r="1" fill="none" stroke-miterlimit="10"></circle><circle cx="20" cy="22" r="1" fill="none" stroke-miterlimit="10"></circle><path fill="none" stroke-miterlimit="10" d="M4.8 7H22l-2 10H6L4 2H1"></path></g></svg>,
       text: "Cart",
+      Show:<div className=" w-6 h-6 bg-blue rounded-full flex justify-center items-center text-sm">
+        {productData?.length}
+      </div>
     }
 
   ];
@@ -321,10 +324,15 @@ const Navbar = () => {
                 <Link
                   key={index}
                   to={link.href}
-                  className="flex text-white  bg-slate-800 rounded-full sm:w-12 w-10 sm:h-12 h-10 cursor-pointer flex-col items-center justify-center"
+                  className="flex text-white  relative bg-slate-800 rounded-full sm:w-12 w-10 sm:h-12 h-10 cursor-pointer flex-col items-center justify-center"
                 >
                   {link.icon}
                   {/* <p className="text-xs text-white">{link.text}</p> */}
+                    
+                  <div className=" absolute top-0 -right-2">
+                    {link?.Show}
+                  </div>
+
                 </Link>
               ))}
 

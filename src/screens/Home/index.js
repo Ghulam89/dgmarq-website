@@ -23,7 +23,6 @@ const Home = () => {
       <Hero/>
       <G2AFeatures/>
       <Bestsellers/>
-      
       <FlashDeals/>
       <GameAccountsSection/>
       <Upcoming/>
@@ -86,6 +85,8 @@ const Home = () => {
 
   </div>
 </section>
+
+        
       <FavoriteItem/>
       <Gather/>
       <Subscription/>

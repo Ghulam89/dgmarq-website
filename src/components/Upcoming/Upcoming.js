@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { H2, H3, H4 } from '../common/Heading'
 import ProductCard from '../Cards/ProductCard'
 import Button from '../Button';
+import { Base_url } from '../../utils/Base_url';
+import axios from 'axios';
 
 const Upcoming = () => {
     const products = [
@@ -72,6 +74,35 @@ const Upcoming = () => {
             "https://images.g2a.com/170x228/1x1x0/playstation-network-gift-card-110-usd-psn-key-united-states/a474e71e754c47c891d9ce58",
         },
       ];
+
+
+
+      const [upcoming,setUpcoming] = useState([]);
+
+
+
+
+
+
+      useEffect(() => {
+        axios
+          .get(`${Base_url}/upcoming/getAll`)
+          .then((res) => {
+            console.log(res);
+
+            setUpcoming(res?.data?.data)
+    
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    
+    
+      }, []);
+
+
+
+
   return (
     <>
      <div className=' max-w-[1170px] mx-auto mb-12 px-3'>
@@ -80,31 +111,37 @@ const Upcoming = () => {
 
      </div>
       <div className=' flex sm:flex-row flex-col  sm:gap-0 gap-2 justify-between items-center w-full'>
-        <div className=' sm:w-6/12 w-12/12'>
-         <div className=' relative'>
-          <img src='https://images.g2a.com/uiadminimages/960x438/1x1x1/bdf4fa33651a/bd677977c4d04d82bdd9978a' className=' w-full' alt='' /> 
-          <div className=' absolute  sm:w-96 w-[95%] sm:right-32 right-3 py-3 top-0 h-full flex justify-center items-center'>
-            <div>
-                <img src='https://images.g2a.com/uiadminimages/301x60/1x1x1/ce8b3ad5b21c/082f5e44ea0247f6bd94092a' alt='' />
-                <H4 className=' text-white pt-6'>Path of Exile 2 | Early Access Supporter Pack (PC) - Steam Account - GLOBAL</H4>
+        {upcoming?.map((item,index)=>{
+          return (
 
-                <H3 className=' text-white pt-2'>$ 20.67</H3>
-             <div className=' flex gap-3 justify-between items-center'>
-            <div className=' flex  flex-col gap-1'>
-            <p className=" text-gray-500 line-through  flex">$ 30.22    
-              </p>
-              <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">-32%</button> 
-            </div>
-            <button type='button' className="text-blue-600 mb-3 text-sm bg-blue px-6 rounded-sm py-2.5 text-white font-medium hover:underline">
-            Add to Cart
-          </button>
-             </div>
-            
-            </div>
-            </div>   
-        </div> 
-        </div>
-        <div className=' sm:w-6/12 w-12/12'>
+            <div className=' sm:w-6/12 w-12/12'>
+            <div className=' relative'>
+             <img src={item?.banner} className=' w-full' alt='' /> 
+             <div className=' absolute  sm:w-96 w-[95%] sm:right-32 right-3 py-3 top-0 h-full flex justify-center items-center'>
+               <div>
+                   <img src={item?.logo} alt='' />
+                   <H4 className=' text-white pt-6'>{item?.productId?.title}</H4>
+   
+                   <H3 className=' text-white pt-2'>$ {item?.productId?.discountPrice}</H3>
+                <div className=' flex gap-3 justify-between items-center'>
+               <div className=' flex  flex-col gap-1'>
+               <p className=" text-gray-500 line-through  flex">$ {item?.productId?.actualPrice}    
+                 </p>
+                 <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{item?.productId?.gst}%</button> 
+               </div>
+               <button type='button' className="text-blue-600 mb-3 text-sm bg-blue px-6 rounded-sm py-2.5 text-white font-medium hover:underline">
+               Add to Cart
+             </button>
+                </div>
+               
+               </div>
+               </div>   
+           </div> 
+           </div>
+          )
+        })}
+       
+        {/* <div className=' sm:w-6/12 w-12/12'>
           <div className=' relative'>
             <img src='https://images.g2a.com/uiadminimages/960x438/1x1x1/e3b42cd16b73/9457f36fdf8c4605a6dbe1aa' className=' h-auto w-full' alt='' />
             <div className=' absolute  sm:w-96 w-[95%]  py-12 sm:left-32 left-3 top-0 h-full flex justify-center items-center'>
@@ -127,7 +164,7 @@ const Upcoming = () => {
             </div>
             </div> 
           </div>
-        </div>
+        </div> */}
       </div>
 
 

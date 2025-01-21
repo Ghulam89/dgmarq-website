@@ -1,22 +1,46 @@
 import React, { useState, useEffect } from "react";
 import HorizontalCard from "../Cards/HorizontalCard";
+import { Base_url } from "../../utils/Base_url";
+import axios from "axios";
 
 const FlashDeals = () => {
-  // Calculate remaining time
-  const calculateTimeLeft = () => {
-    const targetDate = new Date("2024-12-31T00:00:00").getTime();
-    const now = new Date().getTime();
-    const difference = targetDate - now;
+  const [products, setProducts] = useState({});
+  const flashDealStartDate = products?.[0]?.startDate
+    ? new Date(products[0].startDate).getTime()
+    : null;
 
-    if (difference > 0) {
+  const flashDealEndDate = products?.[0]?.endDate
+    ? new Date(products[0].endDate).getTime()
+    : null;
+
+  const calculateTimeLeft = () => {
+    const now = new Date().getTime();
+
+    if (flashDealStartDate && now < flashDealStartDate) {
+      const difference = flashDealStartDate - now;
       return {
+        status: "Coming Soon",
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / (1000 * 60)) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    } else if (
+      flashDealStartDate &&
+      flashDealEndDate &&
+      now >= flashDealStartDate &&
+      now <= flashDealEndDate
+    ) {
+      const difference = flashDealEndDate - now;
+      return {
+        status: "Active",
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / (1000 * 60)) % 60),
         seconds: Math.floor((difference / 1000) % 60),
       };
     } else {
-      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      return { status: "Ended", days: 0, hours: 0, minutes: 0, seconds: 0 };
     }
   };
 
@@ -27,56 +51,32 @@ const FlashDeals = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    // Cleanup interval on unmount
     return () => clearInterval(timer);
-  }, []);
+  }, [flashDealStartDate, flashDealEndDate]);
 
-  const data = [
-    {
-      id: 1,
-      title: "Call of Duty: Modern Warfare III",
-      subtitle: "(PC) - Steam Account",
-      price: "$34.35",
-      oldPrice: "$39.99",
-      discount: "4%",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/microsoft-windows-10-home-microsoft-key-global/5d6f6a617e696c531336afb2",
-    },
-    {
-      id: 2,
-      title: "Random Black Friday 1 Key",
-      subtitle: "(PC) - Steam Key - GLOBAL",
-      price: "$5.87",
-      oldPrice: "$39.99",
-      discount: "2%",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/kaspersky-standard-2024-1-device-1-year-kaspersky-key-global/1a800691e3034e2eb5e80bed",
-    },
-    {
-      id: 3,
-      title: "Battlefield 2042",
-      subtitle: "(Xbox Series X/S) - Xbox Live Key",
-      price: "$12.06",
-      oldPrice: "$39.99",
-      discount: "5%",
-      tag: "OFFER FROM 6 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/ccleaner-professional-pc-1-device-1-year-ccleaner-key-global/e68083bd3fc04656b9d7c8cc",
-    },
-    {
-      id: 4,
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      oldPrice: "$39.99",
-      discount: "9%",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/microsoft-office-2024-ltsc-standard-pc-microsoft-key-global/9773eb74c6e54720b8b5b0da",
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get(`${Base_url}/flashDeals/getAll`)
+      .then((res) => {
+        console.log(res);
+
+
+        const approvedProducts = res?.data?.data.filter(
+          (product) => product.status === "approved"
+        );
+
+        if (approvedProducts.length > 0) {
+          setProducts([approvedProducts[0]]);
+        } else {
+          setProducts([]);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
+  }, []);
 
   return (
     <div className="bg-Flash_bg hidden sm:block py-10 w-full h-auto relative bg-cover bg-center">
@@ -84,9 +84,14 @@ const FlashDeals = () => {
         {/* Flash Deal Section */}
         <div className="w-4/12 rounded-lg relative text-white">
           <div className="absolute -top-[214px] w-72 right-4">
-            <h2 className="text-xl font-bold text-center mb-4">
-              Flash Deal - Starts in
+            <h2 className="text-xl font-bold text-center mb-4">Flash Deal -
+              {timeLeft.status === "Coming Soon"
+                ? "Starts in"
+                : timeLeft.status === "Active"
+                  ? "Ends in"
+                  : "Deal Ended"}
             </h2>
+
             <div className="flex justify-center items-center space-x-2 text-2xl mb-4">
               <div className="leading-5">
                 <span className="text-black bg-white w-16 h-16 flex justify-center items-center rounded-sm">
@@ -121,7 +126,7 @@ const FlashDeals = () => {
               className="w-full rounded-lg mb-4"
             />
             <p>
-              Express VPN (PC, Mac) 1 Device, 1 Month - ExpressVPN Key - GLOBAL
+              {products?.[0]?.title}
             </p>
             <div className="flex justify-between text-sm mt-4">
               <span>Left: 0</span>
@@ -142,14 +147,15 @@ const FlashDeals = () => {
             Don't miss out – grab them while you still have the chance!
           </p>
           <div className="grid grid-cols-2 gap-4">
-            {data?.map((product, index) => (
+            {products?.[0]?.productId?.map((product, index) => (
               <HorizontalCard
                 key={index}
-                image={product?.image}
-                originalPrice={product?.oldPrice}
-                discount={product?.discount}
+                image={product?.images?.[0]}
+                originalPrice={product?.actualPrice}
+                discount={product?.gst}
                 title={product?.title}
-                price={product?.price}
+                url={`/product-details/${product?._id}`}
+                price={product?.discountPrice}
               />
             ))}
           </div>
