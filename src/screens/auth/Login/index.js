@@ -134,7 +134,7 @@ const Login = () => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className={`w-full bg-blue-500 text-white rounded-lg py-2 font-medium ${isSubmitting ? "bg-blue-400 cursor-not-allowed" : "hover:bg-blue-600"
+                                    className={`w-full bg-blue text-white rounded-lg py-2 font-medium ${isSubmitting ? "bg-blue-400 cursor-not-allowed" : "hover:bg-blue"
                                         }`}
                                 >
                                     {isSubmitting ? "Signing in..." : "Sign in"}

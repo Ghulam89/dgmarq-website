@@ -7,7 +7,7 @@ const DigitalServicesAct = () => {
   return (
     <>
      <Navbar/>
-     <section className=' flex h-56  justify-center items-center bg-Digital'>
+     <section className=' flex h-56 w-full bg-cover  justify-center items-center bg-Digital bg-no-repeat'>
 
         <div className=' max-w-5xl'>
                     <h1 className=' text-4xl text-white  font-medium'>Reporting obligations regarding transparency arising from the Digital Services Act</h1>

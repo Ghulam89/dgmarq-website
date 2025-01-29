@@ -25,6 +25,9 @@ const Navbar = () => {
   const { userInfo } = useSelector((state) => state.next);
   console.log(userInfo);
 
+  const [wishList, setWishList] = useState([]);
+
+
   const links = [
     {
       id: 1,
@@ -64,6 +67,9 @@ const Navbar = () => {
       href: "/wishlist",
       icon: <svg width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" font-size="20"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.0521 3.05014C4.78562 0.316619 9.21779 0.316619 11.9513 3.05014C11.968 3.06688 11.9847 3.08369 12.0012 3.10055C12.0177 3.08369 12.0344 3.06689 12.0511 3.05014C14.7846 0.316619 19.2168 0.316619 21.9503 3.05014C24.6838 5.78367 24.6838 10.2158 21.9503 12.9494L12.7073 22.1924C12.5198 22.3799 12.2654 22.4853 12.0001 22.4853C11.7349 22.4852 11.4805 22.3799 11.293 22.1923L2.0521 12.9494C2.05207 12.9493 2.05205 12.9493 2.05202 12.9493C-0.681428 10.2158 -0.681402 5.78364 2.0521 3.05014ZM10.5371 4.46436C8.58462 2.51188 5.41879 2.51188 3.46631 4.46436C1.51383 6.41683 1.51383 9.58267 3.46631 11.5351L3.46639 11.5352L12.0003 20.071L20.5361 11.5351C22.4886 9.58267 22.4886 6.41683 20.5361 4.46436C18.5836 2.51188 15.4178 2.51188 13.4653 4.46436C13.2255 4.70415 13.0163 4.96306 12.8344 5.23719C12.6491 5.5164 12.3363 5.68425 12.0012 5.68425C11.6661 5.68425 11.3533 5.5164 11.168 5.23719C10.9861 4.96316 10.776 4.70323 10.5371 4.46436Z" fill="currentColor"></path></svg>,
       text: "Wishlist",
+      Show:<div className=" w-6 h-6 bg-blue rounded-full flex justify-center items-center text-sm">
+      {wishList?.length}
+    </div>
     },
     {
       href: "/cart",
@@ -115,7 +121,7 @@ const Navbar = () => {
 
   const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-  const [Category, setCategory] = useState(null);
+  const [Category, setCategory] = useState('All categories');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleCategorySelect = (category) => {
@@ -128,7 +134,6 @@ const Navbar = () => {
   const toggleDesktopMenu = () => {
     setDesktopMenuOpen((prev) => !prev);
   };
-
 
 
 
@@ -161,6 +166,28 @@ const Navbar = () => {
 
   const [subCategory, setSubCategory] = useState([]);
 
+
+ 
+
+  useEffect(() => {
+
+      axios.get(`${Base_url}/wishlist/get/${userInfo?._id}`).then((res) => {
+
+          console.log(res);
+
+
+          setWishList(res?.data)
+
+      }).catch((error) => {
+
+
+          console.log(error);
+
+
+      })
+
+  }, [])
+
   useEffect(() => {
     axios
       .get(`${Base_url}/category/getAll`)
@@ -175,6 +202,9 @@ const Navbar = () => {
 
 
   }, []);
+
+
+
 
 
 
@@ -252,27 +282,28 @@ const Navbar = () => {
             />
 
             {/* Custom Dropdown */}
+             <div className="relative w-3/12 h-full cursor-pointer flex items-center justify-between px-3 border-l border-gray-200">
+      <div onClick={() => setDropdownOpen(!dropdownOpen)} className="flex justify-between items-center w-full">
+        <span className="text-sm text-gray-500">{Category}</span>
+        <FaAngleDown className="ml-2 text-gray-400" />
+      </div>
+
+      {dropdownOpen && (
+        <div className="absolute top-full left-0 w-60 bg-white shadow-lg border rounded-sm z-10">
+          {categories.map((category) => (
             <div
-              className="w-3/12 relative h-full cursor-pointer flex items-center justify-between px-3 border-l border-gray-200"
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              key={category}
+              className={`px-3 py-2 text-[12px] text-gray-700 hover:bg-gray-100 ${
+                selectedCategory === category ? "bg-gray-200 font-semibold" : ""
+              }`}
+              onClick={() => handleCategorySelect(category)}
             >
-              <span className="text-sm text-gray-500">{selectedCategory}</span>
-              <FaAngleDown className="ml-2 text-gray-400" />
-              {dropdownOpen && (
-                <div className="absolute top-full left-0  w-60 bg-white shadow-lg border rounded-sm z-10">
-                  {categories.map((category) => (
-                    <div
-                      key={category}
-                      className={`px-3 py-2   text-[12px] text-gray-700 hover:bg-gray-100 ${selectedCategory === category ? "" : ""
-                        }`}
-                      onClick={() => handleCategorySelect(category)}
-                    >
-                      {category}
-                    </div>
-                  ))}
-                </div>
-              )}
+              {category}
             </div>
+          ))}
+        </div>
+      )}
+    </div>
 
             {/* Search Button */}
             <button

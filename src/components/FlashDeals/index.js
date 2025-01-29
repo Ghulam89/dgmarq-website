@@ -79,11 +79,11 @@ const FlashDeals = () => {
   }, []);
 
   return (
-    <div className="bg-Flash_bg hidden sm:block py-10 w-full h-auto relative bg-cover bg-center">
+    <div className="bg-Flash_bg hidden sm:block py-14 w-full h-auto relative bg-cover bg-center">
       <div className="flex max-w-[1170px] items-center gap-12 mx-auto justify-center">
         {/* Flash Deal Section */}
         <div className="w-4/12 rounded-lg relative text-white">
-          <div className="absolute -top-[214px] w-72 right-4">
+          <div className="absolute -top-[235px] w-72 right-8">
             <h2 className="text-xl font-bold text-center mb-4">Flash Deal -
               {timeLeft.status === "Coming Soon"
                 ? "Starts in"
@@ -121,7 +121,7 @@ const FlashDeals = () => {
               </div>
             </div>
             <img
-              src={require("../../assets/images/flash-express.avif")}
+              src={products?.[0]?.image}
               alt="ExpressVPN"
               className="w-full rounded-lg mb-4"
             />
@@ -134,6 +134,13 @@ const FlashDeals = () => {
             </div>
             <div className="h-2 bg-gray-700 mt-2 rounded">
               <div className="bg-blue-500 h-full w-1/2 rounded"></div>
+            </div>
+
+            <div className=" pt-4 px-2">
+              <p className=" text-2xl m-0 ">${products?.[0]?.actualPrice}</p>
+              <p className="   line-through text-gray-500 m-0 ">${products?.[0]?.discountPrice}
+              {/* <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">${products?.[0]?.gst}</button>  */}
+         </p>
             </div>
           </div>
         </div>

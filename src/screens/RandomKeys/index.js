@@ -312,301 +312,59 @@ const RandomKeys = () => {
       <div>
         <img
           src={
-            "https://images.g2a.com/uiadminimages/1920x570/1x1x1/e9d7afdd4545/9ff1a60c656040309fa6a65f"
+            "https://images.g2a.com/uiadminimages/1920x350/1x1x1/97c7af2065da/f75a226bce544c1fa083fe61"
           }
           alt=""
         />
       </div>
-     
-       {/* holiday vouchers */}
-       <section className=" bg-black">
-        <div className="max-w-[1170px] mx-auto  h-[70vh] bg-random_bg  pb-20">
-        <div className=" relative">
-            <div className=" left-36 top-8 absolute">
-            <img src="https://images.g2a.com/uiadminimages/380x380/1x1x1/7573479365a3/47d7f6d302924530afa6c538" alt="" />
+  
 
-            </div>
-           <div className=" absolute top-8 left-36">
-           <svg width={380} height={380} viewBox="0 0 380 380">
-  <g>
-    <circle cx={190} cy={190} r={190} fill="#fff" />
-    <path
-      strokeWidth={0}
-      fill="#C91800"
-      transform="rotate(0, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
+      <section className=" bg-random_key_bg py-12 bg-cover bg-center">
+  <div className="max-w-[1170px] mx-auto px-4">
+  <div className="grid gap-6 sm:grid-cols-[1fr,2fr,1fr] grid-cols-1">
+  {/* First Column */}
+  <div className="flex gap-3">
+    <div className='  relative'>
+    <img
+      src="https://images.g2a.com/uiadminimages/360x512/1x1x1/c1641d039680/1ffbeea4deaf4f4691cde1c0"
+      alt="First Image"
+      className="w-full h-full rounded-lg"
     />
-    <path
-      strokeWidth={0}
-      fill="#2F82FB"
-      transform="rotate(30, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#41C303"
-      transform="rotate(60, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#FFB400"
-      transform="rotate(90, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#DD301C"
-      transform="rotate(120, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#6202EA"
-      transform="rotate(150, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#212121"
-      transform="rotate(180, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#F05F00"
-      transform="rotate(210, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#5100C4"
-      transform="rotate(240, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#FFB400"
-      transform="rotate(270, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#2F82FB"
-      transform="rotate(300, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <path
-      strokeWidth={0}
-      fill="#6A6A6A"
-      transform="rotate(330, 190, 190)"
-      d="M373.525906994923,143.32438143052107 373.525906994923,236.67561856947893 225,196.8782217350893 Q 208 190 225 183.1217782649107 z"
-      style={{ transition: "0.5s" }}
-    />
-    <text
-      fill="#fff"
-      transform="rotate(0, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -25%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(30, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -17%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(60, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -15%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(90, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -13%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(120, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -13%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(150, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -8%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(180, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -8%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(210, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -8%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(240, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -5%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(270, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -5%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(300, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -3%
-    </text>
-    <text
-      fill="#fff"
-      transform="rotate(330, 190, 190)"
-      fontFamily="Roboto"
-      fontWeight={700}
-      fontStyle="normal"
-      fontSize="26px"
-      x="296.2310883939076"
-      y={190}
-      dominantBaseline="middle"
-    >
-      -3%
-    </text>
-    <circle
-      cx={190}
-      cy={190}
-      fill="transparent"
-      r={18}
-      strokeDasharray={3}
-      stroke="#B8B8B8"
-      strokeWidth={1}
-    />
-    <circle
-      cx={190}
-      cy={190}
-      r="186.7629534974615"
-      fill="transparent"
-      strokeWidth="6.474093005077009"
-      stroke="#fff"
-    />
-  </g>
-  <image
-    href="https://images.g2a.com/uiadminimages/380x380/1x1x1/7573479365a3/47d7f6d302924530afa6c538"
-    width={380}
-    height={380}
-  />
-</svg>
+    <div className=' absolute bottom-5 w-full flex justify-center items-center'>
+      <Button label={'Check details'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
+    </div>
+    </div>
+  
+   
+  </div>
 
-           </div>
-        </div>
-        </div>
-      </section>
-      <div>
-        <img
-          src={
-            "https://images.g2a.com/uiadminimages/1920x226/1x1x1/944f9a430980/fa14f663a55149a7b6aac0f5"
-          }
-          alt=""
-        />
-      </div>
+  {/* Second Column */}
+  <div className="flex relative items-center">
+    <img
+      src="https://images.g2a.com/uiadminimages/570x464/1x1x1/8504ab895929/139c934c94a044cba5cda83c"
+      alt="Main Large Image"
+      className="w-full h-full rounded-lg"
+    />
+    <div className=' absolute bottom-5 w-full flex justify-center items-center'>
+      <Button label={'Check details'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
+    </div>
+  </div>
+
+  {/* Third Column */}
+  <div className=' relative'>
+    <img
+      src="https://images.g2a.com/uiadminimages/360x512/1x1x1/e1b248721f3c/2290fcff768c4bf4b46cf543"
+      alt="Third Image"
+      className="w-full h-full rounded-lg"
+    />
+       <div className=' absolute bottom-5 w-full flex justify-center items-center'>
+      <Button label={'Check details'} className={' bg-blue hover:bg-secondary rounded-md px-3'} />
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>
 
       {/* holiday vouchers */}
       <section className=" pb-10 bg-random_bg1 bg-cover   bg-center">

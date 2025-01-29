@@ -171,7 +171,7 @@ const Register = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`mt-6 w-full py-2 rounded-md ${isSubmitting ? "bg-gray-400" : "bg-blue-600 hover:bg-blue-700"
+                  className={`mt-6 w-full py-2 rounded-md ${isSubmitting ? "bg-gray-400" : "bg-blue hover:bg-blue-700"
                     } text-white`}
                 >
                   {isSubmitting ? "Creating account..." : "Create account"}

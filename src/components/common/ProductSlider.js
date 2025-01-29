@@ -97,7 +97,7 @@ const ProductSlider = ({
             <div className=' relative '>
                 <div className='max-w-6xl overflow-hidden mx-auto'>
                     <div
-                        className="flex  sm:h-[65vh] h-auto transition-transform ease-out duration-500"
+                        className="flex  sm:h-[50vh] h-auto transition-transform ease-out duration-500"
                         style={{ transform: `translateX(-${curr * 100}%)` }}
                     >
                         {sliders?.map((s) => (
@@ -121,26 +121,26 @@ const ProductSlider = ({
 
                 <button
                     onClick={prev}
-                    className=" w-12 h-12 rounded-full shadow  absolute sm:top-[25%]   sm:left-32 left-5 border  flex  hover:bg-secondary hover:text-white  justify-center items-center bg-white/80 text-gray-800"
+                    className=" w-12 h-12 rounded-full shadow  absolute sm:top-[35%]    sm:left-56 left-5 border  flex  hover:bg-secondary hover:text-white  justify-center items-center bg-white/80 text-gray-800"
                 >
                     <TfiAngleLeft size={20} className="" />
                 </button>
                 <button
                     onClick={next}
-                    className=" w-12 h-12  rounded-full   border  absolute sm:top-[25%]  sm:right-32 right-5  hover:bg-secondary hover:text-white flex justify-center items-center shadow bg-white/80 text-gray-800"
+                    className=" w-12 h-12  rounded-full   border  absolute sm:top-[35%]  sm:right-56 right-5  hover:bg-secondary hover:text-white flex justify-center items-center shadow bg-white/80 text-gray-800"
                 >
                     <TfiAngleRight size={20} />
                 </button>
 
             </div>
 
-            <div className="flex items-center justify-center pt-6 gap-2">
+            <div className="flex items-center justify-center pt-6 pb-5 gap-2">
                 {sliders?.map((_, i) => (
                     <div
                         key={i}
                         onClick={() => goToSlide(i)}
                         className={`
-transition-all w-4 h-4 rounded-full   cursor-pointer overflow-hidden  
+transition-all w-3 h-3 rounded-full   cursor-pointer overflow-hidden  
 ${curr === i ? " bg-secondary" : "   bg-gray-300 bg-opacity-50"}
 `}
                     >

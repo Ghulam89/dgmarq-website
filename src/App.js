@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./screens/Home";
 import Sellers from "./screens/Sellers";
 import Category from "./screens/Category";
@@ -33,7 +33,15 @@ import StaySafe from "./screens/StaySafe";
 import Dashboard from "./screens/Buyer/Dashboard";
 import SubCategory from "./screens/SubCategory";
 import SubSubCategory from "./screens/SubSubCategory";
+import { useEffect } from "react";
 function App() {
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <>
       <ToastContainer/>

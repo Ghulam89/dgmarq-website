@@ -220,7 +220,7 @@ const SoftwareDealers = () => {
       </div>
      
     {/* holiday vouchers */}
-    <section className=" bg-software_bg1">
+    <section className=" bg-software_bg1 bg-cover">
                 <div className="max-w-[1170px] mx-auto pb-4 overflow-hidden px-4">
 
                     <div className=" py-6">

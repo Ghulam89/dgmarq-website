@@ -211,7 +211,7 @@ const BottomHeader = () => {
                       <>
 
 {selectedCategory?
-  <div className="fixed top-0 left-0 right-0 bottom-0 z-50 overflow-hidden bg-[rgba(0,0,0,0.6)]"></div>:null
+  <div onClick={()=>setDesktopMenuOpen(false)} className="fixed cursor-pointer top-0 left-0 right-0 bottom-0 z-50 overflow-hidden bg-[rgba(0,0,0,0.6)]"></div>:null
 }
 
 
@@ -265,7 +265,10 @@ const BottomHeader = () => {
             <>
               <Link to={`/sub-category/${submenu?._id}`}
                 
-                  onMouseEnter={() => {setSubSubCategory(submenu.subcategories)}}
+                  onMouseEnter={() => {setSubSubCategory(submenu.subcategories)
+
+                    
+                  }}
 
               
                 

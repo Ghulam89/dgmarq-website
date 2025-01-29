@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Base_url } from '../../utils/Base_url'
 import { useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
+import { Link } from 'react-router-dom'
 
 const Wishlist = () => {
 
@@ -101,7 +102,7 @@ const Wishlist = () => {
 
                             < div className="bg-white border-b h-56 gap-12 rounded-lg shadow-sm flex items-center justify-between p-4" >
                                 {/* Item Details */}
-                                < div className="flex h-full w-2/12 items-center space-x-4" >
+                                < Link to={`/product-details/${item?.productId?._id}`} className="flex h-full w-2/12 items-center space-x-4" >
                                     {/* Thumbnail */}
                                     < img
                                         src={item?.productId?.images[0]}
@@ -110,7 +111,7 @@ const Wishlist = () => {
                                     />
 
 
-                                </div>
+                                </Link>
 
                                 {/* Item Actions */}
                                 <div className=" items-center flex flex-col justify-between  h-full w-10/12">
