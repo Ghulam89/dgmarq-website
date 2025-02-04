@@ -4,6 +4,7 @@ import { ImBlogger } from "react-icons/im";
 import { MdOutlineContacts, MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { PiSlidersBold } from "react-icons/pi";
 import { RxDashboard } from "react-icons/rx";
+import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 const Sidebar = ({ side, closeSidebar }) => {
     console.log('====================================');
@@ -95,9 +96,10 @@ const Sidebar = ({ side, closeSidebar }) => {
 
       </ul>
       {side==='left-64 md:left-0'?
-       <div className=" fixed  w-52 left-20  h-screen bg-[#212121] top-0">
+       <div className=" fixed  w-52 left-20 flex justify-between flex-col pb-5  h-screen bg-[#212121] top-0">
           
 
+          <div>
           <ul className=" mt-28">
             <li className=" w-full bg-blue-500 py-3">
                 <Link to={''} className=" px-3  text-white">
@@ -127,6 +129,10 @@ const Sidebar = ({ side, closeSidebar }) => {
                 </Link>
             </li>
           </ul>
+          </div>
+          <div className=" mx-2.5">
+            <button className="   capitalize border text-gray-300  w-full  border-gray-500 text-sm flex items-center  justify-between  px-4 py-3 rounded-md">become a seller <TbLogout size={25} className="" />            </button>
+          </div>
        </div>:null
       }
      

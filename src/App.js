@@ -34,6 +34,9 @@ import Dashboard from "./screens/Buyer/Dashboard";
 import SubCategory from "./screens/SubCategory";
 import SubSubCategory from "./screens/SubSubCategory";
 import { useEffect } from "react";
+import GatherDetails from "./components/Gather/GatherDetails";
+import StoreProduct from "./screens/SellerStore/StoreProduct";
+import AboutSellerStore from "./screens/SellerStore/AboutSellerStore";
 function App() {
 
   const { pathname } = useLocation();
@@ -58,8 +61,13 @@ function App() {
       <Route path="/forgot-password" element={<ForgetPassword/>} />
       <Route path="/new-password" element={<NewPassword/>} />
       <Route path="/news" element={<News/>} />
-      <Route path="/seller-store" element={<SellerStore/>} />
+       
+      <Route path="/seller-store" element={<SellerStore/>} >
+         <Route path="store-products" element={<StoreProduct/>} /> 
+         <Route path="about" element={<AboutSellerStore/>} /> 
+      </Route>
       <Route path="/new-details/:id" element={<NewDetails/>} />
+      <Route path="/gather-details/:id" element={<GatherDetails/>} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/gift-ideas" element={<GiftIdeas/>} />
       <Route path="/random-keys" element={<RandomKeys/>} />

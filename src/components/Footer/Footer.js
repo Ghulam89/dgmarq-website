@@ -52,11 +52,11 @@ const Footer = () => {
                   About us
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/news" className="hover:underline">
                   Newsroom
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="#" className="hover:underline">
                   Contact

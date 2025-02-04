@@ -52,7 +52,7 @@ const Dashboard = () => {
 
                     <div className=' flex   gap-4'>
                             <div className=' flex items-center gap-1'>
-                                <div className=' bg-blue-500 w-12 h-12 rounded-full flex justify-center items-center mx-auto mb-2'>
+                                <div className=' bg-blue w-12 h-12 rounded-full flex justify-center items-center mx-auto mb-2'>
                                     <PiShoppingCartSimpleFill color="white" size={25} />
                                 </div>
                                 <div>
@@ -62,7 +62,7 @@ const Dashboard = () => {
                             </div>
 
                             <div className=' flex items-center gap-1'>
-                                <div className=' bg-blue-500 w-12 h-12 rounded-full flex justify-center items-center mx-auto mb-2'>
+                                <div className=' bg-blue w-12 h-12 rounded-full flex justify-center items-center mx-auto mb-2'>
                                     <FaCircleDollarToSlot color="white" size={25} />
                                 </div>
                                 <div>
