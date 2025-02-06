@@ -61,7 +61,6 @@ function App() {
       <Route path="/forgot-password" element={<ForgetPassword/>} />
       <Route path="/new-password" element={<NewPassword/>} />
       <Route path="/news" element={<News/>} />
-       
       <Route path="/seller-store" element={<SellerStore/>} >
          <Route path="store-products" element={<StoreProduct/>} /> 
          <Route path="about" element={<AboutSellerStore/>} /> 

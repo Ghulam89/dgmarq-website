@@ -279,22 +279,22 @@ const ProfilePopup = () => {
                 {/* Sign-In Options */}
                 <div className="space-y-3">
                   {/* Google Sign-In */}
-                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue-600 border rounded-sm  text-blue-600  hover:text-white  hover:bg-blue-600">
+                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
                     <FaGoogle size={20} />
                     Sign in With Google
                   </button>
                   {/* Facebook Sign-In */}
-                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue-600 border rounded-sm  text-blue-600  hover:text-white  hover:bg-blue-600">
+                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
                     <FaFacebookF size={20} />
                     Sign in with Facebook
                   </button>
                   {/* PayPal Sign-In */}
-                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue-600 border rounded-sm  text-blue-600  hover:text-white  hover:bg-blue-600">
+                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
                     <FaPaypal size={20} />
                     Sign in with PayPal
                   </button>
                   {/* Default Sign-In */}
-                  <button className="w-full flex items-center justify-center p-3 bg-blue-600 text-white rounded-sm hover:bg-blue-600">
+                  <button className="w-full flex items-center justify-center p-3 bg-blue text-white rounded-sm  hover:bg-secondary">
                     Sign in
                   </button>
                 </div>
@@ -308,7 +308,7 @@ const ProfilePopup = () => {
                 <div className="text-center mt-4">
                   <p className="text-sm flex flex-col  gap-2 text-black font-semibold">
                     Don't have an account?
-                    <Link to="/register" className="text-blue-600  font-medium hover:underline">
+                    <Link to="/register" className="text-blue  font-medium hover:underline">
                       Register
                     </Link>
                   </p>
@@ -316,7 +316,7 @@ const ProfilePopup = () => {
 
                 {/* Navigation Links */}
                 <div className="mt-5 border-t pt-3 space-y-3">
-                  <div  className="flex items-center text-sm gap-2 text-gray-700 hover:text-blue-600 cursor-pointer">
+                  <Link to="/register"  className="flex items-center text-sm gap-2 text-gray-700 hover:text-blue cursor-pointer">
                     {/* <IoPersonOutline size={20} /> */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -340,8 +340,8 @@ const ProfilePopup = () => {
                     </svg>
 
                     <span>Dashboard</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 cursor-pointer">
+                  </Link>
+                  <div className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue cursor-pointer">
                     {/* <IoKeyOutline size={20} /> */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -365,7 +365,7 @@ const ProfilePopup = () => {
 
                     <span>Your keys</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 cursor-pointer">
+                  <div className="flex items-center gap-2 text-sm text-gray-700 hover:text-blue cursor-pointer">
                     {/* <IoReceiptOutline size={20} /> */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

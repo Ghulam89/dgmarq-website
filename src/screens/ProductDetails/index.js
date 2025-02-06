@@ -13,6 +13,7 @@ import { addToCart } from '../../store/productSlice'
 import Gather from '../../components/Gather/Gather'
 import ProductCard from '../../components/Cards/ProductCard'
 import { FaStar } from 'react-icons/fa'
+import WriteReview from './WriteReview'
 
 const ProductDetails = ({
     children: slides,
@@ -23,7 +24,7 @@ const ProductDetails = ({
     const { id } = useParams();
     const [allProduct, setAllProduct] = useState({});
 
-
+const [rating,setRatings] = useState([]);
     const { userInfo } = useSelector((state) => state.next);
     console.log(userInfo);
 
@@ -50,16 +51,29 @@ const ProductDetails = ({
 
 
     const [products, setProducts] = useState({});
+console.log(products,'producs');
 
     useEffect(() => {
 
         axios.get(`${Base_url}/products/get/${id}`).then((res) => {
 
+          console.log(res,'ratings');
+          
+
             setProducts(res?.data?.data)
 
         }).catch((res) => {
 
+        });
+        axios
+        .get(`${Base_url}/rating/getByProduct/${id}`)
+        .then((res) => {
+          console.log(res);
+  
+          setRatings(res.data.data);
         })
+        .catch((error) => {});
+  
 
     }, [])
 
@@ -69,7 +83,7 @@ const ProductDetails = ({
 
      const dispatch = useDispatch();
 
-
+const [isOpenModal,setIsOpenModal] = useState(false);
     
 
       const handleWhitelist = async () => {
@@ -321,20 +335,20 @@ const ProductDetails = ({
                         <div className="mt-6 flex md:w-5/12 w-11/12 h-64  relative border p-4 flex-col space-y-2">
                             <div className=' flex gap-2'>
                                 <Link to={'/seller-store/store-products'} className=' relative'>
-                                    <img src={'https://images.g2a.com/96x96/1x0x0/aONVWSXh/1621fe27cf004e27a1a5af01'} className=' w-16 h-16 object-cover  border border-secondary p-0.5 object-center rounded-full' alt='' />
+                                    <img src={products?.sellerId?.logo} className=' w-16 h-16 object-cover  border border-secondary p-0.5 object-center rounded-full' alt='' />
                                     <div className=' absolute -top-3 left-0 text-secondary'>
                                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.39 5.544l-.91-1.776-.878 1.792L9.9 9.032l-4.048.608-2.06.309 1.53 1.414 2.923 2.703-.765 3.733-.417 2.034 1.85-.942 3.587-1.826 3.587 1.826 1.85.942-.417-2.034-.765-3.733 2.924-2.703 1.524-1.409-2.052-.314-3.974-.608-1.787-3.488z" fill="currentColor" stroke="#FAFAFA"></path></svg>
                                     </div>
                                 </Link>
                                 <div>
-                                    <p className=' text-black font-semibold m-0'>Onyx2shop</p>
+                                    <p className=' text-black font-semibold m-0'>{products?.sellerId?.companyName}</p>
                                     <span className=' text-sm text-black font-bold'>97%  <span className='  text-sm  text-gray-500 font-normal'>Positive feedback</span> | <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className=' text-gray-500' width="1em" height="1em" fill="currentColor" font-size="16"><path d="M6 22a1 1 0 100-2 1 1 0 000 2zm14 0a1 1 0 100-2 1 1 0 000 2zm1.238-12.19L20 16H6L4 1H1m3.667 5H13" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" fill="none"></path><path d="M16.529 4.47a.75.75 0 10-1.06 1.06l2 2a.748.748 0 001.06 0l5-5a.75.75 0 00-1.06-1.06l-4.47 4.47-1.47-1.47z" fill="currentColor"></path><path d="M23.099 6.02a1 1 0 00-1.18.78 4 4 0 11-3.12-4.72 1 1 0 00.4-1.961 6 6 0 104.68 7.081 1.001 1.001 0 00-.78-1.18z" fill="currentColor"></path></svg> 8635 </span>
 
                                 </div>
                             </div>
-                            <div className="text-3xl pt-3 font-bold text-gray-800">$24.80</div>
+                            <div className="text-3xl pt-3 font-bold text-gray-800">${products?.discountPrice}</div>
                             <div className="text-sm text-gray-500">
-                                Save <span className="font-semibold text-green-600">$2.48</span> with G2A Plus
+                                Save <span className="font-semibold text-green-600">${products?.actualPrice-products}</span> with G2A Plus
                             </div>
                             <button   onClick={()=>{
               dispatch(
@@ -450,26 +464,26 @@ const ProductDetails = ({
           <p className="text-sm text-gray-500 mt-1">
             Get a 5% discount on your next purchase as a thank you
           </p>
-          <button className="bg-blue text-white w-full px-4 py-2 mt-2 rounded-sm hover:bg-blue-600">
+          <button onClick={()=>setIsOpenModal(true)} className="bg-blue text-white w-full px-4 py-2 mt-2 rounded-sm hover:bg-blue-600">
             Review item
           </button>
-          <p className='text-[12px] pt-1'>Signed-in customers with at least 1 purchase can review
-          </p>
+          {/* <p className='text-[12px] pt-1'>Signed-in customers with at least 1 purchase can review
+          </p> */}
         </div>
       </div>
 
 
       {/* Reviews List */}
       <div>
-        {reviews.map((review) => (
+        {rating?.map((review) => (
           <div
             key={review.id}
             className="border rounded-lg p-4 mb-4 flex sm:flex-row flex-col gap-4 sm:h-32 h-auto flex-wrap justify-between items-start"
           >
             <div>
-              <h4 className="">{review.name}</h4>
+              <h4 className="">{review?.user?.username}</h4>
               <p className="text-sm text-gray-500">
-                Reviewed on: {review.date}
+                Reviewed on: {review?.date}
               </p>
              
             </div>
@@ -482,7 +496,11 @@ const ProductDetails = ({
               <li><FaStar className=' text-yellow-500' size={18} /></li>
               <li><FaStar className=' text-yellow-500' size={18} /></li>    
             </ul>    
-            <p className="text-sm text-gray-500 flex  gap-2">{review.platform}  <img src='https://static.g2a.com/_/pc-drmGaming/steam.svg' className=' w-4 h-4' alt='' /> </p>
+            <p className="text-sm text-gray-500 flex  gap-2">{review?.platform}  <img src='https://static.g2a.com/_/pc-drmGaming/steam.svg' className=' w-4 h-4' alt='' /> </p>
+           
+            </div>
+            <div>
+            <p className=' text-black'>{review?.review}</p>
             </div>
              <div className=' flex  items-center gap-2'>
              <p className="text-sm text-black">
@@ -547,54 +565,14 @@ Verified purchase
               </div>
             </div>
 
-            <div  className='  border-l pl-2'>
-                <p className=' m-0  text-sm'>Was this review helpful?</p>
-                <div className="flex justify-center items-center gap-4 mt-2">
-              <button className="flex items-center text-blue-500 gap-2">
-              <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 16 16"
-  width="1.5em"
-  height="1.5em"
-  fill="currentColor"
->
-  <g
-    stroke="currentColor"
-    fill="none"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M.5 7.5h3v8h-3zM5.5 15.5h6.9a2 2 0 001.952-1.566l1.111-5A2 2 0 0013.507 6.5H9.5v-4a2 2 0 00-2-2l-2 6" />
-  </g>
-</svg>
- <p  className=' text-black pt-1 m-0'>{review.helpfulVotes.yes}</p>
-              </button>
-              <button className="flex items-center text-blue-500 gap-2">
-              <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 16 16"
-  width="1.5em"
-  height="1.5em"
-  fill="currentColor"
->
-  <g
-    stroke="currentColor"
-    fill="none"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M.5.5h3v8h-3zM5.5.5h6.9a2 2 0 011.952 1.566l1.111 5A2 2 0 0113.507 9.5H9.5v4a2 2 0 01-2 2l-2-6" />
-  </g>
-</svg>
- <p className=' text-black pt-1 m-0'>{review.helpfulVotes.no}</p>
-              </button>
-            </div>
-            </div>
             
           </div>
         ))}
       </div>
     </div>
+
+      <WriteReview  rating={rating}
+          setRatings={setRatings} setIsModalOpen={setIsOpenModal} getData={products} isModalOpen={isOpenModal}  />
 
 
             <Gather/>

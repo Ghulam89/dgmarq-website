@@ -130,9 +130,9 @@ const Sidebar = ({ side, closeSidebar }) => {
             </li>
           </ul>
           </div>
-          <div className=" mx-2.5">
+          <Link to={'http://localhost:3001/seller-verification'} className=" mx-2.5">
             <button className="   capitalize border text-gray-300  w-full  border-gray-500 text-sm flex items-center  justify-between  px-4 py-3 rounded-md">become a seller <TbLogout size={25} className="" />            </button>
-          </div>
+          </Link>
        </div>:null
       }
      
