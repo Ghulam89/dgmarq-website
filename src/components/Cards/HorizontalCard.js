@@ -21,13 +21,13 @@ const HorizontalCard = ({ image, title, price, originalPrice, discount, offerLab
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)} className="border group rounded-sm bg-white  overflow-hidden hover:transform  sm:h-48 h-auto hover:translate-y-[-2px]  flex  sm:flex-row flex-col   hover:border-[#e0e0e0] transition-shadow">
 
-       <div className=" sm:w-5/12 w-12/12 relative">
+       <div className=" sm:w-4/12 w-12/12 relative">
        <img src={image} alt={title} className="w-full h-full  object-center" />
        <div className=" absolute  bg-[rgba(0,0,0,0)] group-hover:bg-[rgba(0,0,0,0.1)] top-0  w-full h-full">
 
 </div>
        </div>
-        <div className="p-4  flex flex-col justify-between  items-start">
+        <div className="p-4 sm:w-7/12 w-12/12  flex flex-col justify-between  items-start">
           
           <H6>{title}</H6>
           <div className="flex flex-col  justify-between items-center gap-1 mt-2">

@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import Modal from "../../components/Modal/Modal";
 import PropTypes from "prop-types";
 
-const WriteReview = ({ isModalOpen, setIsModalOpen, getData }) => {
+const WriteReview = ({ isModalOpen, setIsModalOpen, getData,setRatings}) => {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
@@ -46,6 +46,7 @@ const WriteReview = ({ isModalOpen, setIsModalOpen, getData }) => {
           toast.success(res?.data?.message);
           setIsModalOpen(false);
           getData("");
+          setRatings();
         } else {
           toast.success(res?.data?.message);
         }

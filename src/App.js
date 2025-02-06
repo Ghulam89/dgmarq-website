@@ -62,7 +62,7 @@ function App() {
       <Route path="/new-password" element={<NewPassword/>} />
       <Route path="/news" element={<News/>} />
       <Route path="/seller-store" element={<SellerStore/>} >
-         <Route path="store-products" element={<StoreProduct/>} /> 
+         <Route path="store-products/:id" element={<StoreProduct/>} /> 
          <Route path="about" element={<AboutSellerStore/>} /> 
       </Route>
       <Route path="/new-details/:id" element={<NewDetails/>} />

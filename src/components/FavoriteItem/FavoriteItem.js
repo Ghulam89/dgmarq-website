@@ -12,6 +12,7 @@ const FavoriteItem = () => {
   const [totalPages, setTotalPages] = useState(1);
   const limit = 6;
 
+  
   useEffect(() => {
     axios
       .get(`${Base_url}/products/productByCategory`)
