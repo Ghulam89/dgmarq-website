@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button';
 import ProductCard from '../Cards/ProductCard';
+import { Base_url } from '../../utils/Base_url';
+import axios from 'axios';
+import { H2 } from '../common/Heading';
+import { Link } from 'react-router-dom';
 
 const Crypto = () => {
     const data = [
@@ -131,18 +135,107 @@ const Crypto = () => {
 }
     
 ]
+
+
+const [products, setProducts] = useState([]);
+const [favorites, setFavorites] = useState([]);
+const [currentPage, setCurrentPage] = useState(1);
+const [totalPages, setTotalPages] = useState(1);
+const limit = 6;
+
+
+useEffect(() => {
+  axios
+    .get(`${Base_url}/products/productByCategory`)
+    .then((res) => {
+      console.log(res);
+
+      setProducts(res?.data?.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+
+
+
+
+}, []);
+
+
+const handleSeeMore = () => {
+  if (currentPage < totalPages) {
+    setCurrentPage((prevPage) => prevPage + 1);
+  }
+};
+
+
   return (
-    <div className=" ">
+
+    <>
+
+{products?.map((ImInsertTemplate, index) => {
+      return (
+        <section className=" py-10">
+          <div className="max-w-[1170px] mx-auto px-4">
+            <div className=" flex  justify-between items-center">
+              <div className=" pb-7">
+                <H2 className="text-2xl font-bold text-gray-800 mb-2">
+                  {ImInsertTemplate?.brandName}
+                </H2>
+                <p className="text-gray-500">
+                  Get Windows and Office much cheaper - breeze through daily work with an updated system!
+
+
+
+
+                </p>
+              </div>
+              <Link to={`/category/${ImInsertTemplate?._id}`} className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
+                Discover all
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              {ImInsertTemplate?.products?.map((product, index) => (
+
+                <ProductCard url={`/product-details/${product?._id}`} image={product?.images?.[0]} title={product?.title} discount={3} price={product?.discountPrice} originalPrice={product?.actualPrice} />
+
+              ))}
+            </div>
+            <div className="text-center mt-6">
+
+            <div className="text-center mt-10 ">
+              {/* "See More" Button */}
+              {/* {currentPage < totalPages && ( */}
+
+                <button
+                  onClick={handleSeeMore}
+                  className="mb-3 text-sm text-blue font-medium hover:text-secondary py-2 px-4  rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                  Show more
+                </button>
+
+              {/* )} */}
+              <hr />
+            </div>
+            </div>
+          </div>
+        </section>
+      )
+    })}
+
+
+    {/* <div className=" ">
 
        
 
-          {/* Background Image */}
       <div className="relative w-full h-full">
        
-        {/* Overlay Content */}
+      
         <div className="  max-w-[1170px] mx-auto px-4 inset-0 flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
-            {/* Text Content */}
+           
             <div>
               <h2 className="text-black text-2xl lg:text-3xl font-semibold">
                 Software
@@ -151,7 +244,7 @@ const Crypto = () => {
                 From operating systems and VPNs to graphic design apps and more-all you in one location!
               </p>
             </div>
-            {/* Discover Button */}
+          
             <div>
             <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
           Discover all
@@ -160,7 +253,7 @@ const Crypto = () => {
             
           </div>
 
-          {/* Card Section */}
+     
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6'>
              
              {data3?.map((item,index)=>{
@@ -170,7 +263,7 @@ const Crypto = () => {
                     </>
                 )
              })}
-              {/* Repeat more cards similarly */}
+            
             </div>
 
 
@@ -185,14 +278,14 @@ const Crypto = () => {
       </div>
 
 
-      {/* Background Image */}
+   
       <div className="relative bg-Crypto w-full h-full">
        
 
-        {/* Overlay Content */}
+    
         <div className=" max-w-[1170px] mx-auto px-4  flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
-            {/* Text Content */}
+        
             <div>
               <h2 className="text-black text-2xl lg:text-3xl font-semibold">
                 Crypto Corner
@@ -202,14 +295,13 @@ const Crypto = () => {
                 cryptocurrency enthusiasts.
               </p>
             </div>
-            {/* Discover Button */}
+          
             <div>
             <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
           Discover all
         </button>             </div>
           </div>
 
-          {/* Card Section */}
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6'>
              
              {data?.map((item,index)=>{
@@ -219,7 +311,7 @@ const Crypto = () => {
                     </>
                 )
              })}
-              {/* Repeat more cards similarly */}
+            
             </div>
 
 
@@ -234,13 +326,11 @@ const Crypto = () => {
       </div>
 
 
-        {/* Background Image */}
         <div className=" bg-random_keys pb-14 bg-cover  bg-center  w-full h-full">
-       
-        {/* Overlay Content */}
+      
         <div className="  max-w-[1170px] mx-auto px-4 flex flex-col">
           <div className="   pb-6 flex gap-8  sm:flex-row flex-col justify-between items-center pt-12">
-            {/* Text Content */}
+           
             <div>
               <h2 className="text-black text-2xl lg:text-3xl font-semibold">
                 Random Keys
@@ -249,14 +339,14 @@ const Crypto = () => {
                 Wondering what kind of gaming treasures are packed inside? Only one way to find out!
               </p>
             </div>
-            {/* Discover Button */}
+         
             <div>
             <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
           Discover all
         </button>              </div>
           </div>
 
-          {/* Card Section */}
+      
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6'>
              
              {data2?.map((item,index)=>{
@@ -266,12 +356,16 @@ const Crypto = () => {
                     </>
                 )
              })}
-              {/* Repeat more cards similarly */}
+          
             </div>
          
         </div>
       </div>
     </div>
+     */}
+    </>
+   
+
   );
 };
 

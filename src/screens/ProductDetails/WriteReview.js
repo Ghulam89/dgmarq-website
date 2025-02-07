@@ -46,7 +46,16 @@ const WriteReview = ({ isModalOpen, setIsModalOpen, getData,setRatings}) => {
           toast.success(res?.data?.message);
           setIsModalOpen(false);
           getData("");
-          setRatings();
+          axios.get(`${Base_url}/products/get/${getData?._id}`).then((res) => {
+
+            console.log(res, 'ratings');
+      
+      
+            setRatings(res?.data?.data)
+      
+          }).catch((res) => {
+      
+          });
         } else {
           toast.success(res?.data?.message);
         }

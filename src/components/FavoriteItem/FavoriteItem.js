@@ -70,50 +70,7 @@ const FavoriteItem = () => {
 
     <>
 
-      {products?.map((ImInsertTemplate, index) => {
-        return (
-          <section className=" py-10">
-            <div className="max-w-[1170px] mx-auto px-4">
-              <div className=" flex  justify-between items-center">
-                <div className=" pb-7">
-                  <H2 className="text-2xl font-bold text-gray-800 mb-2">
-                    {ImInsertTemplate?.brandName}
-                  </H2>
-                  <p className="text-gray-500">
-                    Get Windows and Office much cheaper - breeze through daily work with an updated system!
-
-
-
-
-                  </p>
-                </div>
-                <Link to={`/category/${ImInsertTemplate?._id}`} className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
-                  Discover all
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-                {ImInsertTemplate?.products?.map((product, index) => (
-
-                  <ProductCard url={`/product-details/${product?._id}`} image={product?.images?.[0]} title={product?.title} discount={3} price={product?.discountPrice} originalPrice={product?.actualPrice} />
-
-                ))}
-              </div>
-              <div className="text-center mt-6">
-
-                <div className="text-center mt-10 ">
-                  <button className="mb-3 text-sm text-blue font-medium   hover:text-secondary hover:underline">
-                    Show more
-                  </button>
-                  <hr />
-                </div>
-              </div>
-            </div>
-          </section>
-        )
-      })}
-
-
+     
 
       <section className=" py-10">
         <div className="max-w-[1170px] mx-auto px-4">

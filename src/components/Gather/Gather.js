@@ -12,7 +12,7 @@ const Gather = () => {
       .then((res) => {
         console.log(res);
 
-        setBlogs(res?.data?.data?.data);
+        setBlogs(res?.data?.data);
       })
       .catch((error) => {
         console.log(error);

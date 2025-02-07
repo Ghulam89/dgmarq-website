@@ -4,6 +4,7 @@ import ProductCard from '../Cards/ProductCard'
 import Button from '../Button';
 import { Base_url } from '../../utils/Base_url';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Upcoming = () => {
     const products = [
@@ -101,10 +102,48 @@ const Upcoming = () => {
       }, []);
 
 
+     const [allProductSecond,setProductSecond] = useState([])
+
+      const [currentPage, setCurrentPage] = useState(1);
+      const [totalPages, setTotalPages] = useState(1);
+      const limit = 6;
+      const fetchFavorites = (page = 1) => {
+        axios
+          .get(`${Base_url}/products/getBestSellers?page=${page}&limit=${limit}`)
+          .then((res) => {
+            const newFavorites = res?.data?.data || [];
+    
+            setProductSecond((prevFavorites) => {
+    
+              if (page === 1) {
+                return newFavorites;
+              }
+    
+              return [...prevFavorites, ...newFavorites];
+            });
+    
+    
+            setTotalPages(res?.data?.totalPages || 1);
+          })
+          .catch((error) => {
+            console.error("Error fetching favorites:", error);
+          });
+      };
+    
+    
+      useEffect(() => {
+        fetchFavorites(currentPage);
+      }, [currentPage]);
+      const handleSeeMore = () => {
+        if (currentPage < totalPages) {
+          setCurrentPage((prevPage) => prevPage + 1);
+        }
+      };
 
 
   return (
     <>
+    
      <div className=' max-w-[1170px] mx-auto mb-12 px-3'>
      <H2>New and upcoming releases
      </H2>
@@ -114,10 +153,10 @@ const Upcoming = () => {
         {upcoming?.map((item,index)=>{
           return (
 
-            <div className=' sm:w-6/12 w-12/12'>
+            <Link to={`/product-details/${item?.productId?._id}`} className=' sm:w-6/12 w-12/12'>
             <div className=' relative'>
              <img src={item?.banner} className=' w-full' alt='' /> 
-             <div className=' absolute  sm:w-96 w-[95%] sm:right-32 right-3 py-3 top-0 h-full flex justify-center items-center'>
+             <div className=' absolute  sm:w-96 w-[95%] sm:right-80 right-3 py-3 top-0 h-full flex justify-center items-center'>
                <div>
                    <img src={item?.logo} alt='' />
                    <H4 className=' text-white pt-6'>{item?.productId?.title}</H4>
@@ -137,7 +176,7 @@ const Upcoming = () => {
                </div>
                </div>   
            </div> 
-           </div>
+           </Link>
           )
         })}
        
@@ -169,7 +208,7 @@ const Upcoming = () => {
 
 
 
-      <section className=" py-10">
+    <section className=" py-10">
       <div className="max-w-[1170px] mx-auto px-4">
       
       <div className=" py-6 flex  justify-between">
@@ -177,6 +216,7 @@ const Upcoming = () => {
        <h2 className="text-2xl font-bold">Upcoming games</h2>
         <p className="text-gray-500">
         Can’t wait to play your game? Preorder the key now and experience it on day one!
+
 
 
         </p>
@@ -189,20 +229,33 @@ const Upcoming = () => {
        </div>
       </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {products.map((product, index) => (
+          {allProductSecond?.map((product, index) => (
             
-            <ProductCard image={product?.image} discount={product?.discount}  originalPrice={product?.price}  title={product?.title} price={product?.price}  />
+
+            <ProductCard url={`/product-details/${product?.productDetails?._id}`} image={product?.productDetails?.images?.[0]} title={product?.productDetails?.title} discount={product?.productDetails?.gst}
+            price={product?.productDetails?.discountPrice} originalPrice={product?.productDetails?.actualPrice} />
 
           ))}
         </div>
         <div className="text-center mt-10 ">
-          <button className="mb-3 text-sm text-blue font-medium   hover:text-secondary hover:underline">
-            Show more
-          </button>
-          <hr/>
-        </div>
+            {currentPage < totalPages && (
+
+              <button
+                onClick={handleSeeMore}
+                className="mb-3 text-sm text-blue font-medium hover:text-secondary py-2 px-4  rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Show more
+              </button>
+
+            )}
+            <hr />
+          </div>
       </div>
     </section>
+
+
+
+    
 
 
     <section className="bg-deal_bg py-12 bg-cover bg-center">
