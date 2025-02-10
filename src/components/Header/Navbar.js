@@ -18,6 +18,7 @@ import ProfilePopup from "./ProfilePopup";
 import TranslateComponent from "../translator/TranslateComponent";
 import { FaAngleDown } from "react-icons/fa";
 import { BsArrowUpLeft, BsGraphUpArrow } from "react-icons/bs";
+import SearchResults from "./SearchResults";
 const Navbar = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -166,7 +167,7 @@ const Navbar = () => {
 
   const [subCategory, setSubCategory] = useState([]);
 
-
+  const [searchResults, setSearchResults] = useState([]);
  
 
   useEffect(() => {
@@ -228,13 +229,31 @@ const Navbar = () => {
     "xbox",
   ]);
 
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value);
+  const handleInputChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    if (query.trim()) {
+      axios
+        .get(`${Base_url}/products/search?title=${query}`)
+        .then((res) => {
+          console.log(res);
+
+          setSearchResults(res.data.data || []);
+        })
+        .catch((err) => {
+          console.error("Error fetching products:", err);
+        });
+    } else {
+      setSearchResults([]);
+    }
   };
 
   const filteredSuggestions = suggestions.filter((suggestion) =>
     suggestion.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  )
+
+
+  
 
 
 
@@ -290,16 +309,17 @@ const Navbar = () => {
 
       {dropdownOpen && (
         <div className="absolute top-full left-0 w-60 bg-white shadow-lg border rounded-sm z-10">
-          {categories.map((category) => (
-            <div
-              key={category}
-              className={`px-3 py-2 text-[12px] text-gray-700 hover:bg-gray-100 ${
+          {allCategory.map((category) => (
+            <Link
+             to={`/category/${category?._id}`}
+              key={category?._id}
+              className={`px-3 py-2 text-[12px] block text-gray-700 hover:bg-gray-100 ${
                 selectedCategory === category ? "bg-gray-200 font-semibold" : ""
               }`}
-              onClick={() => handleCategorySelect(category)}
+             
             >
-              {category}
-            </div>
+              {category?.name}
+            </Link>
           ))}
         </div>
       )}
@@ -317,23 +337,8 @@ const Navbar = () => {
 
             {/* Suggestions Dropdown */}
             {searchQuery && (
-              <ul className="absolute left-0 z-50 top-10 right-0 mt-2 bg-white border border-gray-300 rounded-sm shadow-lg">
-                {filteredSuggestions.map((suggestion, index) => (
-                  <li
-                    key={index}
-                    className="flex border-b items-center px-4 py-2 cursor-pointer hover:bg-gray-100"
-                  >
-                    <span className="mr-2 text-gray-500">
-                      <BsGraphUpArrow />
-
-                    </span>
-                    {suggestion}
-                    <span className="ml-auto text-gray-500">
-                      <BsArrowUpLeft size={20} />
-
-                    </span>
-                  </li>
-                ))}
+              <ul className="absolute left-0 z-50 top-10 right-0 bg-white rounded-sm shadow-lg">
+                 <SearchResults results={searchResults} />
               </ul>
             )}
           </form>

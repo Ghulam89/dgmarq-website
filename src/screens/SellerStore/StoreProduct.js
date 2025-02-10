@@ -18,11 +18,11 @@ const StoreProduct = () => {
         setMenuOpen(!isMenuOpen);
     };
     const [layout, setLayout] = useState('listing');
- 
-  
+
+
 
     useEffect(() => {
-        
+
         fetchProducts(currentPage);
     }, [currentPage]);
     const fetchProducts = (page) => {

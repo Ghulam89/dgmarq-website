@@ -2,37 +2,12 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../Cards/ProductCard";
 import axios from "axios";
 import { Base_url } from "../../utils/Base_url";
-import { H2 } from "../common/Heading";
-import { Link } from "react-router-dom";
 
 const FavoriteItem = () => {
-  const [products, setProducts] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 6;
-
-  
-  useEffect(() => {
-    axios
-      .get(`${Base_url}/products/productByCategory`)
-      .then((res) => {
-        console.log(res);
-
-        setProducts(res?.data?.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-
-
-
-
-  }, []);
-
-
-
 
   const fetchFavorites = (page = 1) => {
     axios

@@ -151,6 +151,7 @@ useEffect(() => {
       console.log(res);
 
       setProducts(res?.data?.data);
+      setTotalPages(res?.data?.data?.totalProductPages || 1);
     })
     .catch((error) => {
       console.log(error);
