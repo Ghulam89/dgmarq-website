@@ -47,7 +47,7 @@ const Bestsellers = () => {
 
 
   return (
-    <div className="py-8  bg-gray-50">
+    <div id="bestSellers" className="py-8  bg-gray-50">
 
 
       {/* Header */}

@@ -119,6 +119,7 @@ const Navbar = () => {
 
 
   
+  
 
   const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);

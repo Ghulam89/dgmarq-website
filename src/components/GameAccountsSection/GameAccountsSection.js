@@ -13,7 +13,7 @@ const GameAccountsSection = () => {
   const limit = 6;
   const fetchFavorites = (page = 1) => {
     axios
-      .get(`${Base_url}/products/getBestSellers?page=${page}&limit=${limit}`)
+      .get(`${Base_url}/products/getProductByKey?page=${page}&limit=${limit}`)
       .then((res) => {
         const newFavorites = res?.data?.data || [];
 
@@ -51,7 +51,7 @@ const GameAccountsSection = () => {
       {/* Header */}
     
 
-      <section className=" py-10">
+      <section id="gift-cards" className=" py-10">
       <div className="max-w-[1170px] mx-auto px-4">
       
       <div className=" py-6 flex  justify-between">
@@ -74,8 +74,8 @@ const GameAccountsSection = () => {
           {products.map((product, index) => (
             
 
-            <ProductCard url={`/product-details/${product?.productDetails?._id}`} image={product?.productDetails?.images?.[0]} title={product?.productDetails?.title} discount={product?.productDetails?.gst}
-            price={product?.productDetails?.discountPrice} originalPrice={product?.productDetails?.actualPrice} />
+            <ProductCard url={`/product-details/${product?._id}`} image={product?.images?.[0]} title={product?.title} discount={product?.gst}
+            price={product?.discountPrice} originalPrice={product?.actualPrice} />
 
           ))}
         </div>
