@@ -280,7 +280,7 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-primary ">
-        <header className="mx-auto flex gap-8  max-w-[1170px]   h-20 items-center justify-between md:px-3 px-0">
+        <header className="mx-auto flex gap-8  max-w-[1170px]   h-20 items-center justify-between px-3">
           <Link to="/" className="">
             <img
 

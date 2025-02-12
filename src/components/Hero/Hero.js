@@ -46,11 +46,12 @@ const [slider,setSlider] = useState([]);
   return (
     <>
       <div className="  flex justify-center  items-center bg-home bg-cover bg-center w-full py-8">
-        <div className=" flex gap-5  md:justify-between justify-center w-full px-3 max-w-[1170px] mx-auto flex-wrap">
-          {slider?.map((item, index) => {
-            return <HomeCard item={item} />;
-          })}
-        </div>
+      <div className="grid gap-5 px-3 max-w-[1170px] mx-auto w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+  {slider?.map((item, index) => (
+    <HomeCard key={index} item={item} />
+  ))}
+</div>
+
       </div>
       <div className="bg-gray-100 ">
         <div className="py-6   max-w-[1170px] mx-auto  px-3 flex sm:flex-row flex-col justify-between items-center">

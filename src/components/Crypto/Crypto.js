@@ -71,10 +71,10 @@ console.log(categoryId);
 console.log('====================================');
 
         return (
-          <section  id={categoryId} className=" py-10">
+          <section  id={categoryId} className=" pb-10">
             <div className="max-w-[1170px] mx-auto px-4">
-              <div className=" flex  justify-between items-center">
-                <div className=" pb-7">
+              <div className=" flex flex-wrap  gap-3 justify-between items-center">
+                <div className="">
                   <H2 className="text-2xl font-bold text-gray-800 mb-2">
                     {ImInsertTemplate?.brandName}
                   </H2>
@@ -87,7 +87,7 @@ console.log('====================================');
                 </Link>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 pt-4 md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {ImInsertTemplate?.products?.map((product, index) => (
 
                   <ProductCard url={`/product-details/${product?._id}`} image={product?.images?.[0]} title={product?.title} discount={product?.gst} price={product?.discountPrice} originalPrice={product?.actualPrice} />

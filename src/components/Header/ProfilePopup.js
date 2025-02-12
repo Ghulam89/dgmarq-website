@@ -1,24 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { removeUser } from '../../store/productSlice';
-import Button from '../Button';
-import { TbLogout2 } from 'react-icons/tb';
 import { FaFacebookF, FaGoogle, FaPaypal } from 'react-icons/fa';
-import { IoKeyOutline, IoPersonOutline, IoReceiptOutline } from 'react-icons/io5';
-
 const ProfilePopup = () => {
   const { userInfo } = useSelector((state) => state.next);
   console.log(userInfo);
-
   const dispatch = useDispatch();
-
-
   const [isOpen, setIsOpen] = useState(false);
-
-  // Toggle the dropdown
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -229,7 +219,7 @@ const ProfilePopup = () => {
 
 
                   </div>
-                  <div onClick={()=>removeFun()} className=" flex cursor-pointer text-sm items-center gap-2">
+                  <div onClick={() => removeFun()} className=" flex cursor-pointer text-sm items-center gap-2">
                     Sign out  <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -288,11 +278,7 @@ const ProfilePopup = () => {
                     <FaFacebookF size={20} />
                     Sign in with Facebook
                   </button>
-                  {/* PayPal Sign-In */}
-                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
-                    <FaPaypal size={20} />
-                    Sign in with PayPal
-                  </button>
+
                   {/* Default Sign-In */}
                   <button className="w-full flex items-center justify-center p-3 bg-blue text-white rounded-sm  hover:bg-secondary">
                     Sign in
@@ -316,7 +302,7 @@ const ProfilePopup = () => {
 
                 {/* Navigation Links */}
                 <div className="mt-5 border-t pt-3 space-y-3">
-                  <Link to="/register"  className="flex items-center text-sm gap-2 text-gray-700 hover:text-blue cursor-pointer">
+                  <Link to="/register" className="flex items-center text-sm gap-2 text-gray-700 hover:text-blue cursor-pointer">
                     {/* <IoPersonOutline size={20} /> */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

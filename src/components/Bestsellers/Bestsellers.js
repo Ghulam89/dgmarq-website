@@ -57,7 +57,7 @@ const Bestsellers = () => {
         <div className="max-w-[1170px] mx-auto px-4">
           {/* Categories */}
          
-          <div className=" pb-6 flex  justify-between">
+          <div className=" pb-6 flex   flex-wrap gap-2 justify-between">
             <div>
               <h2 className="text-2xl font-bold">Bestsellers</h2>
               <p className=" text-sm pt-1">

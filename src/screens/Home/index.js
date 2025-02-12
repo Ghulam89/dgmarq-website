@@ -64,27 +64,27 @@ const Home = () => {
       <Hero />
       <G2AFeatures />
       <div className='max-w-[1170px] mt-8 sticky z-30 top-0 mx-auto'>
-  <div className="flex overflow-x-auto bg-white nav_item">
-    {[
-      { name: "Bestsellers", id: "bestSellers" },
-      { name: "Gaming gift cards", id: "gift-cards" },
-      { name: "Upcoming games", id: "upcoming-games" },
-      { name: "Trending categories", id: "trending-categories" },
-      { name: "Software", id: "software" },
-      { name: "Cryptocurrencies", id: "cryptocurrencies" },
-      { name: "Random Keys", id: "random-keys" },
-      { name: "Game Accounts", id: "bg-game_bg" },
-    ].map(({ name, id }) => (
-      <button
-        key={id}
-        className="py-3.5 px-6 bg-white border text-sm font-semibold shadow-sm text-gray-700 whitespace-nowrap hover:bg-gray-100"
-        onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
-      >
-        {name}
-      </button>
-    ))}
-  </div>
-</div>
+        <div className="flex overflow-x-auto bg-white nav_item">
+          {[
+            { name: "Bestsellers", id: "bestSellers" },
+            { name: "Gaming gift cards", id: "gift-cards" },
+            { name: "Upcoming games", id: "upcoming-games" },
+            { name: "Trending categories", id: "trending-categories" },
+            { name: "Software", id: "software" },
+            { name: "Cryptocurrencies", id: "cryptocurrencies" },
+            { name: "Random Keys", id: "random-keys" },
+            { name: "Game Accounts", id: "bg-game_bg" },
+          ].map(({ name, id }) => (
+            <button
+              key={id}
+              className="py-3.5 px-6 bg-white border text-sm font-semibold shadow-sm text-gray-700 whitespace-nowrap hover:bg-gray-100"
+              onClick={() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })}
+            >
+              {name}
+            </button>
+          ))}
+        </div>
+      </div>
       <Bestsellers />
       <FlashDeals />
       <GameAccountsSection />
@@ -94,11 +94,11 @@ const Home = () => {
       <WhyG2A />
       <section id='bg-game_bg' className="bg-game_bg py-12 bg-cover bg-center">
         <div className="max-w-[1170px] mx-auto px-4">
-        <h2 className="text-2xl font-bold">Game accounts</h2>
-        <p className="text-gray-500 pb-5">
-        Experience the latest gaming releases with brand-new accounts.
+          <h2 className="text-2xl font-bold">Game accounts</h2>
+          <p className="text-gray-500 pb-5">
+            Experience the latest gaming releases with brand-new accounts.
 
-</p>
+          </p>
           <div className="grid gap-6 sm:grid-cols-[1fr,2fr,1fr] grid-cols-1">
 
             {/* First Column */}
