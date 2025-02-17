@@ -37,6 +37,7 @@ import { useEffect } from "react";
 import GatherDetails from "./components/Gather/GatherDetails";
 import StoreProduct from "./screens/SellerStore/StoreProduct";
 import AboutSellerStore from "./screens/SellerStore/AboutSellerStore";
+import Checkout from "./screens/checkout";
 function App() {
 
   const { pathname } = useLocation();
@@ -81,6 +82,7 @@ function App() {
       <Route path="/buyer-support" element={<BuyerSupport />} />
       <Route path="/how-to-buy" element={<HowToBuy />} />
       <Route path="/stay-safe" element={<StaySafe />} />
+      <Route path="/checkout" element={<Checkout />} />
       <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/seller-support" element={<SellerSupport />} />
       <Route path="/terms-conditions" element={<TermsConditions />} />
