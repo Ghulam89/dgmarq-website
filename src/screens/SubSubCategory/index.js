@@ -29,7 +29,7 @@ const Category = () => {
     }, [currentPage]);
 
     const fetchProducts = (page) => {
-        axios.get(`${Base_url}/products/subcategory/${id}?page=${page}`)
+        axios.get(`${Base_url}/products/subCategory/${id}?page=${page}`)
             .then((res) => {
                 console.log(res);
                 setProducts(res?.data?.data);

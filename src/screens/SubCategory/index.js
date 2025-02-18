@@ -20,11 +20,9 @@ const Category = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
     };
-
     const [layout, setLayout] = useState('listing');
 
     useEffect(() => {
@@ -54,6 +52,12 @@ const Category = () => {
             setCurrentPage(currentPage - 1);
         }
     };
+
+
+    const [platforms,setPlatforms] = useState([]);
+    const [region,setRegion]  = useState([]);
+
+
 
     return (
         <>

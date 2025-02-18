@@ -275,7 +275,7 @@ const Footer = () => {
           <div>
           <div className=" flex  gap-4">
   <Link
-    to="#"
+    to="https://www.facebook.com/profile.php?id=61572367034800"
     title="G2A.COM Facebook"
   >
     <img
@@ -312,7 +312,7 @@ const Footer = () => {
     />
   </Link>
   <Link
-    to="#"
+    to="https://www.instagram.com/digital_marq/"
     title="G2A.COM Instagram"
   >
     <img

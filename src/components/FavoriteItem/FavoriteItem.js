@@ -61,7 +61,7 @@ const FavoriteItem = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {favorites?.map((product, index) => (
 
-              <ProductCard url={`/product-details/${product?.productId?._id}`} image={product?.productId?.images?.[0]} title={product?.productId?.title} discount={((product?.productId?.actualPrice || 0) - (product?.productId?.discountPrice || 0))
+              <ProductCard url={`/product-details/${product?._id}`} image={product?.images?.[0]} title={product?.title} discount={((product?.actualPrice || 0) - (product?.productId?.discountPrice || 0))
                 .toString(2)
                 .slice(0, 2)} price={product?.productId?.discountPrice} originalPrice={product?.productId?.actualPrice} />
 

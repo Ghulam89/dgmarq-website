@@ -72,10 +72,10 @@ const Login = () => {
 
                                 <div className="mb-4">
                                     <label
-                                        className="block text-gray-700 font-medium"
+                                        className=" flex gap-1 text-gray-700 font-medium"
                                         htmlFor="email"
                                     >
-                                        Email
+                                        Email<p className=" text-red-500"> * </p> 
                                     </label>
                                     <Field
                                         type="email"
@@ -93,10 +93,10 @@ const Login = () => {
 
                                 <div className="mb-4">
                                     <label
-                                        className="block text-gray-700 font-medium"
+                                        className="flex gap-1 text-gray-700 font-medium"
                                         htmlFor="password"
                                     >
-                                        Password
+                                        Password <p className=" text-red-500"> * </p> 
                                     </label>
                                     <div className="relative">
                                         <Field

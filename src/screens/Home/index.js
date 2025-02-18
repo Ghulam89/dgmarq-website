@@ -201,7 +201,6 @@ const Home = () => {
       </section>
 
 
-
       <FavoriteItem />
       <Gather />
       <Subscription />

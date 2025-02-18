@@ -50,7 +50,8 @@ const Register = () => {
       }
       console.log(response?.data);
     } catch (error) {
-      toast.error(error)
+      toast.error(error?.response?.data?.message)
+
     } finally {
       setSubmitting(false);
     }
@@ -84,7 +85,7 @@ const Register = () => {
               <Form>
                 {/* Username Input */}
                 <div className="mt-6">
-                  <label className="block text-sm font-medium text-gray-700">Username</label>
+                  <label className=" flex text-sm  gap-1 font-medium text-gray-700">Username <p className=" text-red-500"> * </p> </label>
                   <Field
                     type="text"
                     name="username"
@@ -100,7 +101,7 @@ const Register = () => {
 
                 {/* Email Input */}
                 <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700">Email</label>
+                  <label className="flex text-sm gap-1  font-medium text-gray-700">Email <p className=" text-red-500"> * </p>  </label>
                   <Field
                     type="email"
                     name="email"
@@ -116,7 +117,7 @@ const Register = () => {
 
                 {/* Password Input */}
                 <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700">Password</label>
+                  <label className="flex gap-1 text-sm font-medium text-gray-700">Password <p className=" text-red-500"> * </p>  </label>
                   <div className="relative">
                     <Field
                       type={showPassword ? "text" : "password"}
