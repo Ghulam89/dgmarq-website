@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../Cards/ProductCard";
-import axios from "axios";
 import { Base_url } from "../../utils/Base_url";
+import axios from "axios";
 
 const FavoriteItem = () => {
-  const [favorites, setFavorites] = useState([]);
+  const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
   const limit = 6;
 
   const fetchFavorites = (page = 1) => {
@@ -15,80 +16,95 @@ const FavoriteItem = () => {
       .then((res) => {
         const newFavorites = res?.data?.data || [];
 
-        setFavorites((prevFavorites) => {
-
+        setProducts((prevFavorites) => {
           if (page === 1) {
             return newFavorites;
           }
-
           return [...prevFavorites, ...newFavorites];
         });
-
 
         setTotalPages(res?.data?.pagination?.totalPages || 1);
       })
       .catch((error) => {
-        console.error("Error fetching favorites:", error);
+        console.error("Error fetching bestsellers:", error);
       });
   };
-
 
   useEffect(() => {
     fetchFavorites(currentPage);
   }, [currentPage]);
-  const handleSeeMore = () => {
+
+  const handleReadMore = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
   };
+
+  const handleReadLess = () => {
+    setProducts([]);
+    setCurrentPage(1);
+    fetchFavorites(1);
+  };
+
   return (
-
-    <>
-
-     
-
-      <section className=" py-10">
+    <div id="favorites" className="py-8 bg-gray-50">
+      <section className="pb-10">
         <div className="max-w-[1170px] mx-auto px-4">
-          <div className=" flex  justify-between items-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
-              Our customers' favorite items
-            </h2>
-            <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
-              Discover all
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {favorites?.map((product, index) => (
-
-              <ProductCard url={`/product-details/${product?._id}`} image={product?.images?.[0]} title={product?.title} discount={((product?.actualPrice || 0) - (product?.productId?.discountPrice || 0))
-                .toString(2)
-                .slice(0, 2)} price={product?.productId?.discountPrice} originalPrice={product?.productId?.actualPrice} />
-
-            ))}
-          </div>
-          <div className="text-center mt-6">
-
-            <div className="text-center mt-10 ">
-              {/* "See More" Button */}
-              {currentPage < totalPages && (
-
-                <button
-                  onClick={handleSeeMore}
-                  className="mb-3 text-sm text-blue font-medium hover:text-secondary py-2 px-4  rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                >
-                  Show more
-                </button>
-
-              )}
-              <hr />
+          <div className="py-6 flex flex-wrap gap-2 justify-between">
+            <div>
+              <h2 className="text-2xl font-bold">Our customer's favorites items</h2>
+              <p className="text-sm pt-1">
+                The hottest items on our marketplace – discover what captured our users' hearts!
+              </p>
+            </div>
+            <div>
+              <button className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
+                Discover all
+              </button>
             </div>
           </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {products.map((product, index) => (
+              <ProductCard
+                key={index}
+                url={`/product-details/${product?._id}`}
+                image={product?.images?.[0]}
+                title={product?.title}
+                discount={product?.gst}
+                price={product?.discountPrice}
+                originalPrice={product?.actualPrice}
+                like={product?.likes}
+              />
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="flex  justify-center items-center my-10">
+
+              {currentPage>1 && (
+                <button
+                onClick={handleReadLess}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Read Less
+              </button>
+              )}
+                 
+              <button
+                onClick={handleReadMore}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Read More
+              </button>
+
+           
+            </div>
+          )}
+
+          <hr />
         </div>
       </section>
-
-    </>
-
+    </div>
   );
 };
 

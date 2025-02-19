@@ -46,11 +46,16 @@ const Crypto = () => {
   useEffect(() => {
     getCategoryProduct(currentPage);
   }, [currentPage]);
-  const handleSeeMore = () => {
-    // if (currentPage < totalPages) {
-    
+  const handleReadMore = () => {
+    if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
-    // }
+    }
+  };
+
+  const handleReadLess = () => {
+    setProducts([]);
+    setCurrentPage(1);
+    getCategoryProduct(1);
   };
 
 
@@ -71,7 +76,7 @@ console.log(categoryId);
 console.log('====================================');
 
         return (
-          <section  id={categoryId} className=" pb-10">
+          <section  id={categoryId} className=" py-10">
             <div className="max-w-[1170px] mx-auto px-4">
               <div className=" flex flex-wrap  gap-3 justify-between items-center">
                 <div className="">
@@ -97,17 +102,28 @@ console.log('====================================');
               <div className="text-center mt-6">
 
                 <div className="text-center mt-10 ">
-                  {/* "See More" Button */}
-                  {/* {currentPage < totalPages && ( */}
+                {totalPages > 1 && (
+            <div className="flex  justify-center items-center my-10">
 
-                  <button
-                    onClick={handleSeeMore}
-                    className="mb-3 text-sm text-blue font-medium hover:text-secondary py-2 px-4  rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                  >
-                    Show more
-                  </button>
+              {currentPage>1 && (
+                <button
+                onClick={handleReadLess}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Read Less
+              </button>
+              )}
+                 
+              <button
+                onClick={handleReadMore}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Read More
+              </button>
 
-                  {/* )} */}
+           
+            </div>
+          )}
                   <hr />
                 </div>
               </div>

@@ -14,6 +14,7 @@ import Gather from '../../components/Gather/Gather'
 import ProductCard from '../../components/Cards/ProductCard'
 import { FaStar } from 'react-icons/fa'
 import WriteReview from './WriteReview'
+import SideDrawer from '../../components/Header/SideDrawer'
 
 const ProductDetails = ({
   children: slides,
@@ -87,7 +88,7 @@ const ProductDetails = ({
   const dispatch = useDispatch();
 
   const [isOpenModal, setIsOpenModal] = useState(false);
-
+ const [openSide,setOpenSide] = useState(false);
 
   const handleWhitelist = async () => {
     if (userInfo) {
@@ -98,7 +99,7 @@ const ProductDetails = ({
           userId: userInfo?._id,
         });
 
-        if (response.status === 201) {
+        if (response.data?.status === 'success') {
           toast.success('Product added to your wishlist!');
         } else {
         }
@@ -208,6 +209,7 @@ const ProductDetails = ({
     <>
       <Navbar />
       <BottomHeader />
+      <SideDrawer  setIsOpen={setOpenSide} isOpen={openSide} />
       <section className=' py-14'>
         <div className="max-w-[1170px] mx-auto bg-white  border-gray-300  p-4">
           {/* Product Title */}
@@ -329,7 +331,7 @@ const ProductDetails = ({
               </div>
               <hr />
               <p className=' text-gray-500 text-sm'>Forced to go rogue. Hunted from within. This is Call of Duty: Black Ops 6.</p>
-              <span className=' text-secondary font-semibold'>Read more</span>
+              {/* <span className=' text-secondary font-semibold'>Read more</span> */}
             </div>
 
 
@@ -354,6 +356,7 @@ const ProductDetails = ({
                 Save <span className="font-semibold text-green-600">${products?.actualPrice - products}</span> with G2A Plus
               </div>
               <button onClick={() => {
+                setOpenSide(true)
                 dispatch(
                   addToCart({
                     _id: products?._id,
@@ -382,26 +385,6 @@ const ProductDetails = ({
         <p className=' text-gray-400'>{products?.description}</p>
 
       </section>
-
-      <div className=' mx-auto max-w-[1170px] pb-7'>
-
-        <div className=" py-6 flex  justify-between">
-          <div>
-            <h2 className="text-2xl font-bold">Other products you may like</h2>
-
-          </div>
-
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-          {products2.map((product, index) => (
-
-            <ProductCard image={product?.image} discount={product?.discount} originalPrice={product?.price} title={product?.title} price={product?.price} />
-
-          ))}
-        </div>
-
-      </div>
-
 
       <div className="bg-white px-3  max-w-[1170px] mx-auto">
         <h2 className="text-2xl font-bold mb-2">Reviews</h2>

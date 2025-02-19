@@ -1,139 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Header/Navbar";
 import Footer from "../../components/Footer/Footer";
 import BottomHeader from "../../components/Header/BottomHeader";
 import ProductCard from "../../components/Cards/ProductCard";
-import { H2, H3 } from "../../components/common/Heading";
-import Button from "../../components/Button";
+import { H3 } from "../../components/common/Heading";
 import Subscription from "../../components/Subscription";
 import Gather from "../../components/Gather/Gather";
 import ProductSlider from "../../components/common/ProductSlider";
 import CategoryCard from "../../components/Cards/CategoryCard";
 import GameAccountCard from "../../components/Cards/GameAccountCard";
+import { Base_url } from "../../utils/Base_url";
+import axios from "axios";
 
 const SoftwareDealers = () => {
 
-  const Girftproducts = [
-    {
-      id: 1,
-      title: "Microsoft Windows 11 Pro (PC) - Microsoft Key -",
-      subtitle: "(PC) - Steam Account",
-      price: "$34.35",
-      originalPrice:"$124",
-      oldPrice: "$39.99",
-      discount:"-84%",
-      
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/microsoft-windows-11-pro-pc-microsoft-key-global/f0fcf80e6cf84e518c39d5b6",
-    },
-    {
-      id: 2,
-      title: "Random Black Friday 1 Key",
-      subtitle: "(PC) - Steam Key - GLOBAL",
-      price: "$5.87",
-      tag: "SPONSORED",
-      image:
-      "https://images.g2a.com/170x228/1x1x0/microsoft-windows-11-pro-pc-microsoft-key-global/f0fcf80e6cf84e518c39d5b6",
-    },
-    {
-      id: 3,
-      title: "Battlefield 2042",
-      subtitle: "(Xbox Series X/S) - Xbox Live Key",
-      price: "$12.06",
-      tag: "OFFER FROM 6 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/microsoft-windows-10-home-microsoft-key-global/5d6f6a617e696c531336afb2",
-    },
-    {
-      id: 4,
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/uiadminimages/170x259/1x1x1/853b3b57cf6c/9634b615792a4de9845f41a9",
-    },
-    {
-      id: 4,
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/uiadminimages/170x259/1x1x1/853b3b57cf6c/9634b615792a4de9845f41a9",
-    },
-    {
-      id: 6,
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/uiadminimages/170x259/1x1x1/853b3b57cf6c/9634b615792a4de9845f41a9",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
- 
+  const limit = 6;
 
+  const fetchFavorites = (page = 1) => {
+    axios
+      .get(`${Base_url}/products/getBestSellers?page=${page}&limit=${limit}`)
+      .then((res) => {
+        const newFavorites = res?.data?.data || [];
 
-  const Pickup = [
-    {
-      id: 1,
-      title: "Counter Strike 2 RANDOM COVERT VS. KNIFE SKIN BY DROPLAND.NET",
-      subtitle: "(PC) - Steam Account",
-      price: "$34.35",
-      oldPrice: "$39.99",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/shooter-mystery-box-random-1-key-pc-steam-key-global/232ca4ea41b24d2483b3cc0d",
-    },
-    {
-      id: 2,
-      title: "Random Black Friday 1 Key",
-      subtitle: "(PC) - Steam Key - GLOBAL",
-      price: "$5.87",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/uiadminimages/170x259/1x1x1/853b3b57cf6c/9634b615792a4de9845f41a9",
-    },
-    {
-      id: 3,
-      title: "Battlefield 2042",
-      subtitle: "(Xbox Series X/S) - Xbox Live Key",
-      price: "$12.06",
-      tag: "OFFER FROM 6 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/simulator-random-pc-steam-key-global/032613ecfb99419298f93b7d",
-    },
-    {
-      id: 4,
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/racing-random-pc-steam-key-global/ecae173b72624ac886b8930f",
-    },
-    {
-      id: 4,
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/uiadminimages/170x259/1x1x1/853b3b57cf6c/9634b615792a4de9845f41a9",
-    },
-    {
-      id: 6,
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/racing-mystery-box-random-1-key-pc-steam-key-global/2a43c013cdf14738a21a7ab7",
-    },
-  ];
+        setProducts((prevFavorites) => {
+          if (page === 1) {
+            return newFavorites;
+          }
+          return [...prevFavorites, ...newFavorites];
+        });
+
+        setTotalPages(res?.data?.totalPages || 1);
+      })
+      .catch((error) => {
+        console.error("Error fetching bestsellers:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchFavorites(currentPage);
+  }, [currentPage]);
+
+  const handleReadMore = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handleReadLess = () => {
+    setProducts([]);
+    setCurrentPage(1);
+    fetchFavorites(1);
+  };
 
    const Spark = [
         {
@@ -209,7 +130,7 @@ const SoftwareDealers = () => {
     <>
       <Navbar />
       <BottomHeader />
-      {/* banner section */}
+      
       <div>
         <img
           src={
@@ -219,7 +140,7 @@ const SoftwareDealers = () => {
         />
       </div>
      
-    {/* holiday vouchers */}
+   
     <section className=" bg-software_bg1 bg-cover">
                 <div className="max-w-[1170px] mx-auto pb-4 overflow-hidden px-4">
 
@@ -248,16 +169,12 @@ Utilities</h2>
         Support and optimize the functioning of your rig and its components.
 
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {gameAccounts.map((account, index) => (
-            <GameAccountCard key={index} {...account} />
-          ))}
-        </div>
+       
       </div>
     </section>
 
                 {/* ideal for: */}
-                <section className=" py-10">
+                {/* <section className=" py-10">
                 <div className="max-w-[1170px] mx-auto px-4">
 
                     <div className=" py-6">
@@ -276,38 +193,66 @@ Utilities</h2>
                     </div>
 
                 </div>
-            </section>
+            </section> */}
 
       {/* holiday vouchers */}
-      <section className=" pb-10">
+      <div id="bestSellers" className="py-8 bg-gray-50">
+      <section className="pb-10">
         <div className="max-w-[1170px] mx-auto px-4">
-          <div className=" py-6">
-            <div className=" flex  justify-between items-center">
-              <div>
-                <H3 className=" ">Bestsellers</H3>
-                <p className="">
-                Explore the apps most commonly chosen by our customers!
-                </p>
-              </div>
-              <div>
-                
-              </div>
+          <div className="py-6 flex flex-wrap gap-2 justify-between">
+            <div>
+              <h2 className="text-2xl font-bold">Bestsellers</h2>
+              <p className="text-sm pt-1">
+                The hottest items on our marketplace – discover what captured our users' hearts!
+              </p>
+            </div>
+            <div>
+              <button className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
+                Discover all
+              </button>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10">
-            {Girftproducts.map((product, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {products.map((product, index) => (
               <ProductCard
-                image={product?.image}
-                title={product?.title}
-                price={product?.price}
-                originalPrice={product?.oldPrice}
-                discount={product?.discount}
+                key={index}
+                url={`/product-details/${product?.productDetails?._id}`}
+                image={product?.productDetails?.images?.[0]}
+                title={product?.productDetails?.title}
+                discount={product?.productDetails?.gst}
+                price={product?.productDetails?.discountPrice}
+                originalPrice={product?.productDetails?.actualPrice}
+                like={product?.productDetails?.likes}
               />
             ))}
           </div>
-          <Button label={'Show more '}  className={' bg-secondary mx-auto mt-12'} />
+
+          {totalPages > 1 && (
+            <div className="flex  justify-center items-center my-10">
+
+              {currentPage>1 && (
+                <button
+                onClick={handleReadLess}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Read Less
+              </button>
+              )}
+                 
+              <button
+                onClick={handleReadMore}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Read More
+              </button>
+
+           
+            </div>
+          )}
+          <hr />
         </div>
       </section>
+    </div>
       <div className=" bg-[#880103]">
         <img src="https://images.g2a.com/uiadminimages/1170x200/1x1x1/771db5899f95/b30db0f9a38c4137871b85eb" className=" mx-auto" alt="" />
       </div>

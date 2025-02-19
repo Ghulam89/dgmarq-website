@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import { MdClose } from "react-icons/md";
@@ -28,6 +29,7 @@ const Category = () => {
         maxPrice: "",
         type: "",
         region: "",
+        categoryId:"",
         title: "",
     });
     const [checkboxFilters, setCheckboxFilters] = useState({
@@ -35,13 +37,18 @@ const Category = () => {
         region: [],
         platform: [],
         type: [],
+        categoryId:[],
     });
+    const [layout, setLayout] = useState('listing');
+    const [sort, setSort] = useState('');
+    const [region, setRegion] = useState([]);
+    const [platform, setPlatform] = useState([]);
+    const [category, setCategory] = useState([]);
 
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
     };
 
-    const [layout, setLayout] = useState('listing');
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const platform = queryParams.get('platform') || "";
@@ -49,23 +56,22 @@ const Category = () => {
         const maxPrice = queryParams.get('maxPrice') || "";
         const type = queryParams.get('type') || "";
         const region = queryParams.get('region') || "";
+        const categoryId = queryParams.get('categoryId') || "";
         const title = queryParams.get('title') || "";
+        const sortParam = queryParams.get('sort') || "";
 
-        setFilters({
-            platform,
-            minPrice,
-            maxPrice,
-            type,
-            region,
-            title,
-        });
-
-        fetchProducts(currentPage, platform, minPrice, maxPrice, type, region, title);
+        setFilters({ platform, minPrice, maxPrice, type, region, title,categoryId });
+        setSort(sortParam);
         fetchRegions();
+        fetchCategories();
+        fetchPlatforms();
+
+        fetchProducts(currentPage, platform, minPrice, maxPrice, type, region, title, sortParam,categoryId);
     }, [location.search, currentPage]);
 
-    const fetchProducts = (page, platform, minPrice, maxPrice, type, region, title) => {
-        axios.get(`${Base_url}/products/brand/${id}?page=${page}&platform=${platform}&minPrice=${minPrice}&maxPrice=${maxPrice}&type=${type}&region=${region}&title=${title}`)
+
+    const fetchProducts = (page, platform, minPrice, maxPrice, type, region, title, sort,categoryId) => {
+        axios.get(`${Base_url}/products/brand/${id}?page=${page}&platform=${platform}&minPrice=${minPrice}&maxPrice=${maxPrice}&type=${type}&region=${region}&title=${title}&sort=${sort}&categoryId=${categoryId}`)
             .then((res) => {
                 setProducts(res?.data?.data);
                 setTotalPages(res?.data?.pagination?.totalPages);
@@ -75,12 +81,18 @@ const Category = () => {
             });
     };
 
+
+
     const handleFilterChange = (filterType, value) => {
         const newFilters = { ...filters, [filterType]: value };
         setFilters(newFilters);
 
+        if (filterType === "sort") {
+            setSort(value);
+        }
+
         const queryParams = new URLSearchParams();
-        Object.entries(newFilters).forEach(([key, val]) => {
+        Object.entries({ ...newFilters, sort: value }).forEach(([key, val]) => {
             if (val) queryParams.set(key, val);
         });
 
@@ -96,7 +108,6 @@ const Category = () => {
         }
         setCheckboxFilters(newCheckboxFilters);
 
-        
         const queryParams = new URLSearchParams(location.search);
         Object.entries(newCheckboxFilters).forEach(([key, val]) => {
             if (val.length > 0) {
@@ -107,8 +118,7 @@ const Category = () => {
         });
         history({ search: queryParams.toString() });
 
-        // Fetch products with the new filters
-        fetchProducts(currentPage, filters.platform, filters.minPrice, filters.maxPrice, filters.type, filters.region, filters.title);
+        fetchProducts(currentPage, filters.platform, filters.minPrice, filters.maxPrice, filters.type, filters.region, filters.title, sort,filters.categoryId);
     };
 
     const handleNextPage = () => {
@@ -123,24 +133,29 @@ const Category = () => {
         }
     };
 
-    const [region,setRegion] = useState([]);
+    const fetchRegions = () => {
+        axios.get(`${Base_url}/region/getAll`).then((res) => {
+            setRegion(res?.data?.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
 
-    const fetchRegions = ()=>{
-        
-       axios.get(`${Base_url}/region/getAll`).then((res)=>{
+    const fetchCategories = () => {
+        axios.get(`${Base_url}/category/getByBrandId/${id}`).then((res) => {
+            setCategory(res?.data?.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
 
-        console.log('====================================');
-        console.log(res);
-        console.log('====================================');
-
-        setRegion(res?.data?.data)
-
-       }).catch((error)=>{
-
-       })
-    }
-
-
+    const fetchPlatforms = () => {
+        axios.get(`${Base_url}/platform/getAll`).then((res) => {
+            setPlatform(res?.data?.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
 
 
     return (
@@ -148,7 +163,7 @@ const Category = () => {
             <Navbar />
             <BottomHeader />
 
-            <div className=" max-w-[1170px]  px-3 mx-auto pb-10">
+            <div className="max-w-[1170px] px-3 mx-auto pb-10">
                 <div className="bg-white py-3 z-40 sticky top-0 flex justify-between items-center">
                     <div>
                         <h1 className="text-black font-semibold text-2xl pb-2">Top Up Mobile Games</h1>
@@ -167,13 +182,15 @@ const Category = () => {
 
                                 <div className="flex gap-3 items-center">
                                     <p className="m-0 font-semibold text-black">Sort by</p>
-                                    <select className="border py-1 bg-lightGray rounded-md p-2.5 text-primary placeholder:text-primary">
-                                        <option>Best match</option>
-                                        <option>Bestsellers</option>
-                                        <option>Release date-oldest</option>
-                                        <option>Release date-newest</option>
-                                        <option>Sort by: new</option>
-                                        <option>Sort by: popular</option>
+                                    <select
+                                        value={sort}
+                                        onChange={(e) => handleFilterChange('sort', e.target.value)}
+                                        className="border py-1 bg-lightGray rounded-md p-2.5 text-primary placeholder:text-primary"
+                                    >
+                                        <option value="releaseDate-asc">Release date - Oldest</option>
+                                        <option value="releaseDate-des">Release date - Newest</option>
+                                        <option value="price-asc">Price - Low to High</option>
+                                        <option value="price-desc">Price - High to Low</option>
                                     </select>
                                 </div>
                             </div>
@@ -207,22 +224,22 @@ const Category = () => {
                         <div className="h-full pb-12 px-4 sm:overflow-y-hidden overflow-y-scroll">
                             <h1 className="text-black font-bold  pb-2">Categories</h1>
                             <ul className="leading-7">
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Business & Office</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Tool</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Super SuS</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Super SuS</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
+                                {category?.map((item, index) => {
+                                    return (
+                                        <li className="flex justify-between pb-2 cursor-pointer" key={index}>
+                                           <div className=" flex gap-2">
+                                           <input
+                                                        type="checkbox"
+                                                        className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                        checked={checkboxFilters.categoryId.includes(item?._id)}
+                                                        onChange={() => handleCheckboxChange("categoryId", item?._id)}
+                                                    />
+                                            <span className=" text-sm hover:underline">{item?.title}</span>
+                                           </div>
+                                            <span className=" text-sm text-gray-400">6</span>
+                                        </li>
+                                    )
+                                })}
                             </ul>
 
                             <div className="pt-3">
@@ -243,7 +260,7 @@ const Category = () => {
                                 </div>
                             </div>
 
-                            <div className="pt-5">
+                            {/* <div className="pt-5">
                                 <h1 className="text-black font-bold  pb-4">Availability</h1>
                                 <ul className="flex gap-3 flex-col">
                                     <li className="flex gap-2 ">
@@ -268,7 +285,7 @@ const Category = () => {
                                         <span className=" text-gray-400 text-sm">65</span>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                             <div className="pt-5">
                                 <h1 className="text-black font-bold pb-1">Region</h1>
                                 <div className=" relative pb-3">
@@ -285,26 +302,22 @@ const Category = () => {
 
                                 </div>
                                 <ul className="flex gap-3 flex-col">
-                                    {region?.map((item,index)=>{
+                                    {region?.map((item, index) => {
                                         return (
-<li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input
-                                                type="checkbox"
-                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
-                                                checked={checkboxFilters.region.includes(item?._id)}
-                                                onChange={() => handleCheckboxChange("region", "GLOBAL")}
-                                            />
-                                            <span className=" text-sm uppercase">{item?.title}</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
+                                            <li className="justify-between flex gap-2 items-center" key={index}>
+                                                <div className="flex gap-2 items-center">
+                                                    <input
+                                                        type="checkbox"
+                                                        className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                        checked={checkboxFilters.region.includes(item?._id)}
+                                                        onChange={() => handleCheckboxChange("region", item?._id)}
+                                                    />
+                                                    <span className=" text-sm uppercase">{item?.title}</span>
+                                                </div>
+                                                <span className=" text-gray-400 text-sm">65</span>
+                                            </li>
                                         )
                                     })}
-                                    
-
-                                    
-
                                 </ul>
                             </div>
                             <hr className="mt-4" />
@@ -325,44 +338,23 @@ const Category = () => {
 
                                 </div>
                                 <ul className="flex gap-3 flex-col">
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input
-                                                type="checkbox"
-                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
-                                                checked={checkboxFilters.platform.includes("Epic Games")}
-                                                onChange={() => handleCheckboxChange("platform", "Epic Games")}
-                                            />
-                                            <span className=" text-sm">Epic Games</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
+                                    {platform?.map((item, index) => {
+                                        return (
+                                            <li className="justify-between flex gap-2 items-center" key={index}>
+                                                <div className="flex gap-2 items-center">
+                                                    <input
+                                                        type="checkbox"
+                                                        className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                        checked={checkboxFilters.platform.includes(item?._id)}
+                                                        onChange={() => handleCheckboxChange("platform", item?._id)}
+                                                    />
+                                                    <span className=" text-sm">{item?.title}</span>
+                                                </div>
+                                                <span className=" text-gray-400 text-sm">65</span>
+                                            </li>
 
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input
-                                                type="checkbox"
-                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
-                                                checked={checkboxFilters.platform.includes("Epic Games")}
-                                                onChange={() => handleCheckboxChange("platform", "Epic Games")}
-                                            />
-                                            <span className=" text-sm">Epic Games</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input
-                                                type="checkbox"
-                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
-                                                checked={checkboxFilters.platform.includes("Epic Games")}
-                                                onChange={() => handleCheckboxChange("platform", "Epic Games")}
-                                            />
-                                            <span className=" text-sm">Epic Games</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
-
+                                        )
+                                    })}
                                 </ul>
                             </div>
                             <hr className="mt-4" />

@@ -1,40 +1,124 @@
+
 import React, { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import { MdClose } from "react-icons/md";
 import ProductCard from "../../components/Cards/ProductCard";
+import Footer from "../../components/Footer/Footer";
+import Navbar from "../../components/Header/Navbar";
+import Subscription from "../../components/Subscription";
+import Gather from "../../components/Gather/Gather";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { FaListUl } from "react-icons/fa";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Base_url } from "../../utils/Base_url";
+import BottomHeader from "../../components/Header/BottomHeader";
 import { IoIosSearch } from "react-icons/io";
+
 const StoreProduct = () => {
     const { id } = useParams();
+    const location = useLocation();
+    const history = useNavigate();
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
+    const [filters, setFilters] = useState({
+        platform: "",
+        minPrice: "",
+        maxPrice: "",
+        type: "",
+        region: "",
+        categoryId: "",
+        title: "",
+    });
+    const [checkboxFilters, setCheckboxFilters] = useState({
+        availability: [],
+        region: [],
+        platform: [],
+        type: [],
+        categoryId: [],
+    });
+    const [layout, setLayout] = useState('listing');
+    const [sort, setSort] = useState('');
+    const [region, setRegion] = useState([]);
+    const [platform, setPlatform] = useState([]);
+    const [category, setCategory] = useState([]);
+
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
     };
-    const [layout, setLayout] = useState('listing');
-
-
 
     useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const platform = queryParams.get('platform') || "";
+        const minPrice = queryParams.get('minPrice') || "";
+        const maxPrice = queryParams.get('maxPrice') || "";
+        const type = queryParams.get('type') || "";
+        const region = queryParams.get('region') || "";
+        const categoryId = queryParams.get('categoryId') || "";
+        const title = queryParams.get('title') || "";
+        const sortParam = queryParams.get('sort') || "";
 
-        fetchProducts(currentPage);
-    }, [currentPage]);
-    const fetchProducts = (page) => {
-        axios.get(`${Base_url}/products/productBySeller/${id}?page=${page}`)
+        setFilters({ platform, minPrice, maxPrice, type, region, title, categoryId });
+        setSort(sortParam);
+        fetchRegions();
+        fetchCategories();
+        fetchPlatforms();
+
+        fetchProducts(currentPage, platform, minPrice, maxPrice, type, region, title, sortParam, categoryId);
+    }, [location.search, currentPage]);
+
+
+    const fetchProducts = (page, platform, minPrice, maxPrice, type, region, title, sort, categoryId) => {
+        axios.get(`${Base_url}/products/productBySeller/${id}?page=${page}&platform=${platform}&minPrice=${minPrice}&maxPrice=${maxPrice}&type=${type}&region=${region}&title=${title}&sort=${sort}&categoryId=${categoryId}`)
             .then((res) => {
-                console.log(res);
                 setProducts(res?.data?.data);
                 setTotalPages(res?.data?.pagination?.totalPages);
             })
             .catch((error) => {
                 console.log(error);
             });
+    };
+
+
+
+    const handleFilterChange = (filterType, value) => {
+        const newFilters = { ...filters, [filterType]: value };
+        setFilters(newFilters);
+
+        if (filterType === "sort") {
+            setSort(value);
+        }
+
+        const queryParams = new URLSearchParams();
+        Object.entries({ ...newFilters, sort: value }).forEach(([key, val]) => {
+            if (val) queryParams.set(key, val);
+        });
+
+        history({ search: queryParams.toString() });
+    };
+
+    const handleCheckboxChange = (filterType, value) => {
+        const newCheckboxFilters = { ...checkboxFilters };
+        if (newCheckboxFilters[filterType].includes(value)) {
+            newCheckboxFilters[filterType] = newCheckboxFilters[filterType].filter(item => item !== value);
+        } else {
+            newCheckboxFilters[filterType].push(value);
+        }
+        setCheckboxFilters(newCheckboxFilters);
+
+        const queryParams = new URLSearchParams(location.search);
+        Object.entries(newCheckboxFilters).forEach(([key, val]) => {
+            if (val.length > 0) {
+                queryParams.set(key, val.join(','));
+            } else {
+                queryParams.delete(key);
+            }
+        });
+        history({ search: queryParams.toString() });
+
+        fetchProducts(currentPage, filters.platform, filters.minPrice, filters.maxPrice, filters.type, filters.region, filters.title, sort, filters.categoryId);
     };
 
     const handleNextPage = () => {
@@ -49,10 +133,35 @@ const StoreProduct = () => {
         }
     };
 
+    const fetchRegions = () => {
+        axios.get(`${Base_url}/region/getAll`).then((res) => {
+            setRegion(res?.data?.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    const fetchCategories = () => {
+        axios.get(`${Base_url}/subcategory/getbyCategoryId/${id}`).then((res) => {
+            setCategory(res?.data?.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    const fetchPlatforms = () => {
+        axios.get(`${Base_url}/platform/getAll`).then((res) => {
+            setPlatform(res?.data?.data);
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+
     return (
         <>
-
-            <div className=" pb-10">
+           
+            <div className="max-w-[1170px] px-3 mx-auto pb-10">
                 <div className="bg-white py-3 z-40 sticky top-0 flex justify-between items-center">
                     <div>
                         <h1 className="text-black font-semibold text-2xl pb-2">Top Up Mobile Games</h1>
@@ -71,13 +180,15 @@ const StoreProduct = () => {
 
                                 <div className="flex gap-3 items-center">
                                     <p className="m-0 font-semibold text-black">Sort by</p>
-                                    <select className="border py-1 bg-lightGray rounded-md p-2.5 text-primary placeholder:text-primary">
-                                        <option>Best match</option>
-                                        <option>Bestsellers</option>
-                                        <option>Release date-oldest</option>
-                                        <option>Release date-newest</option>
-                                        <option>Sort by: new</option>
-                                        <option>Sort by: popular</option>
+                                    <select
+                                        value={sort}
+                                        onChange={(e) => handleFilterChange('sort', e.target.value)}
+                                        className="border py-1 bg-lightGray rounded-md p-2.5 text-primary placeholder:text-primary"
+                                    >
+                                        <option value="releaseDate-asc">Release date - Oldest</option>
+                                        <option value="releaseDate-des">Release date - Newest</option>
+                                        <option value="price-asc">Price - Low to High</option>
+                                        <option value="price-desc">Price - High to Low</option>
                                     </select>
                                 </div>
                             </div>
@@ -109,50 +220,70 @@ const StoreProduct = () => {
                         </div>
 
                         <div className="h-full pb-12 px-4 sm:overflow-y-hidden overflow-y-scroll">
-                            <h1 className="text-black font-bold  pb-2">Categories</h1>
+                            {/* <h1 className="text-black font-bold  pb-2">Categories</h1>
                             <ul className="leading-7">
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Business & Office</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Tool</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Super SuS</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
-                                <li className="flex justify-between cursor-pointer">
-                                    <span className=" text-sm hover:underline">Super SuS</span>
-                                    <span className=" text-sm text-gray-400">6</span>
-                                </li>
-                            </ul>
+                                {category?.map((item, index) => {
+                                    return (
+                                        <li className="flex justify-between pb-2 cursor-pointer" key={index}>
+                                            <div className=" flex gap-2">
+                                                <input
+                                                    type="checkbox"
+                                                    className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                    checked={checkboxFilters.categoryId.includes(item?._id)}
+                                                    onChange={() => handleCheckboxChange("categoryId", item?._id)}
+                                                />
+                                                <span className=" text-sm hover:underline">{item?.title}</span>
+                                            </div>
+                                            <span className=" text-sm text-gray-400">6</span>
+                                        </li>
+                                    )
+                                })}
+                            </ul> */}
 
                             <div className="pt-3">
                                 <h1 className="text-black font-bold pb-4">Price <span className="font-normal">(USD)</span></h1>
                                 <div className="grid grid-cols-2 gap-2 items-center">
-                                    <input placeholder="From" className="border border-gray-200 p-2.5 text-sm outline-none focus:border-secondary rounded-sm bg-white" />
-                                    <input placeholder="From" className="border border-gray-200 p-2.5 text-sm outline-none focus:border-secondary rounded-sm bg-white" />
+                                    <input
+                                        placeholder="From"
+                                        className="border border-gray-200 p-2.5 text-sm outline-none focus:border-secondary rounded-sm bg-white"
+                                        value={filters.minPrice}
+                                        onChange={(e) => handleFilterChange('minPrice', e.target.value)}
+                                    />
+                                    <input
+                                        placeholder="To"
+                                        className="border border-gray-200 p-2.5 text-sm outline-none focus:border-secondary rounded-sm bg-white"
+                                        value={filters.maxPrice}
+                                        onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
+                                    />
                                 </div>
                             </div>
 
-                            <div className="pt-5">
+                            {/* <div className="pt-5">
                                 <h1 className="text-black font-bold  pb-4">Availability</h1>
                                 <ul className="flex gap-3 flex-col">
                                     <li className="flex gap-2 ">
-                                        <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
+                                        <input
+                                            type="checkbox"
+                                            className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                            checked={checkboxFilters.availability.includes("Pakistan")}
+                                            onChange={() => handleCheckboxChange("availability", "Pakistan")}
+                                        />
                                         <span className=" text-sm">Items available in <br /> <span className=" text-blue font-semibold">Pakistan</span></span>
                                     </li>
                                     <li className="justify-between flex gap-2 items-center">
                                         <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
+                                            <input
+                                                type="checkbox"
+                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                checked={checkboxFilters.availability.includes("In Stock")}
+                                                onChange={() => handleCheckboxChange("availability", "In Stock")}
+                                            />
                                             <span className=" text-sm">Items in stock</span>
                                         </div>
                                         <span className=" text-gray-400 text-sm">65</span>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> */}
                             <div className="pt-5">
                                 <h1 className="text-black font-bold pb-1">Region</h1>
                                 <div className=" relative pb-3">
@@ -160,33 +291,31 @@ const StoreProduct = () => {
                                         <IoIosSearch size={20} className=" text-gray-400" />
 
                                     </div>
-                                    <input placeholder="Search for Region" className="border pl-8 text-sm border-gray-200 p-2.5 w-full outline-none focus:border-secondary rounded-sm bg-white" />
+                                    <input
+                                        placeholder="Search for Region"
+                                        className="border pl-8 text-sm border-gray-200 p-2.5 w-full outline-none focus:border-secondary rounded-sm bg-white"
+                                        value={filters.region}
+                                        onChange={(e) => handleFilterChange('region', e.target.value)}
+                                    />
 
                                 </div>
                                 <ul className="flex gap-3 flex-col">
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
-                                            <span className=" text-sm">GLOBAL</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
-
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
-                                            <span className=" text-sm">EUROPE</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
-                                            <span className=" text-sm">UNITED KINGDOM</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
-
+                                    {region?.map((item, index) => {
+                                        return (
+                                            <li className="justify-between flex gap-2 items-center" key={index}>
+                                                <div className="flex gap-2 items-center">
+                                                    <input
+                                                        type="checkbox"
+                                                        className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                        checked={checkboxFilters.region.includes(item?._id)}
+                                                        onChange={() => handleCheckboxChange("region", item?._id)}
+                                                    />
+                                                    <span className=" text-sm uppercase">{item?.title}</span>
+                                                </div>
+                                                <span className=" text-gray-400 text-sm">65</span>
+                                            </li>
+                                        )
+                                    })}
                                 </ul>
                             </div>
                             <hr className="mt-4" />
@@ -198,33 +327,32 @@ const StoreProduct = () => {
                                         <IoIosSearch size={20} className=" text-gray-400" />
 
                                     </div>
-                                    <input placeholder="Search for Platform" className="border pl-8 text-sm border-gray-200 p-2.5 w-full outline-none focus:border-secondary rounded-sm bg-white" />
+                                    <input
+                                        placeholder="Search for Platform"
+                                        className="border pl-8 text-sm border-gray-200 p-2.5 w-full outline-none focus:border-secondary rounded-sm bg-white"
+                                        value={filters.platform}
+                                        onChange={(e) => handleFilterChange('platform', e.target.value)}
+                                    />
 
                                 </div>
                                 <ul className="flex gap-3 flex-col">
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
-                                            <span className=" text-sm">Epic Games</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
+                                    {platform?.map((item, index) => {
+                                        return (
+                                            <li className="justify-between flex gap-2 items-center" key={index}>
+                                                <div className="flex gap-2 items-center">
+                                                    <input
+                                                        type="checkbox"
+                                                        className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                        checked={checkboxFilters.platform.includes(item?._id)}
+                                                        onChange={() => handleCheckboxChange("platform", item?._id)}
+                                                    />
+                                                    <span className=" text-sm">{item?.title}</span>
+                                                </div>
+                                                <span className=" text-gray-400 text-sm">65</span>
+                                            </li>
 
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
-                                            <span className=" text-sm">Epic Games</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
-                                    <li className="justify-between flex gap-2 items-center">
-                                        <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
-                                            <span className=" text-sm">Epic Games</span>
-                                        </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
-                                    </li>
-
+                                        )
+                                    })}
                                 </ul>
                             </div>
                             <hr className="mt-4" />
@@ -234,7 +362,12 @@ const StoreProduct = () => {
                                 <ul className="flex gap-3 flex-col">
                                     <li className="justify-between flex gap-2 items-center">
                                         <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
+                                            <input
+                                                type="checkbox"
+                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                checked={checkboxFilters.type.includes("Key")}
+                                                onChange={() => handleCheckboxChange("type", "Key")}
+                                            />
                                             <span className=" text-sm">Key</span>
                                         </div>
                                         <span className=" text-gray-400 text-sm">65</span>
@@ -242,14 +375,24 @@ const StoreProduct = () => {
 
                                     <li className="justify-between flex gap-2 items-center">
                                         <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
+                                            <input
+                                                type="checkbox"
+                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                checked={checkboxFilters.type.includes("Gift")}
+                                                onChange={() => handleCheckboxChange("type", "Gift")}
+                                            />
                                             <span className=" text-sm">Gift</span>
                                         </div>
                                         <span className=" text-gray-400 text-sm">65</span>
                                     </li>
                                     <li className="justify-between flex gap-2 items-center">
                                         <div className="flex gap-2 items-center">
-                                            <input placeholder="From" type="checkbox" className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white" />
+                                            <input
+                                                type="checkbox"
+                                                className="border-2 w-5 h-5 border-gray-200 p-2 outline-none focus:border-secondary rounded-sm bg-white"
+                                                checked={checkboxFilters.type.includes("Account")}
+                                                onChange={() => handleCheckboxChange("type", "Account")}
+                                            />
                                             <span className=" text-sm">Account</span>
                                         </div>
                                         <span className=" text-gray-400 text-sm">65</span>
@@ -273,7 +416,7 @@ const StoreProduct = () => {
                                             <div className="flex w-full flex-col pt-4">
                                                 <div className="flex items-center justify-between">
                                                     <span className="text-sm text-gray-400">Platform: <b>ReidosCoins</b></span>
-                                                    <p className="font-semibold text-lg">$ {item?.discountPrice}</p>
+                                                    <p className="font-semibold text-lg">${item?.discountPrice}</p>
                                                 </div>
                                                 <span className="text-sm text-gray-400">Type: <b>Key</b></span>
                                                 <span className="text-sm text-gray-400">Region: <b>GLOBAL</b></span>
@@ -295,7 +438,6 @@ const StoreProduct = () => {
                                             discount={3}
                                             price={item?.discountPrice}
                                             originalPrice={item?.actualPrice}
-
                                         />
                                     );
                                 })}
@@ -323,7 +465,7 @@ const StoreProduct = () => {
                     </div>
                 </div>
             </div>
-
+            
         </>
     );
 };

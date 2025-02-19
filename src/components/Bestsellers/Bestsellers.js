@@ -58,7 +58,7 @@ const Bestsellers = () => {
               </p>
             </div>
             <div>
-              <button className="py-1 px-6 bg-blue-500 transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
+              <button className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
                 Discover all
               </button>
             </div>

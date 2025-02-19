@@ -1,81 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { H2, H3, H4 } from '../common/Heading'
 import ProductCard from '../Cards/ProductCard'
-import Button from '../Button';
 import { Base_url } from '../../utils/Base_url';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Upcoming = () => {
-  const products = [
-    {
-      id: 1,
-      discount: '4%',
-      title: "Kingdom Come: Deliverance II | Gold Edition (PC) - steam",
-      subtitle: "(PC) - Steam Account",
-      price: "$34.35",
-      oldPrice: "$39.99",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/0x0x0/kingdom-come-deliverance-ii-gold-edition-pc-steam-key-global/22a42ab8ac0e4c1988d4577e", // Replace with the actual image
-    },
-    {
-      id: 2,
-
-      discount: '8%',
-      title: "Ambulance Life: A Paramedic Simulator (PC) -  stream Key - ...",
-      subtitle: "(PC) - Steam Key - GLOBAL",
-      price: "$5.87",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/0x0x0/ambulance-life-a-paramedic-simulator-pc-steam-key-global/07e18aba6bde4e44b059b379",
-    },
-    {
-      id: 3,
-
-      discount: '9%',
-      title: "Battlefield 2042",
-      subtitle: "(Xbox Series X/S) - Xbox Live Key",
-      price: "$12.06",
-      tag: "OFFER FROM 6 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/0x0x0/assassins-creed-shadows-pc-ubisoft-connect-key-global/a7af4095afcd499ea2483190",
-    },
-    {
-      id: 4,
-
-      discount: '2%',
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/0x0x0/monster-hunter-wilds-pc-steam-key-europe/dd67b1889a00422e8fbd30cd",
-    },
-    {
-      id: 5,
-
-      discount: '8%',
-      title: "Grand Theft Auto V (PC)",
-      subtitle: "Rockstar Key - GLOBAL",
-      price: "$12.22",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/grand-theft-auto-v-rockstar-key-global/59e5efeb5bafe304c4426c47",
-    },
-    {
-      id: 6,
-
-      discount: '5%',
-      title: "Darktide",
-      subtitle: "(PC)",
-      price: "$11.41",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/playstation-network-gift-card-110-usd-psn-key-united-states/a474e71e754c47c891d9ce58",
-    },
-  ];
-
 
 
   const [microsoft, setMicrosoft] = useState([]);
@@ -123,41 +53,45 @@ const Upcoming = () => {
 
 
   const [allProductSecond, setProductSecond] = useState([])
-
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
   const limit = 6;
+
   const fetchFavorites = (page = 1) => {
     axios
-      .get(`${Base_url}/products/getBestSellers?page=${page}&limit=${limit}`)
+      .get(`${Base_url}/products/getProductByAccount?page=${page}&limit=${limit}`)
       .then((res) => {
         const newFavorites = res?.data?.data || [];
 
         setProductSecond((prevFavorites) => {
-
           if (page === 1) {
             return newFavorites;
           }
-
           return [...prevFavorites, ...newFavorites];
         });
-
 
         setTotalPages(res?.data?.totalPages || 1);
       })
       .catch((error) => {
-        console.error("Error fetching favorites:", error);
+        console.error("Error fetching bestsellers:", error);
       });
   };
-
 
   useEffect(() => {
     fetchFavorites(currentPage);
   }, [currentPage]);
-  const handleSeeMore = () => {
+
+  const handleReadMore = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
     }
+  };
+
+  const handleReadLess = () => {
+    setProductSecond([]);
+    setCurrentPage(1);
+    fetchFavorites(1);
   };
 
 
@@ -227,12 +161,11 @@ const Upcoming = () => {
       </div>
 
 
-
-      <section id='upcoming-games' className=" py-10">
+      <div id="allProductSecond" className="py-8 bg-gray-50">
+      <section className="pb-10">
         <div className="max-w-[1170px] mx-auto px-4">
-
-          <div className=" py-6 flex  flex-wrap gap-3 justify-between">
-            <div>
+          <div className="py-6 flex flex-wrap gap-2 justify-between">
+          <div>
               <h2 className="text-2xl font-bold">Upcoming games</h2>
               <p className="text-gray-500">
                 Can’t wait to play your game? Preorder the key now and experience it on day one!
@@ -241,37 +174,53 @@ const Upcoming = () => {
 
               </p>
             </div>
-
             <div>
-              <button className="py-1 px-6 bg-blue-500 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md  hover:bg-secondary">
+              <button className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
                 Discover all
               </button>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {allProductSecond?.map((product, index) => (
-
-
-              <ProductCard url={`/product-details/${product?.productDetails?._id}`} image={product?.productDetails?.images?.[0]} title={product?.productDetails?.title} discount={product?.productDetails?.gst}
-                price={product?.productDetails?.discountPrice} originalPrice={product?.productDetails?.actualPrice} />
-
+            {allProductSecond.map((product, index) => (
+              <ProductCard
+                key={index}
+                url={`/product-details/${product?._id}`}
+                image={product?.images?.[0]}
+                title={product?.title}
+                discount={product?.gst}
+                price={product?.discountPrice}
+                originalPrice={product?.actualPrice}
+                like={product?.likes}
+              />
             ))}
           </div>
-          <div className="text-center mt-10 ">
-            {currentPage < totalPages && (
 
-              <button
-                onClick={handleSeeMore}
-                className="mb-3 text-sm text-blue font-medium hover:text-secondary py-2 px-4  rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          {totalPages > 1 && (
+            <div className="flex  justify-center items-center my-10">
+
+              {currentPage>1 && (
+                <button
+                onClick={handleReadLess}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
-                Show more
+                Read Less
+              </button>
+              )}
+                 
+              <button
+                onClick={handleReadMore}
+                className="text-sm text-blue font-medium hover:text-secondary py-2 px-4 rounded-sm hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                Read More
               </button>
 
-            )}
-            <hr />
-          </div>
+           
+            </div>
+          )}
+          <hr />
         </div>
       </section>
+    </div>
 
 
 

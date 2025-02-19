@@ -64,12 +64,12 @@ const Home = () => {
       <Hero />
       <G2AFeatures />
       <div className='max-w-[1170px] mt-8 sticky z-30 top-0 mx-auto'>
-        <div className="flex overflow-x-auto bg-white nav_item">
+        <div className="flex overflow-x-auto justify-between bg-white nav_item">
           {[
             { name: "Bestsellers", id: "bestSellers" },
             { name: "Gaming gift cards", id: "gift-cards" },
             { name: "Upcoming games", id: "upcoming-games" },
-            { name: "Trending categories", id: "trending-categories" },
+            { name: "Favorites ", id: "favorites" },
             { name: "Software", id: "software" },
             { name: "Cryptocurrencies", id: "cryptocurrencies" },
             { name: "Random Keys", id: "random-keys" },
@@ -85,6 +85,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+
       <Bestsellers />
       <FlashDeals />
       <GameAccountsSection />
@@ -92,6 +93,7 @@ const Home = () => {
       <BundleDeals />
       <Crypto />
       <WhyG2A />
+      
       <section id='bg-game_bg' className="bg-game_bg py-12 bg-cover bg-center">
         <div className="max-w-[1170px] mx-auto px-4">
           <h2 className="text-2xl font-bold">Game accounts</h2>
