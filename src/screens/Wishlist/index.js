@@ -94,7 +94,7 @@ const Wishlist = () => {
                     {/* Wishlist Header */}
                     <div className="mb-6">
                         <p className="text-sm text-gray-500 mt-1">G2A › Wishlist</p>
-                        <h1 className="text-2xl font-bold text-black pt-4">Wishlist (1 item)</h1>
+                        <h1 className="text-2xl font-bold text-black pt-4">Wishlist ({wishList?.length} item)</h1>
 
                     </div>
                     {wishList?.map((item, index) => {

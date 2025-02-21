@@ -41,7 +41,7 @@ const G2AFeatures = () => {
           <div className="flex border-r  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
             <FaPercentage className="text-orange-500 text-2xl" />
             <div>
-              <h3 className="font-bold text-lg">Save more with G2A Plus</h3>
+              <h3 className="font-bold text-lg">Save more with Dgmarq</h3>
               <p className="text-gray-400 pt-2">Discover all the special benefits</p>
             </div>
           </div>

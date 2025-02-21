@@ -41,7 +41,7 @@ const WhyG2A = () => {
      
         <div className=" flex md:flex-row flex-col gap-1">
           <div className=" p-4">
-          <h2 className="text-2xl font-bold mb-6 whitespace-nowrap">Why G2A?</h2>
+          <h2 className="text-2xl font-bold mb-6 whitespace-nowrap">Why Dgmarq?</h2>
           </div>
           {features.map((feature, index) => (
                     <Link to={`${feature?.Url}`} className="flex border-r  border-[#3b3b3b] p-3 hover:bg-[#3b3b3b] items-start space-x-4  rounded-md">

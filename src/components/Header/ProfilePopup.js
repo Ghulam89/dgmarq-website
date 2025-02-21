@@ -1,9 +1,17 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { removeUser } from '../../store/productSlice';
+import { addUser, removeUser } from '../../store/productSlice';
 import { FaFacebookF, FaGoogle, FaPaypal } from 'react-icons/fa';
+import { Base_url } from '../../utils/Base_url';
+import { auth, provider, providerFacebook } from '../../utils/firebase.config';
+import {
+ 
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import axios from 'axios';
 const ProfilePopup = () => {
   const { userInfo } = useSelector((state) => state.next);
   console.log(userInfo);
@@ -12,10 +20,7 @@ const ProfilePopup = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-
   const [openProfile, setOpenProfile] = useState(false);
-
   const openProfileFun = () => {
     setOpenProfile(!openProfile)
   }
@@ -29,8 +34,138 @@ const ProfilePopup = () => {
 
   }
 
+  const navigate = useNavigate();
+
+
+  const handleClick = () => {
+    signInWithPopup(auth, provider).then(async(data) => {
+      console.log(data);
+      const { user } = data;
+      try {
+        const parmas = {
+          username:user?.displayName,
+          email:user?.email,
+          password:user?.uid
+        }
+        const response = await axios.post(
+          `${Base_url}/user/register`,parmas);
+        if (response?.data?.status === 'success') {
+          toast.success(response?.data?.message)
+          dispatch(addUser(response?.data?.data))
+          navigate('/');
+        } else {
+          toast.error(response?.data?.message)
+
+          const parmas = {
+            username:user?.displayName,
+            email:user?.email,
+            password:user?.uid
+          }
+          try {
+            const response = await axios.post(
+              `${Base_url}/user/login`,parmas);
+            if (response?.data?.status === 'success') {
+              toast.success(response?.data?.message)
+              dispatch(addUser(response?.data?.data))
+              navigate('/')
+            } else {
+              toast.error(response?.data?.message)
+            }
+            console.log(response?.data);
+          } catch (error) {
+            toast.error(error)
+          } finally {
+          }
+
+        }
+        console.log(response?.data);
+      } catch (error) {
+       
+
+        toast.error(error?.response?.data?.message)
+  
+      } finally {
+      }
+     
+    });
+  };
+
+
+
+
+  const handleFacebook = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("Signed out successfully.");
+
+        signInWithPopup(auth, providerFacebook)
+          .then(async(data) => {
+            console.log(data);
+          })
+          .catch(async(error) => {
+            console.log(error.customData);
+
+
+
+            try {
+             
+            const params = {
+              username:error.customData.userName,
+              email: error.customData.email,
+              password: error.customData._tokenResponse.localId,
+            };
+            
+              const response = await axios.post(
+                `${Base_url}/user/register`,params);
+              if (response?.data?.status === 'success') {
+                toast.success(response?.data?.message)
+                dispatch(addUser(response?.data?.data))
+                navigate('/');
+              } else {
+                toast.error(response?.data?.message)
+      
+                    
+            const params = {
+              email: error.customData.email,
+              password: error.customData._tokenResponse.localId,
+            };
+            
+                try {
+                  const response = await axios.post(
+                    `${Base_url}/user/login`,params);
+                  if (response?.data?.status === 'success') {
+                    toast.success(response?.data?.message)
+                    dispatch(addUser(response?.data?.data))
+                    navigate('/')
+                  } else {
+                    toast.error(response?.data?.message)
+                  }
+                  console.log(response?.data);
+                } catch (error) {
+                  toast.error(error)
+                } finally {
+                }
+      
+              }
+              console.log(response?.data);
+            } catch (error) {
+             
+      
+              toast.error(error?.response?.data?.message)
+        
+            } finally {
+            }
+          
+              
+          });
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
+  };
+
   return (
-    <div className=' flex gap-1 items-center'>
+    <div className=' flex gap-1 relative items-center'>
       {userInfo ? (
         <div className=' flex items-center gap-2'>
           <div onClick={openProfileFun} className=" w-12 cursor-pointer h-12 rounded-full overflow-hidden">
@@ -258,7 +393,7 @@ const ProfilePopup = () => {
           >
             <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" font-size="24"><path d="M20.417 23H3v-2.58c0-1.4.79-2.68 2.047-3.292 1.468-.715 3.707-1.461 6.661-1.461 2.955 0 5.194.746 6.662 1.46a3.655 3.655 0 012.047 3.293V23zM16.75 6.042c0 2.784-2.257 5.958-5.042 5.958-2.784 0-5.041-3.174-5.041-5.958a5.041 5.041 0 1110.083 0z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 
-
+            </div>
 
             {/* Dropdown Modal */}
             {isOpen && (
@@ -269,12 +404,12 @@ const ProfilePopup = () => {
                 {/* Sign-In Options */}
                 <div className="space-y-3">
                   {/* Google Sign-In */}
-                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
+                  <button onClick={()=>handleClick()} className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
                     <FaGoogle size={20} />
                     Sign in With Google
                   </button>
                   {/* Facebook Sign-In */}
-                  <button className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
+                  <button onClick={()=>handleFacebook()} className="w-full flex items-center  text-sm pr-7 font-semibold justify-between gap-2 p-3  border-blue border rounded-sm  text-blue  hover:text-white   hover:bg-secondary">
                     <FaFacebookF size={20} />
                     Sign in with Facebook
                   </button>
@@ -380,7 +515,7 @@ const ProfilePopup = () => {
                 </div>
               </div>
             )}
-          </div>
+          
           <div className=" sm:block hidden">
             <div className="  flex flex-col items-center">
               <span className=" text-white text-[12px] font-semibold">Sign in</span>
