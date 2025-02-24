@@ -38,6 +38,7 @@ import GatherDetails from "./components/Gather/GatherDetails";
 import StoreProduct from "./screens/SellerStore/StoreProduct";
 import AboutSellerStore from "./screens/SellerStore/AboutSellerStore";
 import Checkout from "./screens/checkout";
+import Shop from "./screens/Shop/Shop";
 function App() {
 
   const { pathname } = useLocation();
@@ -83,6 +84,7 @@ function App() {
       <Route path="/how-to-buy" element={<HowToBuy />} />
       <Route path="/stay-safe" element={<StaySafe />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/shop" element={<Shop/>} />
       <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/seller-support" element={<SellerSupport />} />
       <Route path="/terms-conditions" element={<TermsConditions />} />

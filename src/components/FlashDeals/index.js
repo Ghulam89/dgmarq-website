@@ -58,7 +58,7 @@ const FlashDeals = () => {
     axios
       .get(`${Base_url}/flashDeals/getAll`)
       .then((res) => {
-        console.log(res);
+        console.log(res,'flash deals===>>>');
 
 
         const approvedProducts = res?.data?.data.filter(
@@ -79,96 +79,101 @@ const FlashDeals = () => {
   }, []);
 
   return (
+    <>
+    {products?.[0]?.status==='approved'?
     <div className="bg-Flash_bg hidden sm:block py-14 w-full h-auto relative bg-cover bg-center">
-      <div className="flex max-w-[1170px] items-center gap-12 mx-auto justify-center">
-        {/* Flash Deal Section */}
-        <div className="w-4/12 rounded-lg relative text-white">
-          <div className="absolute -top-[235px] w-72 right-8">
-            <h2 className="text-xl font-bold text-center mb-4">Flash Deal -
-              {timeLeft.status === "Coming Soon"
-                ? "Starts in"
-                : timeLeft.status === "Active"
-                  ? "Ends in"
-                  : "Deal Ended"}
-            </h2>
+    <div className="flex max-w-[1170px] items-center gap-12 mx-auto justify-center">
+      {/* Flash Deal Section */}
+      <div className="w-4/12 rounded-lg relative text-white">
+        <div className="absolute -top-[235px] w-72 right-8">
+          <h2 className="text-xl font-bold text-center mb-4">Flash Deal -
+            {timeLeft.status === "Coming Soon"
+              ? "Starts in"
+              : timeLeft.status === "Active"
+                ? "Ends in"
+                : "Deal Ended"}
+          </h2>
 
-            <div className="flex justify-center items-center space-x-2 text-2xl mb-4">
-              <div className="leading-5">
-                <span className="text-black bg-white w-16 h-16 flex justify-center items-center rounded-sm">
-                  <span className="text-4xl font-bold">
-                    {String(timeLeft.hours).padStart(2, "0")}
-                  </span>
+          <div className="flex justify-center items-center space-x-2 text-2xl mb-4">
+            <div className="leading-5">
+              <span className="text-black bg-white w-16 h-16 flex justify-center items-center rounded-sm">
+                <span className="text-4xl font-bold">
+                  {String(timeLeft.hours).padStart(2, "0")}
                 </span>
-                <p className="m-0 text-[11px] p-0 text-center">Hours</p>
-              </div>
-              <span>:</span>
-              <div className="leading-5">
-                <span className="text-black bg-white w-16 h-16 flex justify-center items-center rounded-sm">
-                  <span className="text-4xl font-bold">
-                    {String(timeLeft.minutes).padStart(2, "0")}
-                  </span>
+              </span>
+              <p className="m-0 text-[11px] p-0 text-center">Hours</p>
+            </div>
+            <span>:</span>
+            <div className="leading-5">
+              <span className="text-black bg-white w-16 h-16 flex justify-center items-center rounded-sm">
+                <span className="text-4xl font-bold">
+                  {String(timeLeft.minutes).padStart(2, "0")}
                 </span>
-                <p className="text-[11px] p-0 text-center">Minutes</p>
-              </div>
-              <span>:</span>
-              <div className="leading-5">
-                <span className="text-black bg-white w-16 h-16 flex justify-center items-center rounded-sm">
-                  <span className="text-4xl font-bold">
-                    {String(timeLeft.seconds).padStart(2, "0")}
-                  </span>
+              </span>
+              <p className="text-[11px] p-0 text-center">Minutes</p>
+            </div>
+            <span>:</span>
+            <div className="leading-5">
+              <span className="text-black bg-white w-16 h-16 flex justify-center items-center rounded-sm">
+                <span className="text-4xl font-bold">
+                  {String(timeLeft.seconds).padStart(2, "0")}
                 </span>
-                <p className="text-[11px] p-0 text-center">Seconds</p>
-              </div>
-            </div>
-            <img
-              src={products?.[0]?.image}
-              alt="ExpressVPN"
-              className="w-full rounded-lg mb-4"
-            />
-            <p>
-              {products?.[0]?.title}
-            </p>
-            <div className="flex justify-between text-sm mt-4">
-              <span>Left: 0</span>
-              <span>Sold: 50</span>
-            </div>
-            <div className="h-2 bg-gray-700 mt-2 rounded">
-              <div className="bg-blue-500 h-full w-1/2 rounded"></div>
-            </div>
-
-            <div className=" pt-4 px-2">
-              <p className=" text-2xl m-0 ">${products?.[0]?.actualPrice}</p>
-              <p className="   line-through text-gray-500 m-0 ">${products?.[0]?.discountPrice}
-              {/* <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">${products?.[0]?.gst}</button>  */}
-         </p>
+              </span>
+              <p className="text-[11px] p-0 text-center">Seconds</p>
             </div>
           </div>
-        </div>
-
-        {/* Currently Trending Offers */}
-        <div className="w-7/12">
-          <h2 className="text-2xl font-bold text-white">
-            More currently trending offers
-          </h2>
-          <p className="text-white">
-            Don't miss out – grab them while you still have the chance!
+          <img
+            src={products?.[0]?.image}
+            alt="ExpressVPN"
+            className="w-full rounded-lg mb-4"
+          />
+          <p>
+            {products?.[0]?.title}
           </p>
-          <div className="grid grid-cols-2 gap-4">
-            {products?.[0]?.productId?.map((product, index) => (
-              <HorizontalCard
-                key={index}
-                image={product?.images?.[0]}
-                originalPrice={product?.actualPrice}
-                discount={product?.gst}
-                title={product?.title}
-                url={`/product-details/${product?._id}`}
-                price={product?.discountPrice}
-              />
-            ))}
+          <div className="flex justify-between text-sm mt-4">
+            <span>Left: 0</span>
+            <span>Sold: 50</span>
+          </div>
+          <div className="h-2 bg-gray-700 mt-2 rounded">
+            <div className="bg-blue-500 h-full w-1/2 rounded"></div>
+          </div>
+
+          <div className=" pt-4 px-2">
+            <p className=" text-2xl m-0 ">${products?.[0]?.actualPrice}</p>
+            <p className="   line-through text-gray-500 m-0 ">${products?.[0]?.discountPrice}
+            {/* <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">${products?.[0]?.gst}</button>  */}
+       </p>
           </div>
         </div>
       </div>
+
+      {/* Currently Trending Offers */}
+      <div className="w-7/12">
+        <h2 className="text-2xl font-bold text-white">
+          More currently trending offers
+        </h2>
+        <p className="text-white">
+          Don't miss out – grab them while you still have the chance!
+        </p>
+        <div className="grid grid-cols-2 gap-4">
+          {products?.[0]?.productId?.map((product, index) => (
+            <HorizontalCard
+              key={index}
+              image={product?.images?.[0]}
+              originalPrice={product?.actualPrice}
+              discount={product?.gst}
+              title={product?.title}
+              url={`/product-details/${product?._id}`}
+              price={product?.discountPrice}
+            />
+          ))}
+        </div>
+      </div>
     </div>
+  </div>:null
+    }
+    </>
+    
   );
 };
 
