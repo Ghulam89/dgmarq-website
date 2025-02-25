@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../Cards/ProductCard";
 import { Base_url } from "../../utils/Base_url";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const GameAccountsSection = () => {
   const [products, setProducts] = useState([]);
@@ -50,7 +51,7 @@ const GameAccountsSection = () => {
   };
 
   return (
-    <div id="bestSellers" className="py-8 bg-gray-50">
+    <div id="gift" className="py-8 bg-gray-50">
       <section className="pb-10">
         <div className="max-w-[1170px] mx-auto px-4">
           <div className="py-6 flex flex-wrap gap-2 justify-between">
@@ -61,9 +62,9 @@ const GameAccountsSection = () => {
               </p>
             </div>
             <div>
-              <button className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
+              <Link to={`/shop?type=Gift`} className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
                 Discover all
-              </button>
+              </Link>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

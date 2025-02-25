@@ -98,67 +98,40 @@ const   Upcoming = () => {
   return (
     <>
 
-      <div id='upcoming-games' className=' max-w-[1170px] mx-auto mb-12 px-3'>
+     <div className=' sm:block hidden'>
+     <div id='upcoming-games' className=' mt-3 max-w-[1170px] mx-auto mb-12 px-3'>
         <H2>New and upcoming releases
         </H2>
 
       </div>
-      <div className=' flex sm:flex-row flex-col  sm:gap-0 gap-2 justify-between items-center w-full'>
-        {upcoming?.map((item, index) => {
-          return (
-
-            <Link to={`/product-details/${item?.productId?._id}`} className='  sm:w-6/12 w-12/12'>
-              <div className=' relative'>
-                <img src={item?.banner} className=' w-full' alt='' />
-                <div className=' absolute  sm:w-96 w-[95%] sm:right-80 right-3 py-3 top-0 h-full flex justify-center items-center'>
-                  <div>
-                    <img src={item?.logo} alt='' />
-                    <H4 className=' text-white pt-6'>{item?.productId?.title}</H4>
-
-                    <H3 className=' text-white pt-2'>$ {item?.productId?.discountPrice}</H3>
-                    <div className=' flex gap-3 justify-between items-center'>
-                      <div className=' flex  flex-col gap-1'>
-                        <p className=" text-gray-500 line-through  flex">$ {item?.productId?.actualPrice}
-                        </p>
-                        <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{item?.productId?.gst}%</button>
-                      </div>
-                      <button type='button' className="text-blue-600 mb-3 text-sm bg-blue px-6 rounded-sm py-2.5 text-white font-medium hover:underline">
-                        Add to Cart
-                      </button>
-                    </div>
-
-                  </div>
-                </div>
+      <div className='flex sm:flex-row flex-col sm:gap-0 gap-2 justify-between items-stretch w-full'>
+  {upcoming?.map((item, index) => (
+    <Link to={`/product-details/${item?.productId?._id}`} className='sm:w-6/12 w-12/12 flex' key={index}>
+      <div className='relative flex-1'>
+        <img src={item?.banner} className='w-full h-full' alt='' />
+        <div className='absolute sm:w-96 w-[95%] sm:right-80 right-3 py-3 top-0 h-full flex justify-center items-center'>
+          <div>
+            <img src={item?.logo} alt='' />
+            <H4 className='text-white pt-6'>{item?.productId?.title}</H4>
+            <H3 className='text-white pt-2'>$ {item?.productId?.discountPrice}</H3>
+            <div className='flex gap-3 justify-between items-center'>
+              <div className='flex flex-col gap-1'>
+                <p className="text-gray-500 line-through flex">$ {item?.productId?.actualPrice}</p>
+                <button className="w-10 text-[12px] rounded-md text-red-500 bg-[#FAE9E7] border border-red-500">
+                  {item?.productId?.gst}%
+                </button>
               </div>
-            </Link>
-          )
-        })}
-
-        {/* <div className=' sm:w-6/12 w-12/12'>
-          <div className=' relative'>
-            <img src='https://images.g2a.com/uiadminimages/960x438/1x1x1/e3b42cd16b73/9457f36fdf8c4605a6dbe1aa' className=' h-auto w-full' alt='' />
-            <div className=' absolute  sm:w-96 w-[95%]  py-12 sm:left-32 left-3 top-0 h-full flex justify-center items-center'>
-            <div>
-                <img src='https://images.g2a.com/uiadminimages/116x60/1x1x1/fb885a4a3c87/d33c3c02448e4bf88569e3b8' alt='' />
-                <H4 className=' text-white pt-6'>Path of Exile 2 | Early Access Supporter Pack (PC) - Steam Account - GLOBAL</H4>
-
-                <H3 className=' text-white pt-4 pb-0'>$ 20.67</H3>
-             <div className=' flex justify-between gap-3 items-center'>
-            <div className=' flex  flex-col '>
-            <p className=" text-gray-500 line-through  pb-1 flex">$ 30.22    
-              </p>
-              <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">-32%</button> 
+              <button type='button' className="text-blue-600 mb-3 text-sm bg-blue px-6 rounded-sm py-2.5 text-white font-medium hover:underline">
+                Add to Cart
+              </button>
             </div>
-               <button type='button' className="text-blue-600 mb-3 text-sm bg-blue px-6 rounded-sm py-2.5 text-white font-medium hover:underline">
-            Add to Cart
-          </button>
-             </div>
-            
-            </div>
-            </div> 
           </div>
-        </div> */}
+        </div>
       </div>
+    </Link>
+  ))}
+</div>
+     </div>
 
 
       <div id="allProductSecond" className="py-8 bg-gray-50">
@@ -175,9 +148,9 @@ const   Upcoming = () => {
               </p>
             </div>
             <div>
-              <button className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
+              <Link to={'/shop?type=Account'} className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
                 Discover all
-              </button>
+              </Link>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

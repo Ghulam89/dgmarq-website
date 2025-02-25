@@ -102,10 +102,10 @@ const Wishlist = () => {
 
                             < div className="bg-white border-b h-56 gap-12 rounded-lg shadow-sm flex items-center justify-between p-4" >
                                 {/* Item Details */}
-                                < Link to={`/product-details/${item?.productId?._id}`} className="flex h-full w-2/12 items-center space-x-4" >
+                                < Link to={`/product-details/${item?._id}`} className="flex h-full w-2/12 items-center space-x-4" >
                                     {/* Thumbnail */}
                                     < img
-                                        src={item?.productId?.images[0]}
+                                        src={item?.images[0]}
                                         alt="Game Thumbnail"
                                         className=" w-full  h-full rounded-md object-cover object-center"
                                     />
@@ -117,9 +117,9 @@ const Wishlist = () => {
                                 <div className=" items-center flex flex-col justify-between  h-full w-10/12">
                                     <div className=' flex w-full justify-between'>
                                         <h2 className="text-lg font-bold text-black">
-                                            {item?.productId?.title}
+                                            {item?.title}
                                         </h2>
-                                        <p className="text-lg font-bold text-black">{item?.productId?.discountPrice} USD</p>
+                                        <p className="text-lg font-bold text-black">{item?.discountPrice} USD</p>
 
                                     </div>
                                     <div className=' flex w-full justify-between items-center'>
@@ -136,7 +136,7 @@ const Wishlist = () => {
                                             </button>
 
 
-                                            <button onClick={() => removeFunction(item?.userId, item?.productId?._id)} className="bg-gray-200 text-gray-500 text-sm  w-12 h-12 flex justify-center  items-center rounded-full hover:bg-gray-300">
+                                            <button onClick={() => removeFunction(item?.userId, item?._id)} className="bg-gray-200 text-gray-500 text-sm  w-12 h-12 flex justify-center  items-center rounded-full hover:bg-gray-300">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" color="gray" class="text-sky-950" font-size="20px"><g stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" fill="none" stroke-miterlimit="10"><path d="M20 9v12a2 2 0 01-2 2H6a2 2 0 01-2-2V9M1 5h22M12 12v6M8 12v6M16 12v6M8 5V1h8v4"></path></g></svg>
                                             </button>
                                         </div>

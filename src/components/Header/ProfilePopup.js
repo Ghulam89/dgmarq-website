@@ -516,7 +516,7 @@ const ProfilePopup = () => {
               </div>
             )}
           
-          <div className=" sm:block hidden">
+          <div   onClick={toggleDropdown} className=" sm:block hidden cursor-pointer">
             <div className="  flex flex-col items-center">
               <span className=" text-white text-[12px] font-semibold">Sign in</span>
               <span className=" text-white text-[12px] font-semibold">Register</span>

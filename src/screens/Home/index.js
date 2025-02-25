@@ -67,7 +67,7 @@ const Home = () => {
         <div className="flex overflow-x-auto justify-between bg-white nav_item">
           {[
             { name: "Bestsellers", id: "bestSellers" },
-            { name: "Gaming gift cards", id: "gift-cards" },
+            { name: "Gaming gift cards", id: "gift" },
             { name: "Upcoming games", id: "upcoming-games" },
             { name: "Favorites ", id: "favorites" },
             { name: "Software", id: "software" },
@@ -85,7 +85,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       <Bestsellers />
       <FlashDeals />
       <GameAccountsSection />

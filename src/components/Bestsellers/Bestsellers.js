@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../Cards/ProductCard";
 import { Base_url } from "../../utils/Base_url";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Bestsellers = () => {
   const [products, setProducts] = useState([]);
@@ -58,9 +59,9 @@ const Bestsellers = () => {
               </p>
             </div>
             <div>
-              <button className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
+              <Link to="/shop" className="py-1 px-6 bg-blue transition duration-300 ease-in-out text-white font-semibold text-[12px] rounded-md hover:bg-secondary">
                 Discover all
-              </button>
+              </Link>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">

@@ -11,6 +11,7 @@ import CategoryCard from "../../components/Cards/CategoryCard";
 import GameAccountCard from "../../components/Cards/GameAccountCard";
 import { Base_url } from "../../utils/Base_url";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SoftwareDealers = () => {
 
@@ -124,6 +125,25 @@ const SoftwareDealers = () => {
           badge: "GAME ACCOUNT",
         },
       ];
+
+
+      const [microsoft, setMicrosoft] = useState([]);
+
+      const GetProductByAccount = (page = 1) => {
+        axios
+          .get(`${Base_url}/products/getProductByMicrosoft?page=${page}&limit=${limit}`)
+          .then((res) => {
+            const newFavorites = res?.data?.data || [];
+            setMicrosoft(newFavorites)
+          })
+          .catch((error) => {
+            console.error("Error fetching favorites:", error);
+          });
+      };
+    
+      useEffect(() => {
+        GetProductByAccount();
+      }, []);
       
 
   return (
@@ -170,6 +190,81 @@ Utilities</h2>
 
         </p>
        
+
+          <div className="grid gap-6 sm:grid-cols-[1fr,2fr,1fr] grid-cols-1">
+
+            {/* First Column */}
+            <div className="flex flex-col gap-3 ">
+              {microsoft.slice(0, 2).map((product, index) => (
+                <Link to={`/product-details/${product?._id}`} key={index} className="relative w-full h-60">
+                  <div className="relative w-full  h-full overflow-hidden rounded-lg">
+                    <img
+                      src={product.images[0]}
+                      alt={product.name}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                    <div className="absolute bottom-5 w-full flex flex-col pl-3 justify-start items-start">
+                      <h6 className='text-white text-xl'>{product?.title?.split(" ")?.slice(0, 5)?.join(" ")}</h6>
+                      <div className="flex gap-3 flex-row items-center">
+                        <div>
+                          <p className="text-xl font-bold m-0 text-white">{product?.discountPrice}</p>
+                          {product?.actualPrice ? <p className="text-sm text-gray-200 m-0 line-through">{`$ ${product?.actualPrice}`}</p> : null}
+                        </div>
+                        {product?.gst ? <button className="w-10 text-[12px] rounded-md text-red-500 bg-[#FAE9E7] border border-red-500">${product?.gst}</button> : null}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Second Column (Main Large Image) */}
+            {microsoft[2] && (
+              <Link to={`/product-details/${microsoft[2]?._id}`} className="relative w-full  max-h-[500px]">
+                <div className="relative w-full h-full overflow-hidden rounded-lg">
+                  <img
+                    src={microsoft[2].images[0]}
+                    alt={microsoft[2].name}
+                    className="w-full h-full object-cover object-center rounded-lg"
+                  />
+                  <div className="absolute bottom-5 w-full flex flex-col pl-3 justify-start items-start">
+                    <h6 className='text-white text-xl'>{microsoft[2]?.title?.split(" ")?.slice(0, 5)?.join(" ")}</h6>
+                    <div className="flex gap-3 flex-row items-center">
+                      <div>
+                        <p className="text-xl font-bold m-0 text-white">{microsoft[2]?.discountPrice}</p>
+                        {microsoft[2]?.actualPrice ? <p className="text-sm text-gray-200 m-0 line-through">{`$ ${microsoft[2]?.actualPrice}`}</p> : null}
+                      </div>
+                      {microsoft[2]?.gst ? <button className="w-10 text-[12px] rounded-md text-red-500 bg-[#FAE9E7] border border-red-500">${microsoft[2]?.gst}</button> : null}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )}
+
+            {/* Third Column */}
+            {microsoft[3] && (
+              <Link to={`/product-details/${microsoft[3]?._id}`} className="relative w-full max-h-[500px]">
+                <div className="relative w-full h-full overflow-hidden rounded-lg">
+                  <img
+                    src={microsoft[3].images[0]}
+                    alt={microsoft[3].name}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                  <div className="absolute bottom-5 w-full flex flex-col pl-3 justify-start items-start">
+                    <h6 className='text-white text-xl'>{microsoft[3]?.title?.split(" ")?.slice(0, 5)?.join(" ")}</h6>
+                    <div className="flex gap-3 flex-row items-center">
+                      <div>
+                        <p className="text-xl font-bold m-0 text-white">{microsoft[3]?.discountPrice}</p>
+                        {microsoft[3]?.actualPrice ? <p className="text-sm text-gray-200 m-0 line-through">{`$ ${microsoft[3]?.actualPrice}`}</p> : null}
+                      </div>
+                      {microsoft[3]?.gst ? <button className="w-10 text-[12px] rounded-md text-red-500 bg-[#FAE9E7] border border-red-500">${microsoft[3]?.gst}</button> : null}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )}
+          </div>
+        
       </div>
     </section>
 
@@ -253,9 +348,9 @@ Utilities</h2>
         </div>
       </section>
     </div>
-      <div className=" bg-[#880103]">
-        <img src="https://images.g2a.com/uiadminimages/1170x200/1x1x1/771db5899f95/b30db0f9a38c4137871b85eb" className=" mx-auto" alt="" />
-      </div>
+      <Link to={`/shop?platform=${'Adobe Acrobat'}`} className=" bg-[#880103] w-full">
+        <img src="https://images.g2a.com/uiadminimages/1170x200/1x1x1/771db5899f95/b30db0f9a38c4137871b85eb" className=" mx-auto w-full" alt="" />
+      </Link>
       
       <Subscription/>
   <Gather/>

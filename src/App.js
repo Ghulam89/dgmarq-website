@@ -40,7 +40,6 @@ import AboutSellerStore from "./screens/SellerStore/AboutSellerStore";
 import Checkout from "./screens/checkout";
 import Shop from "./screens/Shop/Shop";
 function App() {
-
   const { pathname } = useLocation();
 
   useEffect(() => {
