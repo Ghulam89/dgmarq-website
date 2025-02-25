@@ -126,7 +126,7 @@ const Hero = () => {
 
           {/* <HomeCard  item={products?.productDetails} /> */}
 
-          <Link to={products?._id} className="  hover:transform hover:translate-y-[-2px]  relative">
+          <Link to={`/product-details/${products?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
             <div className=" ">
               {products?.images ?
                 <img src={products?.images[0]} className="  w-full  h-96" alt="" />
@@ -145,7 +145,7 @@ const Hero = () => {
 
           </Link>
 
-          <Link to={allProductSecond?._id} className="  hover:transform hover:translate-y-[-2px]  relative">
+          <Link to={`/product-details/${allProductSecond?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
             <div className=" ">
               {allProductSecond?.images ?
                 <img src={allProductSecond?.images[0]} className="  w-full  h-96" alt="" />
@@ -164,7 +164,7 @@ const Hero = () => {
 
           </Link>
 
-          <Link to={productKey?._id} className="  hover:transform hover:translate-y-[-2px]  relative">
+          <Link to={`/product-details/${productKey?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
             <div className=" ">
               {productKey?.images ?
                 <img src={productKey?.images[0]} className="  w-full  h-96" alt="" />
@@ -183,7 +183,7 @@ const Hero = () => {
 
           </Link>
 
-          <Link to={upcoming?.productId?._id} className="  hover:transform hover:translate-y-[-2px]  relative">
+          <Link to={`/product-details/${upcoming?.productId?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
             <div className=" ">
               {upcoming?.productId?.images ?
                 <img src={upcoming?.productId?.images[0]} className="  w-full  h-96" alt="" />

@@ -80,7 +80,7 @@ console.log('====================================');
             <div className="max-w-[1170px] mx-auto px-4">
               <div className=" flex flex-wrap  gap-3 justify-between items-center">
                 <div className="">
-                  <H2 className="text-2xl font-bold text-gray-800 mb-2">
+                  <H2 className="text-2xl mt-3 font-bold text-gray-800 mb-2">
                     {ImInsertTemplate?.brandName}
                   </H2>
                   <p className="text-gray-500">
