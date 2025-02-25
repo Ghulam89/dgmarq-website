@@ -9,14 +9,14 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCNcJrMxI6R6ws9BSuEzUdeBsQlD06wE6A",
-    authDomain: "shopzone-c1767.firebaseapp.com",
-    projectId: "shopzone-c1767",
-    storageBucket: "shopzone-c1767.firebasestorage.app",
-    messagingSenderId: "546553896604",
-    appId: "1:546553896604:web:65a517dbbfee095c3dd759",
-    measurementId: "G-7TTLVTWKDY"
-  };
+  apiKey: "AIzaSyDiVW97z9I3_A0MRCAToEdjaq7eFfolXK4",
+  authDomain: "dgmarq-f41b4.firebaseapp.com",
+  projectId: "dgmarq-f41b4",
+  storageBucket: "dgmarq-f41b4.firebasestorage.app",
+  messagingSenderId: "610945853528",
+  appId: "1:610945853528:web:c42219e827aff55484422d",
+  measurementId: "G-155VN8KZ14"
+};
 
 
 

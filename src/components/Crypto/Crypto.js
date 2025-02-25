@@ -71,10 +71,6 @@ const categoryId = ImInsertTemplate?.brandName
 .replace(/[^a-z0-9-]/g, "");
 
 
-console.log('====================================');
-console.log(categoryId);
-console.log('====================================');
-
         return (
           <section  id={categoryId} className=" py-10">
             <div className="max-w-[1170px] mx-auto px-4">
