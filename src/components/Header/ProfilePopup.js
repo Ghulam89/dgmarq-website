@@ -39,9 +39,13 @@ const ProfilePopup = () => {
 
   const handleClick = () => {
     signInWithPopup(auth, provider).then(async(data) => {
+
       console.log(data);
       const { user } = data;
+
       try {
+        await auth.signOut();
+
         const parmas = {
           username:user?.displayName,
           email:user?.email,
@@ -56,33 +60,41 @@ const ProfilePopup = () => {
         } else {
           toast.error(response?.data?.message)
 
-          const parmas = {
-            username:user?.displayName,
-            email:user?.email,
-            password:user?.uid
-          }
-          try {
-            const response = await axios.post(
-              `${Base_url}/user/login`,parmas);
-            if (response?.data?.status === 'success') {
-              toast.success(response?.data?.message)
-              dispatch(addUser(response?.data?.data))
-              navigate('/')
-            } else {
-              toast.error(response?.data?.message)
-            }
-            console.log(response?.data);
-          } catch (error) {
-            toast.error(error)
-          } finally {
-          }
+          
 
         }
         console.log(response?.data);
       } catch (error) {
        
+        
+        // toast.error(error?.response?.data?.message);
 
-        toast.error(error?.response?.data?.message)
+        if(error?.response?.data?.status==='fail'){
+            
+          if(error?.response?.data?.message==="Email already exist"){
+            const parmas = {
+              username:user?.displayName,
+              email:user?.email,
+              password:user?.uid
+            }
+            try {
+              const response = await axios.post(
+                `${Base_url}/user/login`,parmas);
+              if (response?.data?.status === 'success') {
+                toast.success(response?.data?.message)
+                dispatch(addUser(response?.data?.data))
+                navigate('/')
+              } else {
+                toast.error(response?.data?.message)
+              }
+              console.log(response?.data);
+            } catch (error) {
+              toast.error(error)
+            } finally {
+            }
+          }
+          
+        }
   
       } finally {
       }
