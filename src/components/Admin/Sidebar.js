@@ -123,11 +123,11 @@ const Sidebar = ({ side, closeSidebar }) => {
                     Order history
                 </Link>
             </li>
-            <li className=" w-full py-3">
+            {/* <li className=" w-full py-3">
                 <Link to={''} className=" px-3  text-white">
                     Rate transactions
                 </Link>
-            </li>
+            </li> */}
           </ul>
           </div>
           <Link to={'http://localhost:3001/seller-verification'} className=" mx-2.5">

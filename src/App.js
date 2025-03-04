@@ -39,6 +39,7 @@ import StoreProduct from "./screens/SellerStore/StoreProduct";
 import AboutSellerStore from "./screens/SellerStore/AboutSellerStore";
 import Checkout from "./screens/checkout";
 import Shop from "./screens/Shop/Shop";
+import ContactUs from "./screens/ContactUs";
 function App() {
   const { pathname } = useLocation();
 
@@ -52,6 +53,7 @@ function App() {
      <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/sellers" element={<Sellers/>} />
+      <Route path="/contact-us" element={<ContactUs/>} />
       <Route path="/category/:id" element={<Category/>} />
       <Route path="/sub-category/:id" element={<SubCategory/>} />
       <Route path="/sub-sub-category/:id" element={<SubSubCategory/>} />
