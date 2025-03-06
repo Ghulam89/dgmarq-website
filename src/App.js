@@ -44,6 +44,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setToggle } from "./store/productSlice";
 import Keys from "./screens/Buyer/Keys";
 import OrderHistory from "./screens/Buyer/OrderHistory";
+import Settings from "./screens/Buyer/Settings";
 function App() {
   const { pathname } = useLocation();
 
@@ -108,6 +109,7 @@ if (myObject) {
       <Route path="/dashboard" element={<Dashboard/>} />
       <Route path="/keys" element={<Keys/>} />
       <Route path="/order-history" element={<OrderHistory/>} />
+      <Route path="/settings" element={<Settings/>} />
       <Route path="/seller-support" element={<SellerSupport />} />
       <Route path="/terms-conditions" element={<TermsConditions />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />

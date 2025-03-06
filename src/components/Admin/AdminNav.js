@@ -21,7 +21,8 @@ const AdminNav = ({ openSidebar, side, closeSidebar }) => {
    
        dispatch(removeUser())
        toast.success('user sign out  successfuly!')
-        navigate('/');
+        navigate('/')
+        window.location.reload()
        
      }
 

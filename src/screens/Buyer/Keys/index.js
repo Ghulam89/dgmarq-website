@@ -20,8 +20,12 @@ const Keys = () => {
     axios
       .get(`${Base_url}/checkout/getByUser/${userInfo?._id}`)
       .then((res) => {
-        setOrders(res?.data?.data);
-        setFilteredOrders(res?.data?.data);
+        // Filter orders to include only those with available keys
+        const ordersWithKeys = res?.data?.data.filter((order) =>
+          order.productIds.some((product) => product.key)
+        );
+        setOrders(ordersWithKeys);
+        setFilteredOrders(ordersWithKeys);
       })
       .catch((err) => {
         console.error(err);
@@ -79,7 +83,7 @@ const Keys = () => {
     const doc = new jsPDF();
 
     doc.setFontSize(18);
-    doc.text(`Order Details - ${order._id}`, 10, 10);
+    doc.text(`Product Key - ${order._id}`, 10, 10);
 
     doc.setFontSize(12);
     doc.text(`Order Status: ${order.status}`, 10, 20);
@@ -89,6 +93,9 @@ const Keys = () => {
       const y = 40 + index * 20;
       doc.text(`Product: ${product.title}`, 10, y);
       doc.text(`Price: $${product.discountPrice}`, 10, y + 10);
+      if (product.key) {
+        doc.text(`Product Key: ${product.key}`, 10, y + 20);
+      }
     });
 
     doc.save(`order_${order._id}.pdf`);

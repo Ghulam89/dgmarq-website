@@ -102,7 +102,7 @@ const Cart = () => {
                               </button>
                             </div>
                             <div class="text-end md:order-4 md:w-32">
-                              <p class="text-base font-bold text-gray-900 dark:text-white">${item?.price}</p>
+                              <p class="text-base font-bold text-gray-900 dark:text-white">${item?.quantity*item?.price}</p>
                               <p className=' text-[10px]  text-gray-400 text-end'>VAT inc. if applicable</p>
                             </div>
                           </div>

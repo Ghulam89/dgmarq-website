@@ -1,15 +1,6 @@
-import { BsSliders } from "react-icons/bs";
-import { FiUsers } from "react-icons/fi";
-import { ImBlogger } from "react-icons/im";
-import { MdOutlineContacts, MdOutlineProductionQuantityLimits } from "react-icons/md";
-import { PiSlidersBold } from "react-icons/pi";
-import { RxDashboard } from "react-icons/rx";
 import { TbLogout } from "react-icons/tb";
 import { Link } from "react-router-dom";
 const Sidebar = ({ side, closeSidebar }) => {
-    console.log('====================================');
-    console.log(side);
-    console.log('====================================');
   return (
     <div
       className={` shadow-xl fixed top-20 ${side} sm:left-64 w-20 overflow-x-auto h-screen bg-[#000] z-10 transition-all`}
@@ -61,7 +52,7 @@ const Sidebar = ({ side, closeSidebar }) => {
         <li className=" pt-5 cursor-pointer">
          
         
-          <Link to="/dashboard" className="text-lg capitalize">
+          <Link to="/settings" className="text-lg capitalize">
              <div className=" w-10 h-10 text-white rounded-md bg-[rgba(33,33,33,0.8)]  flex  justify-center items-center">
              <svg
   width="1em"
@@ -102,7 +93,7 @@ const Sidebar = ({ side, closeSidebar }) => {
           <div>
           <ul className=" mt-28">
             <li className=" w-full bg-blue-500 py-3">
-                <Link to={''} className=" px-3  text-white">
+                <Link to={'/dashboard'} className=" px-3  text-white">
                     Dashboard
                 </Link>
             </li>
@@ -130,7 +121,7 @@ const Sidebar = ({ side, closeSidebar }) => {
             </li> */}
           </ul>
           </div>
-          <Link to={'http://localhost:3001/seller-verification'} className=" mx-2.5">
+          <Link to={`https://seller.dgmarq.com/seller-verification`} className=" mx-2.5">
             <button className="   capitalize border text-gray-300  w-full  border-gray-500 text-sm flex items-center  justify-between  px-4 py-3 rounded-md">become a seller <TbLogout size={25} className="" />            </button>
           </Link>
        </div>:null

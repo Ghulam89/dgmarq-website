@@ -312,6 +312,8 @@ const Navbar = () => {
       <div className="bg-primary ">
         <header className="mx-auto flex gap-8  max-w-[1170px]   h-20 items-center justify-between px-3">
           <Link to="/" className="">
+
+          
             <img
               className="cursor-pointer h-20  object-contain sm:w-auto w-28"
               src={logo}

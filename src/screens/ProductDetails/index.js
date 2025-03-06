@@ -99,9 +99,10 @@ const ProductDetails = ({
           userId: userInfo?._id,
         });
 
-        if (response.data?.status === 'success') {
-          toast.success('Product added to your wishlist!');
+        if (response.data?.status === 200) {
+          toast.success(response?.data?.message);
         } else {
+          toast.error(response?.data?.message);
         }
       } catch (error) {
         console.error('Error adding to wishlist:', error);

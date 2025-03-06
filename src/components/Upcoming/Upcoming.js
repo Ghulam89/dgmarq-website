@@ -107,7 +107,7 @@ const   Upcoming = () => {
       <div className='flex sm:flex-row flex-col sm:gap-0 gap-2 justify-between items-stretch w-full'>
   {upcoming?.map((item, index) => (
     <Link to={`/product-details/${item?.productId?._id}`} className='sm:w-6/12 w-12/12 flex' key={index}>
-      <div className='relative flex-1'>
+      <div className='relative h-96 flex-1'>
         <img src={item?.banner} className='w-full h-full' alt='' />
         <div className='absolute sm:w-96 w-[95%] sm:right-80 right-3 py-3 top-0 h-full flex justify-center items-center'>
           <div>
