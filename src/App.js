@@ -40,13 +40,32 @@ import AboutSellerStore from "./screens/SellerStore/AboutSellerStore";
 import Checkout from "./screens/checkout";
 import Shop from "./screens/Shop/Shop";
 import ContactUs from "./screens/ContactUs";
+import { useDispatch, useSelector } from "react-redux";
+import { setToggle } from "./store/productSlice";
+import Keys from "./screens/Buyer/Keys";
+import OrderHistory from "./screens/Buyer/OrderHistory";
 function App() {
   const { pathname } = useLocation();
+
+  const toggle = useSelector((state) => state.next.toggle);
+  const dispatch = useDispatch();
+
+  const handleToggle = () => {
+    dispatch(setToggle(!toggle));
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  let myObject = {};
+myObject.toggle = true;
+
+if (myObject) {
+  myObject.toggle = true;
+} else {
+  console.error('myObject is undefined');
+}
   return (
     <>
       <ToastContainer/>
@@ -87,6 +106,8 @@ function App() {
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/shop" element={<Shop/>} />
       <Route path="/dashboard" element={<Dashboard/>} />
+      <Route path="/keys" element={<Keys/>} />
+      <Route path="/order-history" element={<OrderHistory/>} />
       <Route path="/seller-support" element={<SellerSupport />} />
       <Route path="/terms-conditions" element={<TermsConditions />} />
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />

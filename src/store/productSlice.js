@@ -5,6 +5,7 @@ const initialState = {
     favoriteData: [],
     allProducts: [],
     userInfo: null,
+    toggle: false
 };
 
 export const productSlice = createSlice({
@@ -21,6 +22,10 @@ export const productSlice = createSlice({
                 state.productData.push(action.payload);
             }
         },
+        setToggle: (state, action) => {
+            state.toggle = action.payload;
+          },
+
         addToFavorite: (state, action) => {
             const existingProduct = state.favoriteData.find(
                 (item) => item._id === action.payload._id
@@ -81,6 +86,7 @@ export const {
     addUser,
     removeUser,
     setAllProducts,
+    setToggle,
 } = productSlice.actions;
 
 export default productSlice.reducer;

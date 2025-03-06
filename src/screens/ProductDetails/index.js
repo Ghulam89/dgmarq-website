@@ -210,11 +210,11 @@ const ProductDetails = ({
       <Navbar />
       <BottomHeader />
       <SideDrawer  setIsOpen={setOpenSide} isOpen={openSide} />
-      <section className=' sm:py-14 py-10'>
+      <section className=' py-14'>
         <div className="max-w-[1170px] mx-auto bg-white  border-gray-300  p-4">
           {/* Product Title */}
           <div className=' flex sm:flex-row gap-5 flex-col  justify-between '>
-            <h1 className="sm:text-3xl text-2xl font-bold text-gray-800">
+            <h1 className="text-3xl font-bold text-gray-800">
               M{products?.title}
             </h1>
             <div onClick={handleWhitelist} className=' bg-gray-200 w-12 h-12 cursor-pointer rounded-full flex justify-center items-center'>
@@ -380,7 +380,7 @@ const ProductDetails = ({
         </div>
       </section>
 
-      <section className=' max-w-[1170px] mx-auto px-3 pb-12'>
+      <section className=' max-w-[1170px] mx-auto pb-12'>
         <h1 className=' text-2xl font-semibold pb-4 text-black'>Product description</h1>
         <p className=' text-gray-400'>{products?.description}</p>
 

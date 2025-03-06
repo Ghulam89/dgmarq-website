@@ -56,7 +56,7 @@ const ProfilePopup = () => {
         if (response?.data?.status === 'success') {
           toast.success(response?.data?.message)
           dispatch(addUser(response?.data?.data))
-          navigate('/');
+          // navigate('/');
         } else {
           toast.error(response?.data?.message)
 
@@ -83,7 +83,7 @@ const ProfilePopup = () => {
               if (response?.data?.status === 'success') {
                 toast.success(response?.data?.message)
                 dispatch(addUser(response?.data?.data))
-                navigate('/')
+                // navigate('/')
               } else {
                 toast.error(response?.data?.message)
               }
@@ -132,7 +132,7 @@ const ProfilePopup = () => {
               if (response?.data?.status === 'success') {
                 toast.success(response?.data?.message)
                 dispatch(addUser(response?.data?.data))
-                navigate('/');
+                // navigate('/');
               } else {
                 toast.error(response?.data?.message)
       
@@ -148,7 +148,7 @@ const ProfilePopup = () => {
                   if (response?.data?.status === 'success') {
                     toast.success(response?.data?.message)
                     dispatch(addUser(response?.data?.data))
-                    navigate('/')
+                    // navigate('/')
                   } else {
                     toast.error(response?.data?.message)
                   }

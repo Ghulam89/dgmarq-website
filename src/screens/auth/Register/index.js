@@ -7,7 +7,7 @@ import Footer from "../../../components/Footer/Footer";
 import axios from "axios";
 import { Base_url } from "../../../utils/Base_url";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -184,9 +184,9 @@ const Register = () => {
 
         <p className="mt-6 text-center text-sm text-gray-600">
           Have an account already?{" "}
-          <a href="/login" className="text-blue-500">
+          <Link to="/login" className="text-blue-500">
             Sign in
-          </a>
+          </Link>
         </p>
       </div>
       <Footer />

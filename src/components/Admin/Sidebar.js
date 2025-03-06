@@ -114,12 +114,12 @@ const Sidebar = ({ side, closeSidebar }) => {
                 <p className=" text-gray-500 text-sm">ORDERS</p>
             </li>
             <li className=" w-full py-3">
-                <Link to={''} className=" px-3  text-white">
+                <Link to={'/keys'} className=" px-3  text-white">
                     Your keys
                 </Link>
             </li>
             <li className=" w-full py-3">
-                <Link to={''} className=" px-3  text-white">
+                <Link to={'/order-history'} className=" px-3  text-white">
                     Order history
                 </Link>
             </li>
