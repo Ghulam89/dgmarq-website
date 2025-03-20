@@ -3,16 +3,11 @@ import React, { useEffect, useState } from "react";
 import Button from "../../components/Button";
 import { MdClose } from "react-icons/md";
 import ProductCard from "../../components/Cards/ProductCard";
-import Footer from "../../components/Footer/Footer";
-import Navbar from "../../components/Header/Navbar";
-import Subscription from "../../components/Subscription";
-import Gather from "../../components/Gather/Gather";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { FaListUl } from "react-icons/fa";
 import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Base_url } from "../../utils/Base_url";
-import BottomHeader from "../../components/Header/BottomHeader";
 import { IoIosSearch } from "react-icons/io";
 
 const StoreProduct = () => {
@@ -312,7 +307,7 @@ const StoreProduct = () => {
                                                     />
                                                     <span className=" text-sm uppercase">{item?.title}</span>
                                                 </div>
-                                                <span className=" text-gray-400 text-sm">65</span>
+                                                <span className=" text-gray-400 text-sm"></span>
                                             </li>
                                         )
                                     })}
@@ -348,7 +343,7 @@ const StoreProduct = () => {
                                                     />
                                                     <span className=" text-sm">{item?.title}</span>
                                                 </div>
-                                                <span className=" text-gray-400 text-sm">65</span>
+                                                <span className=" text-gray-400 text-sm"></span>
                                             </li>
 
                                         )
@@ -370,7 +365,7 @@ const StoreProduct = () => {
                                             />
                                             <span className=" text-sm">Key</span>
                                         </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
+                                        <span className=" text-gray-400 text-sm"></span>
                                     </li>
 
                                     <li className="justify-between flex gap-2 items-center">
@@ -383,7 +378,7 @@ const StoreProduct = () => {
                                             />
                                             <span className=" text-sm">Gift</span>
                                         </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
+                                        <span className=" text-gray-400 text-sm"></span>
                                     </li>
                                     <li className="justify-between flex gap-2 items-center">
                                         <div className="flex gap-2 items-center">
@@ -395,7 +390,7 @@ const StoreProduct = () => {
                                             />
                                             <span className=" text-sm">Account</span>
                                         </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
+                                        <span className=" text-gray-400 text-sm"></span>
                                     </li>
 
                                 </ul>

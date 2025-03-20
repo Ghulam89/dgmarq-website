@@ -314,7 +314,7 @@ const SubSubCategory = () => {
                                                     />
                                                     <span className=" text-sm uppercase">{item?.title}</span>
                                                 </div>
-                                                <span className=" text-gray-400 text-sm">65</span>
+                                                <span className=" text-gray-400 text-sm"></span>
                                             </li>
                                         )
                                     })}
@@ -350,7 +350,7 @@ const SubSubCategory = () => {
                                                     />
                                                     <span className=" text-sm">{item?.title}</span>
                                                 </div>
-                                                <span className=" text-gray-400 text-sm">65</span>
+                                                <span className=" text-gray-400 text-sm"></span>
                                             </li>
 
                                         )
@@ -372,7 +372,7 @@ const SubSubCategory = () => {
                                             />
                                             <span className=" text-sm">Key</span>
                                         </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
+                                        <span className=" text-gray-400 text-sm"></span>
                                     </li>
 
                                     <li className="justify-between flex gap-2 items-center">
@@ -397,7 +397,7 @@ const SubSubCategory = () => {
                                             />
                                             <span className=" text-sm">Account</span>
                                         </div>
-                                        <span className=" text-gray-400 text-sm">65</span>
+                                        <span className=" text-gray-400 text-sm"></span>
                                     </li>
 
                                 </ul>

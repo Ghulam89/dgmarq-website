@@ -122,87 +122,35 @@ const Hero = () => {
   return (
     <>
       <div className="  flex justify-center  items-center bg-home bg-cover bg-center w-full py-8">
-        <div className="grid gap-5 px-3 max-w-[1170px] mx-auto w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-
-          {/* <HomeCard  item={products?.productDetails} /> */}
-
-          <Link to={`/product-details/${products?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
-            <div className=" ">
-              {products?.images ?
-                <img src={products?.images[0]} className="  w-full  h-96" alt="" />
-                : null
-              }
-              <div className=" absolute flex justify-end  rounded-md items-end h-full hover:bg-[rgba(0,0,0,0.2)] bottom-0 w-full">
-                <div className=" mx-auto sm:w-[65%] w-[80%]">
-                  <Button
-                    label={"View Item"}
-                    className="bg-blue hover:bg-secondary mb-6 whitespace-nowrap w-full px-3 mx-auto rounded-sm text-sm transition duration-300 ease-in-out"
-                  />
-                </div>
-
-              </div>
-            </div>
-
-          </Link>
-
-          <Link to={`/product-details/${allProductSecond?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
-            <div className=" ">
-              {allProductSecond?.images ?
-                <img src={allProductSecond?.images[0]} className="  w-full  h-96" alt="" />
-                : null
-              }
-              <div className=" absolute flex justify-end  rounded-md items-end h-full hover:bg-[rgba(0,0,0,0.2)] bottom-0 w-full">
-                <div className=" mx-auto sm:w-[65%] w-[80%]">
-                  <Button
-                    label={"View Item"}
-                    className="bg-blue hover:bg-secondary mb-6 whitespace-nowrap w-full px-3 mx-auto rounded-sm text-sm transition duration-300 ease-in-out"
-                  />
-                </div>
-
-              </div>
-            </div>
-
-          </Link>
-
-          <Link to={`/product-details/${productKey?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
-            <div className=" ">
-              {productKey?.images ?
-                <img src={productKey?.images[0]} className="  w-full  h-96" alt="" />
-                : null
-              }
-              <div className=" absolute flex justify-end  rounded-md items-end h-full hover:bg-[rgba(0,0,0,0.2)] bottom-0 w-full">
-                <div className=" mx-auto sm:w-[65%] w-[80%]">
-                  <Button
-                    label={"View Item"}
-                    className="bg-blue hover:bg-secondary mb-6 whitespace-nowrap w-full px-3 mx-auto rounded-sm text-sm transition duration-300 ease-in-out"
-                  />
-                </div>
-
-              </div>
-            </div>
-
-          </Link>
-
-          <Link to={`/product-details/${upcoming?.productId?._id}`} className="  hover:transform hover:translate-y-[-2px]  relative">
-            <div className=" ">
-              {upcoming?.productId?.images ?
-                <img src={upcoming?.productId?.images[0]} className="  w-full  h-96" alt="" />
-                : null
-              }
-              <div className=" absolute flex justify-end  rounded-md items-end h-full hover:bg-[rgba(0,0,0,0.2)] bottom-0 w-full">
-                <div className=" mx-auto sm:w-[65%] w-[80%]">
-                  <Button
-                    label={"View Item"}
-                    className="bg-blue hover:bg-secondary mb-6 whitespace-nowrap w-full px-3 mx-auto rounded-sm text-sm transition duration-300 ease-in-out"
-                  />
-                </div>
-
-              </div>
-            </div>
-
-          </Link>
-
+      <div className="flex flex-nowrap gap-5 px-3 max-w-[1170px] mx-auto overflow-x-auto w-full">
+        
+  {[products, allProductSecond, productKey, upcoming].map((product, index) => (
+    <Link
+      key={index}
+      to={`/product-details/${product?._id || product?.productId?._id}`}
+      className="flex-shrink-0 w-[250px] hover:transform hover:translate-y-[-2px] relative"
+    >
+      <div className="aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden h-full">
+        {product?.images || product?.productId?.images ? (
+          <img
+            src={product?.images?.[0] || product?.productId?.images?.[0]}
+            className="w-full h-full object-cover"
+            alt=""
+          />
+        ) : null}
+        <div className="absolute inset-0 flex justify-end items-end p-4 hover:bg-[rgba(0,0,0,0.2)] transition duration-300 ease-in-out">
+          <div className="w-full sm:w-[70%] mx-auto">
+            <Button
+              label={"View Item"}
+              className="bg-blue hover:bg-secondary whitespace-nowrap w-full px-3 mx-auto rounded-sm text-sm transition duration-300 ease-in-out"
+            />
+          </div>
         </div>
+      </div>
+    </Link>
+  ))}
+
+</div>
 
       </div>
       <div className="bg-gray-100 ">

@@ -1,13 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from "../../components/Button";
 import { MdClose } from "react-icons/md";
 import ProductCard from "../../components/Cards/ProductCard";
 import { TfiLayoutGrid3 } from "react-icons/tfi";
 import { FaListUl } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { H1 } from '../../components/common/Heading';
+import { Base_url } from '../../utils/Base_url';
+import axios from 'axios';
 
 const AboutSellerStore = () => {
+
+
+  const { id } = useParams();
+  const [getSeller, setGetSeller] = useState({});
+  const fetchSellers = () => {
+    axios.get(`${Base_url}/seller/get/${id}`)
+      .then((res) => {
+        console.log(res);
+        setGetSeller(res?.data?.data);
+
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchSellers();
+  }, [])
+
     const [isMenuOpen, setMenuOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -93,7 +115,7 @@ const AboutSellerStore = () => {
          <ul className=' p-0 flex w-96 flex-col gap-3 pt-4'>
             <li className=' flex justify-between items-center '>
               <p className=' text-gray-400 m-0'>Company name:</p>
-              <span>BGAS, SLU</span>
+              <span>{getSeller?.companyName}</span>
             </li>
             <li className=' flex justify-between items-center '>
               <p className=' text-gray-400 m-0'>CRN:</p>

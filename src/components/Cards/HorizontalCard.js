@@ -38,7 +38,7 @@ const HorizontalCard = ({ image, title, price, originalPrice, discount, offerLab
 
           </div>
           {discount?
-             <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{discount}</button>:null
+             <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{discount}%</button>:null
              }
 
           

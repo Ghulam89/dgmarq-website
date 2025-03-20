@@ -4,11 +4,17 @@ import Footer from '../../components/Footer/Footer'
 import BottomHeader from '../../components/Header/BottomHeader'
 import axios from 'axios'
 import { Base_url } from '../../utils/Base_url'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
+import { addToCart } from '../../store/productSlice'
+import { toast, ToastContainer } from 'react-toastify'
+import SideDrawer from '../../components/Header/SideDrawer'
 
 const Wishlist = () => {
+
+
+    const dispatch = useDispatch();
 
 
     const [wishList, setWishList] = useState([]);
@@ -54,8 +60,8 @@ const Wishlist = () => {
 
                 axios
                     .post(`${Base_url}/wishlist/remove`, {
-                        productId: product,
-                        userId: user,
+                        productId:product,
+                        userId:userInfo?._id,
                     })
                     .then((res) => {
 
@@ -85,10 +91,14 @@ const Wishlist = () => {
             }
         });
     };
+     const [openSide,setOpenSide] = useState(false);
+    
     return (
         <>
             <Navbar />
             <BottomHeader />
+            <ToastContainer/>
+            <SideDrawer  setIsOpen={setOpenSide} isOpen={openSide} />
             <div className="bg-gray-100 py-8 px-4 lg:px-16">
                 <div className=' w-9/12 mx-auto'>
                     {/* Wishlist Header */}
@@ -127,7 +137,24 @@ const Wishlist = () => {
                                             OFFERS FROM 31 SELLERS
                                         </span>
                                         <div className=' flex items-center'>
-                                            <button className=" text-white text-sm px-4 py-2 rounded-full flex items-center space-x-2 hover:bg-blue-600">
+                                            <button onClick={() => {
+                                                            setOpenSide(true)
+                                                            dispatch(
+                                                              addToCart({
+                                                                
+                                                                _id: item?._id,
+                                                                image: item?.images[0],
+                                                                description: item?.description,
+                                                                title: item?.title,
+                                                                quantity: 1,
+                                                                price: item?.discountPrice,
+                                                                gst:item?.gst,
+                                                                actualPrice:item?.actualPrice
+                                                              })
+                                                            )
+                                            
+                                                            toast.success('Product add to cart successfuly!')
+                                                          }} className=" text-white text-sm px-4 py-2 rounded-full flex items-center space-x-2 hover:bg-blue-600">
                                                 <span className=' text-black text-lg font-semibold'>Add to cart</span>
                                                 <div className=' bg-secondary w-12 h-12 rounded-full flex justify-center items-center'>
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" font-size="20"><g stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor"><circle cx="6" cy="22" r="1" stroke="none"></circle><circle cx="20" cy="22" r="1" stroke="none"></circle><circle cx="6" cy="22" r="1" fill="none" stroke-miterlimit="10"></circle><circle cx="20" cy="22" r="1" fill="none" stroke-miterlimit="10"></circle><path fill="none" stroke-miterlimit="10" d="M4.8 7H22l-2 10H6L4 2H1"></path></g></svg>

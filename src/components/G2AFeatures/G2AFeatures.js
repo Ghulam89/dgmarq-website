@@ -18,18 +18,22 @@ const G2AFeatures = () => {
         {/* Features Section */}
         <div className="flex sm:flex-row  flex-col items-center space-y-6 ">
           {/* Feature 1 */}
-          <div className="flex border-r  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
-            <FaTag className="text-orange-500 text-2xl" />
+          <div className="flex sm:border-r border-0  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
             <div>
+            <FaTag className="text-orange-500 text-2xl" />
+            </div>
+            <div className=" sm:w-64 w-80">
               <h3 className="font-bold text-lg">Unlock even better deals with the</h3>
               <p className="text-white pt-2">Download now and browse the enhanced offer</p>
             </div>
           </div>
 
           {/* Feature 2 */}
-          <div className="flex border-r  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
-            <FaPaperPlane className="text-orange-500 text-2xl" />
+          <div className="flex sm:border-r border-0  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
             <div>
+            <FaPaperPlane className="text-orange-500 text-2xl" />
+            </div>
+            <div className=" sm:w-64 w-80">
               <h3 className="font-bold text-lg">Subscribe to our newsletter</h3>
               <p className="text-white pt-2">
                 Spend <span className="font-bold ">10 EUR</span>, and get 10% off your next buy
@@ -38,9 +42,11 @@ const G2AFeatures = () => {
           </div>
 
           {/* Feature 3 */}
-          <div className="flex border-r  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
-            <FaPercentage className="text-orange-500 text-2xl" />
-            <div>
+          <div className="flex sm:border-r border-0  border-[#3b3b3b] hover:bg-[#3b3b3b] items-start space-x-4  rounded-md p-4">
+           <div>
+           <FaPercentage className="text-orange-500 text-2xl" />
+           </div>
+            <div className=" sm:w-64 w-80">
               <h3 className="font-bold text-lg">Save more with Dgmarq</h3>
               <p className="text-gray-400 pt-2">Discover all the special benefits</p>
             </div>

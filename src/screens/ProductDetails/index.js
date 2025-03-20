@@ -8,10 +8,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Base_url } from '../../utils/Base_url'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer} from 'react-toastify'
 import { addToCart } from '../../store/productSlice'
 import Gather from '../../components/Gather/Gather'
-import ProductCard from '../../components/Cards/ProductCard'
 import { FaStar } from 'react-icons/fa'
 import WriteReview from './WriteReview'
 import SideDrawer from '../../components/Header/SideDrawer'
@@ -23,16 +22,12 @@ const ProductDetails = ({
 }) => {
 
   const { id } = useParams();
-  const [allProduct, setAllProduct] = useState({});
-
   const [products, setProducts] = useState({});
   const [rating, setRatings] = useState([]);
   const { userInfo } = useSelector((state) => state.next);
   console.log(userInfo);
   const images = products?.images || [];
-
   const totalImages = images.length;
-
   const [curr, setCurr] = useState(0);
   const prev = () => {
     if (totalImages === 0) return;
@@ -73,8 +68,7 @@ const ProductDetails = ({
       .get(`${Base_url}/rating/getByProduct/${id}`)
       .then((res) => {
         console.log(res);
-
-        setRatings(res.data.data);
+        setRatings(res?.data?.data);
       })
       .catch((error) => { });
 
@@ -98,14 +92,13 @@ const ProductDetails = ({
           productId: products?._id,
           userId: userInfo?._id,
         });
-
         if (response.data?.status === 200) {
           toast.success(response?.data?.message);
         } else {
-          toast.error(response?.data?.message);
+          toast.success(response?.data?.message);
         }
       } catch (error) {
-        console.error('Error adding to wishlist:', error);
+        console.error('Error adding to wishlist:', error?.response?.data?.message);
         toast.error(error?.response?.data?.message)
       }
 
@@ -118,105 +111,19 @@ const ProductDetails = ({
 
 
 
-  const products2 = [
-    {
-      id: 1,
-      discount: '4%',
-      title: "Call of Duty: Modern Warfare III",
-      subtitle: "(PC) - Steam Account",
-      price: "$34.35",
-      oldPrice: "$39.99",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/call-of-duty-modern-warfare-iii-pc-steam-account-global/2f43247ed73c4f05ae9139bc", // Replace with the actual image
-    },
-    {
-      id: 2,
-
-      discount: '8%',
-      title: "Random Black Friday 1 Key",
-      subtitle: "(PC) - Steam Key - GLOBAL",
-      price: "$5.87",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/random-black-friday-1-key-pc-steam-key-global/999a67334db34f62879f2b78",
-    },
-    {
-      id: 3,
-
-      discount: '9%',
-      title: "Battlefield 2042",
-      subtitle: "(Xbox Series X/S) - Xbox Live Key",
-      price: "$12.06",
-      tag: "OFFER FROM 6 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/battlefield-2042-xbox-series-x-s-xbox-live-key-global/3e8c0e6bb7f543dca6744e91",
-    },
-    {
-      id: 4,
-
-      discount: '2%',
-      title: "Max Payne (PC)",
-      subtitle: "Steam Key - GLOBAL",
-      price: "$4.77",
-      tag: "OFFER FROM 23 SELLERS",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/max-payne-pc-steam-key-global/5910dfe6ae653a5436160135",
-    },
-    {
-      id: 5,
-
-      discount: '8%',
-      title: "Grand Theft Auto V (PC)",
-      subtitle: "Rockstar Key - GLOBAL",
-      price: "$12.22",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/grand-theft-auto-v-rockstar-key-global/59e5efeb5bafe304c4426c47",
-    },
-    {
-      id: 6,
-
-      discount: '5%',
-      title: "Darktide",
-      subtitle: "(PC)",
-      price: "$11.41",
-      tag: "SPONSORED",
-      image:
-        "https://images.g2a.com/170x228/1x1x0/warhammer-40000-darktide-pc-steam-key-global/59ba02c95c434f6da1267962",
-    },
-  ];
-
-
-
-
-  const reviews = [
-    {
-      id: 1,
-      name: "ZeZoo",
-      rating: 5,
-      date: "Jan 2, 2025",
-      platform: "Steam",
-      recommendation: true,
-      helpfulVotes: { yes: 2, no: 0 },
-      verified: true,
-    },
-
-  ];
-
-
 
   return (
     <>
       <Navbar />
       <BottomHeader />
+      <ToastContainer/>
       <SideDrawer  setIsOpen={setOpenSide} isOpen={openSide} />
       <section className=' py-14'>
         <div className="max-w-[1170px] mx-auto bg-white  border-gray-300  p-4">
           {/* Product Title */}
           <div className=' flex sm:flex-row gap-5 flex-col  justify-between '>
             <h1 className="text-3xl font-bold text-gray-800">
-              M{products?.title}
+              {products?.title}
             </h1>
             <div onClick={handleWhitelist} className=' bg-gray-200 w-12 h-12 cursor-pointer rounded-full flex justify-center items-center'>
               <svg width="1.5em" height="1.5em" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="indexes__StyledWishlistHeart-vomwzh-2 fUnRFQ"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.0521 3.05014C4.78562 0.316619 9.21779 0.316619 11.9513 3.05014C11.968 3.06688 11.9847 3.08369 12.0012 3.10055C12.0177 3.08369 12.0344 3.06689 12.0511 3.05014C14.7846 0.316619 19.2168 0.316619 21.9503 3.05014C24.6838 5.78367 24.6838 10.2158 21.9503 12.9494L12.7073 22.1924C12.5198 22.3799 12.2654 22.4853 12.0001 22.4853C11.7349 22.4852 11.4805 22.3799 11.293 22.1923L2.0521 12.9494C2.05207 12.9493 2.05205 12.9493 2.05202 12.9493C-0.681428 10.2158 -0.681402 5.78364 2.0521 3.05014ZM10.5371 4.46436C8.58462 2.51188 5.41879 2.51188 3.46631 4.46436C1.51383 6.41683 1.51383 9.58267 3.46631 11.5351L3.46639 11.5352L12.0003 20.071L20.5361 11.5351C22.4886 9.58267 22.4886 6.41683 20.5361 4.46436C18.5836 2.51188 15.4178 2.51188 13.4653 4.46436C13.2255 4.70415 13.0163 4.96306 12.8344 5.23719C12.6491 5.5164 12.3363 5.68425 12.0012 5.68425C11.6661 5.68425 11.3533 5.5164 11.168 5.23719C10.9861 4.96316 10.776 4.70323 10.5371 4.46436Z" fill="currentColor"></path></svg>
@@ -365,7 +272,9 @@ const ProductDetails = ({
                     description: products?.description,
                     title: products?.title,
                     quantity: 1,
-                    price: products?.discountPrice
+                    price: products?.discountPrice,
+                    gst:products?.gst,
+                    actualPrice:products?.actualPrice
                   })
                 )
 
@@ -475,12 +384,14 @@ const ProductDetails = ({
               <div className=' flex flex-col justify-between items-center h-full'>
                 <div className=' flex justify-between gap-2'>
                   <ul className=' m-0 flex gap-1'>
+                    
                     <li><FaStar className=' text-yellow-500' size={18} /></li>
                     <li><FaStar className=' text-yellow-500' size={18} /></li>
                     <li><FaStar className=' text-yellow-500' size={18} /></li>
                     <li><FaStar className=' text-yellow-500' size={18} /></li>
                     <li><FaStar className=' text-yellow-500' size={18} /></li>
                   </ul>
+                  
                   <p className="text-sm text-gray-500 flex  gap-2">{review?.platform}  <img src='https://static.g2a.com/_/pc-drmGaming/steam.svg' className=' w-4 h-4' alt='' /> </p>
 
                 </div>

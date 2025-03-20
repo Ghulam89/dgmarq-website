@@ -101,7 +101,7 @@ const SideDrawer = ({ isOpen, setIsOpen }) => {
                             image={item?.image}
                             title={item?.title}
                             discount={item?.gst}
-                            price={item?.discountPrice}
+                            price={item?.price}
                             originalPrice={item?.actualPrice}
                         />
                        </div>
@@ -115,7 +115,7 @@ const SideDrawer = ({ isOpen, setIsOpen }) => {
                                boxShadow: isHovered ? hoverBoxShadow : defaultBoxShadow,
                              }}
                                onMouseEnter={() => setIsHovered(true)}
-                               onMouseLeave={() => setIsHovered(false)} className="border group rounded-sm mb-2 bg-white  overflow-hidden hover:transform  sm:h-48 h-auto hover:translate-y-[-2px]  flex  sm:flex-row flex-col   hover:border-[#e0e0e0] transition-shadow">
+                               onMouseLeave={() => setIsHovered(false)} className="border group rounded-sm mb-2 bg-white  overflow-hidden hover:transform  sm:h-48 h-auto hover:translate-y-[-2px]  flex  flex-row    hover:border-[#e0e0e0] transition-shadow">
                        
                               <div className=" sm:w-4/12 w-12/12 relative">
                               <img src={item?.images[0]} alt={item?.title} className="w-full h-full  object-center" />
@@ -132,9 +132,9 @@ const SideDrawer = ({ isOpen, setIsOpen }) => {
     .join(" ")}
   {item?.title.split(" ").length > 10 ? "..." : ""}
 </H6>
-                               <div className=" flex justify-between w-full pb-2 items-center">
+                               <div className=" flex justify-between w-full pt-4 items-center">
                               <div>
-                              <div className="flex flex-col  justify-between items-center gap-1 mt-2">
+                              <div className="flex flex-col  justify-between items-center gap-1">
                                    <p className="text-xl font-bold text-black">{item?.discountPrice}</p>
                                    {item?.originalPrice ?
                                      <p className="text-sm text-gray-500 line-through">{`$ ${item?.originalPrice}`}</p> : null
@@ -142,7 +142,7 @@ const SideDrawer = ({ isOpen, setIsOpen }) => {
                        
                                  </div>
                                  {item?.gst?
-                                    <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{item?.gst}</button>:null
+                                    <button className=" w-10 text-[12px] rounded-md  text-red-500 bg-[#FAE9E7] border border-red-500">{item?.gst}%</button>:null
                                     }
                               </div>
 
