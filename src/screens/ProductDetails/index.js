@@ -341,9 +341,8 @@ const ProductDetails = ({
               </div>
               <div className=' flex flex-col gap-2'>
               {[5, 4, 3, 2, 1].map((star, index) => {
-  // Ensure ratingCounts and totalRatings are defined
   const ratingCount = overall?.ratingCounts?.[star] || 0;
-  const totalRatings = overall?.totalRatings || 1; // Avoid division by zero
+  const totalRatings = overall?.totalRatings || 1;
 
   return (
     <div key={index} className="flex items-center gap-2 mb-2">

@@ -126,7 +126,7 @@ const ProfilePopup = () => {
               <span className="text-white text-[11px]  sm:block hidden whitespace-nowrap font-medium">Your Dgmarq</span>
             </div>
             {openProfile && (
-              <div className="absolute sm:right-0 -right-24 mt-2 top-12  sm:w-80 w-72 bg-white shadow-lg rounded-md p-5 z-50">
+              <div className="absolute  sm:right-0 -left-36 mt-2 top-12  sm:w-80 w-72 bg-white shadow-lg rounded-md p-5 z-50">
                 <div className="flex justify-start gap-6 items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden">
                     <img
@@ -203,7 +203,7 @@ const ProfilePopup = () => {
             </svg>
           </div>
           {isOpen && (
-            <div className="absolute right-0 mt-2 top-12 w-80 bg-white shadow-lg rounded-md p-5 z-50">
+              <div className="absolute  sm:right-0 -left-32 mt-2 top-12  sm:w-80 w-72 bg-white shadow-lg rounded-md p-5 z-50">
               <h2 className="text-lg font-bold text-gray-800 mb-3">Welcome!</h2>
               <div className="space-y-3">
                 <button onClick={handleClick} className="w-full flex items-center text-sm pr-7 font-semibold justify-between gap-2 p-3 border-blue border rounded-sm text-blue hover:text-white hover:bg-secondary">

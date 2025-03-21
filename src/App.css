@@ -1,3 +1,4 @@
+
 .space-y-6 > :not([hidden]) ~ :not([hidden]){
     margin-top: 0% !important;
 }
@@ -7,6 +8,11 @@
 
 }
 
-.overflow-x-auto::-webkit-scrollbar{
+.scrollbar-hide::-webkit-scrollbar {
     display: none !important;
-}
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none !important; /* IE and Edge */
+    scrollbar-width: none !important; /* Firefox */
+  }

@@ -100,7 +100,7 @@ const Wishlist = () => {
             <ToastContainer/>
             <SideDrawer  setIsOpen={setOpenSide} isOpen={openSide} />
             <div className="bg-gray-100 py-8 px-4 lg:px-16">
-                <div className=' w-9/12 mx-auto'>
+                <div className=' sm:w-9/12 w-full mx-auto'>
                     {/* Wishlist Header */}
                     <div className="mb-6">
                         <p className="text-sm text-gray-500 mt-1">G2A › Wishlist</p>
@@ -110,7 +110,7 @@ const Wishlist = () => {
                     {wishList?.map((item, index) => {
                         return (
 
-                            < div className="bg-white border-b h-56 gap-12 rounded-lg shadow-sm flex items-center justify-between p-4" >
+                            < div className="bg-white border-b h-56 gap-12 rounded-lg shadow-sm flex flex-row items-center justify-between p-4" >
                                 {/* Item Details */}
                                 < Link to={`/product-details/${item?._id}`} className="flex h-full w-2/12 items-center space-x-4" >
                                     {/* Thumbnail */}
@@ -124,7 +124,7 @@ const Wishlist = () => {
                                 </Link>
 
                                 {/* Item Actions */}
-                                <div className=" items-center flex flex-col justify-between  h-full w-10/12">
+                                <div className=" items-center flex flex-col justify-between  h-full sm:w-10/12 w-full">
                                     <div className=' flex w-full justify-between'>
                                         <h2 className="text-lg font-bold text-black">
                                             {item?.title}

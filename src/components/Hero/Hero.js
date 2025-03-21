@@ -7,25 +7,7 @@ import Button from "../Button";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const data = [
-    {
-      id: 1,
-      image: require("../../assets/images/home-card1.avif"),
-    },
-    {
-      id: 2,
-      image: require("../../assets/images/home-card2.avif"),
-    },
-    {
-      id: 3,
-      image: require("../../assets/images/home-card3.avif"),
-    },
-    {
-      id: 4,
-      image: require("../../assets/images/home-card4.avif"),
-    },
-  ];
-
+ 
 
   const [slider, setSlider] = useState([]);
   useEffect(() => {
@@ -122,7 +104,7 @@ const Hero = () => {
   return (
     <>
       <div className="  flex justify-center  items-center bg-home bg-cover bg-center w-full py-8">
-      <div className="flex flex-nowrap gap-5 px-3 max-w-[1170px] mx-auto overflow-x-auto w-full">
+      <div className="flex gap-5 px-3 max-w-[1170px] mx-auto w-full overflow-x-auto scrollbar-hide">
         
   {[products, allProductSecond, productKey, upcoming].map((product, index) => (
     <Link

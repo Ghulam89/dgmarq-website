@@ -5,55 +5,32 @@ import logo from "../../assets/images/logo.jpeg";
 import { useDispatch, useSelector } from "react-redux";
 import { Base_url } from "../../utils/Base_url";
 import axios from "axios";
-import { removeUser } from "../../store/productSlice";
-import { toast } from "react-toastify";
 import { IoSearch } from "react-icons/io5";
 import { IoMdArrowDropright, IoMdClose } from "react-icons/io";
 import ProfilePopup from "./ProfilePopup";
 import { FaAngleDown } from "react-icons/fa";
 import SearchResults from "./SearchResults";
+
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const productData = useSelector((state) => state?.next?.productData);
   const { userInfo } = useSelector((state) => state.next);
-  console.log(userInfo);
-
   const [wishList, setWishList] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+  const [allCategory, setAllCategory] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("All categories");
+  const [Category, setCategory] = useState("All categories");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
+  const [openSubMenu, setOpenSubMenu] = useState(null);
 
-  const links = [
-    {
-      id: 1,
-      name: "Home",
-      url: "/",
-    },
-    {
-      id: 2,
-      name: "Shop",
-      url: "/shop",
-    },
-    {
-      id: 3,
-      name: "Blog",
-      url: "/",
-    },
-    {
-      id: 4,
-      name: "About Us",
-      url: "/",
-    },
-    {
-      id: 4,
-      name: "Contact Us",
-      url: "/",
-    },
-  ];
+  const dropdownRef = useRef(null);
 
   const iconLinks = [
-    // {
-    //   href: "/register",
-    //   icon: <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" font-size="24"><path d="M20.417 23H3v-2.58c0-1.4.79-2.68 2.047-3.292 1.468-.715 3.707-1.461 6.661-1.461 2.955 0 5.194.746 6.662 1.46a3.655 3.655 0 012.047 3.293V23zM16.75 6.042c0 2.784-2.257 5.958-5.042 5.958-2.784 0-5.041-3.174-5.041-5.958a5.041 5.041 0 1110.083 0z" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>,
-    //   text: "Account",
-    // },
     {
       href: "/wishlist",
       icon: (
@@ -130,42 +107,6 @@ const Navbar = () => {
     },
   ];
 
-  const dispatch = useDispatch();
-
-  const [openProfile, setOpenProfile] = useState(false);
-
-  const openProfileFun = () => {
-    setOpenProfile(!openProfile);
-  };
-
-  const removeFun = () => {
-    dispatch(removeUser());
-    toast.success("user sign out  successfuly!");
-  };
-
-  const categories = [
-    "All categories",
-    "Gaming",
-    "Software",
-    "Gift cards",
-    "Subscriptions",
-    "E-Learning",
-    "Charity",
-    "Mobile Games",
-    "For Adults",
-  ];
-
-  const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-  const [Category, setCategory] = useState("All categories");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const handleCategorySelect = (category) => {
-    setCategory(category);
-    setDropdownOpen(false);
-  };
-  const toggleDesktopMenu = () => {
-    setDesktopMenuOpen((prev) => !prev);
-  };
   const Items = [
     {
       id: 1,
@@ -188,69 +129,35 @@ const Navbar = () => {
       Url: "/software-dealer",
     },
   ];
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const [subCategory, setSubCategory] = useState([]);
-
-  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     axios
       .get(`${Base_url}/wishlist/get/${userInfo?._id}`)
       .then((res) => {
-        console.log(res);
-
-        setWishList(res?.data);
+        setWishList(res?.data || []);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
 
-  useEffect(() => {
     axios
       .get(`${Base_url}/category/getAll`)
       .then((res) => {
-        console.log(res);
-
-        setSubCategory(res.data.data);
+        setSubCategory(res.data.data || []);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
 
-  const closeSubMenu = () => {
-    setDesktopMenuOpen(false);
-    setSelectedCategory(null);
-  };
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const [hoveredSubMenu, setHoveredSubMenu] = useState(null);
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([
-    "gta",
-    "steam",
-    "minecraft",
-    "fortnite",
-    "rust",
-    "xbox",
-  ]);
+    axios
+      .get(`${Base_url}/brands/getAll`)
+      .then((res) => {
+        setAllCategory(res.data.data || []);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [userInfo?._id]);
 
   const handleInputChange = (e) => {
     const query = e.target.value;
@@ -259,8 +166,6 @@ const Navbar = () => {
       axios
         .get(`${Base_url}/products/search?title=${query}`)
         .then((res) => {
-          console.log(res);
-
           setSearchResults(res.data.data || []);
           setIsDropdownOpen(true);
         })
@@ -273,49 +178,23 @@ const Navbar = () => {
     }
   };
 
-  const filteredSuggestions = suggestions.filter((suggestion) =>
-    suggestion.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const handleOutsideClick = (e) => {
-    if (!e.target.closest(".search-dropdown")) {
-      setIsDropdownOpen(false);
-    }
+  const closeSubMenu = () => {
+    setDesktopMenuOpen(false);
+    setSelectedCategory(null);
+    setOpenSubMenu(null); // Reset the open submenu state
   };
 
-  useEffect(() => {
-    document.addEventListener("click", handleOutsideClick);
-    return () => {
-      document.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
-
-  const [allCategory, setAllCategory] = useState([]);
-
-  console.log(allCategory);
-
-  useEffect(() => {
-    axios
-      .get(`${Base_url}/brands/getAll`)
-      .then((res) => {
-        console.log(res);
-
-        setAllCategory(res.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const toggleDesktopMenu = () => {
+    setDesktopMenuOpen((prev) => !prev);
+  };
 
   return (
     <>
-      <div className="bg-primary ">
-        <header className="mx-auto flex gap-8  max-w-[1170px]   h-20 items-center justify-between px-3">
-          <Link to="/" className="">
-
-          
+      <div className="bg-primary">
+        <header className="mx-auto flex gap-8 max-w-[1170px] h-20 items-center justify-between px-3">
+          <Link to="/">
             <img
-              className="cursor-pointer h-20  object-contain sm:w-auto w-28"
+              className="cursor-pointer h-20 object-contain sm:w-auto w-28"
               src={logo}
               alt="company logo"
             />
@@ -327,11 +206,8 @@ const Navbar = () => {
               className="hidden w-8/12 p-3 rounded-tl-md rounded-bl-md text-sm outline-none md:block relative z-50"
               type="search"
               placeholder="What are you looking for?"
-              onFocus={() =>
-                searchResults.length > 0 && setIsDropdownOpen(true)
-              }
+              onFocus={() => searchResults.length > 0 && setIsDropdownOpen(true)}
             />
-
             <div
               ref={dropdownRef}
               className="relative bg-white w-3/12 z-50 h-full cursor-pointer flex items-center justify-between px-3 border border-gray-200"
@@ -343,7 +219,6 @@ const Navbar = () => {
                 <span className="text-sm text-gray-500">{Category}</span>
                 <FaAngleDown className="ml-2 text-gray-400" />
               </div>
-
               {dropdownOpen && (
                 <div className="absolute left-0 top-full w-60 bg-white shadow-lg border rounded-sm z-[60]">
                   {allCategory?.map((category) => (
@@ -362,48 +237,35 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
             <button
               className="ml-auto text-white h-full z-50 rounded-tr-md rounded-br-md px-5 bg-blue flex items-center justify-center"
               type="submit"
             >
               <IoSearch size={20} />
             </button>
-
             {isDropdownOpen && (
               <>
-                <div className="fixed inset-0  bg-black bg-opacity-30 z-45" />
+                <div className="fixed inset-0 bg-black bg-opacity-30 z-45" />
                 <ul className="absolute left-0 z-[70] top-10 right-0 bg-white rounded-sm shadow-lg search-dropdown">
                   <SearchResults results={searchResults} />
                 </ul>
               </>
             )}
           </form>
-
-          <div className=" flex items-center gap-4">
-            {/* <div className="  hidden sm:block bg-slate-800 rounded-full px-2 py-1.5">
-         <span className=" text-white text-sm">EN / USD</span>
-         </div> */}
-            <div className=" gap-3 flex  items-center justify-center">
-              {/* <div className=" pt-3.5">
-              <TranslateComponent/>
-            </div> */}
-              <div className="">
-                <ProfilePopup />
-              </div>
-
-              {iconLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  to={link.href}
-                  className="flex text-white  relative bg-slate-800 rounded-full sm:w-12 w-10 sm:h-12 h-10 cursor-pointer flex-col items-center justify-center"
-                >
-                  {link.icon}
-
-                  <div className=" absolute top-0 -right-2">{link?.Show}</div>
-                </Link>
-              ))}
+          <div className="flex items-center gap-4">
+            <div className="">
+              <ProfilePopup />
             </div>
+            {iconLinks.map((link, index) => (
+              <Link
+                key={index}
+                to={link.href}
+                className="flex text-white relative bg-slate-800 rounded-full sm:w-12 w-10 sm:h-12 h-10 cursor-pointer flex-col items-center justify-center"
+              >
+                {link.icon}
+                <div className="absolute top-0 -right-2">{link?.Show}</div>
+              </Link>
+            ))}
             <div className="md:hidden">
               <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
                 <RxHamburgerMenu className="w-7 text-white h-7" />
@@ -413,158 +275,113 @@ const Navbar = () => {
         </header>
       </div>
       {mobileMenuOpen && (
-        <section
-          className={`block md:hidden absolute left-0 right-0 z-50 h-screen w-full bg-primary ${
-            mobileMenuOpen ? "none" : "block"
-          }`}
-        >
+        <section className="block md:hidden absolute left-0 right-0 z-50 h-screen w-full bg-primary">
           <div className="mx-auto">
-            {/* <div className="mx-auto flex w-full justify-center gap-3 py-4">
-              {iconLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="flex cursor-pointer flex-col items-center justify-center"
-                >
-                  {link.icon}
-                  <p className="text-xs">{link.text}</p>
-                </a>
-              ))}
-            </div> */}
-            {/* <form className="my-4 mx-5 flex h-12 items-center border">
-              <CiSearch className="mx-3 h-4 w-4" />
-
-              <input
-                className="hidden w-11/12 text-white placeholder:text-white outline-none md:block"
-                type="search"
-                placeholder="Search"
-              />
-              <button
-                type="submit"
-                className="ml-auto text-white h-full bg-[#272727] px-4 hover:bg-[#272727]"
-              >
-                Search
-              </button>
-            </form> */}
-            {/* <ul className="text-center font-medium">
-              {links.map((link, index) => (
-                <li key={index} className="py-2 text-white">
-                  <Link className=" text-white" to={link.url}>{link.name}</Link>
-                </li>
-              ))}
-            </ul> */}
-
-            {/* Nav Links */}
-            <div className="flex flex-col justify-between  px-4 items-center gap-2">
+            <div className="flex flex-col justify-between px-4 items-center gap-2">
               <button
                 onClick={toggleDesktopMenu}
                 className="flex text-white text-sm gap-4 font-semibold items-center w-full uppercase px-7 py-2.5 bg-[#212121] rounded-sm"
               >
-                <RxHamburgerMenu className=" w-5 h-5" />
+                <RxHamburgerMenu className="w-5 h-5" />
                 Categories
               </button>
               {Items?.map((item, index) => (
                 <Link
                   key={index}
-                  className="text-white bg-[#212121] py-2  px-3 text-sm rounded-sm w-full text-left hover:border-b  hover:text-[#EAE5D5]"
+                  className="text-white bg-[#212121] py-2 px-3 text-sm rounded-sm w-full text-left hover:border-b hover:text-[#EAE5D5]"
                   to={`${item?.Url}`}
                 >
                   {item?.name}
                 </Link>
               ))}
               <Link
-                className="text-white  bg-[#6202EA] py-2 text-sm rounded-sm w-full text-left px-3 hover:border-b  hover:text-[#EAE5D5]"
+                className="text-white bg-[#6202EA] py-2 text-sm rounded-sm w-full text-left px-3 hover:border-b hover:text-[#EAE5D5]"
                 to={"#"}
               >
                 Save more with G2A Plus
               </Link>
             </div>
           </div>
-
-          {/* Desktop Menu */}
           {desktopMenuOpen && (
-            <section className=" fixed h-full  top-0 z-50 left-0 right-0 bg-white border">
+            <section className="fixed h-full top-0 w-80 z-50 left-0 right-0 bg-white border">
               <div className="container mx-auto flex py-5">
-                {/* Categories List */}
-                <div className="w-1/4 border-r">
-                  <ul className=" flex justify-between flex-col w-full">
+                <div className="sm:w-1/4 w-full border-r">
+                  <ul className="flex justify-between mt-6 flex-col w-full">
                     {subCategory?.map((category, index) => (
-                      <li
+                      <Link
+                      onClick={()=>{setDesktopMenuOpen(false)
+                        window.location.reload();
+                      }}
+                      to={`/category/${category?._id}`}
                         key={index}
                         className={`flex items-center gap-2 px-4 py-2 cursor-pointer ${
-                          Category === category.subcategories
+                          Category === category?.midcategories
                             ? "bg-gray-200"
                             : "hover:bg-gray-100"
                         }`}
-                        onMouseEnter={() => setCategory(category.subcategories)}
-                        onMouseLeave={() => setHoveredSubMenu(null)}
+                        onMouseEnter={() => setCategory(category?.midcategories)}
+                        // onMouseLeave={() => setHoveredSubMenu(null)}
                       >
                         {category.title}
                         <IoMdArrowDropright className="ml-auto" />
-                      </li>
+                      </Link>
                     ))}
                   </ul>
                 </div>
-
-                {/* Subcategories */}
                 {Category && (
-                  <div className="w-3/4 flex">
+                  <div className="sm:w-3/4 flex">
                     {subCategory
-                      .find((cat) => cat.subcategories === Category)
+                      .find((cat) => cat.midcategories === Category)
                       ?.subcategories.map((submenu, index) => (
                         <div key={index} className="px-4">
                           <Link
-                            to={`category/${submenu?._id}`}
+                            to={`/category/${submenu?._id}`}
                             className="font-semibold text-gray-700"
                           >
                             {submenu.title}
                           </Link>
-                          {/* <ul className="mt-2 space-y-1">
-                                  {submenu.items.map((item, itemIndex) => (
-                                    <li
-                                      key={itemIndex}
-                                      className="relative group"
-                                      onMouseEnter={() => setHoveredSubMenu(item.label)}
-                                      onMouseLeave={() => setHoveredSubMenu(null)}
-                                    >
-                                      <a
-                                        href={item.href}
-                                        className="block px-2 py-1 hover:bg-gray-100"
-                                      >
-                                        {item.label}
-                                      </a>
-          
-                                      Sub-subcategories
-                                      {hoveredSubMenu === item.label &&
-                                        item.subItems && (
-                                          <ul className="absolute w-full left-full top-0 bg-white border shadow-md">
-                                            {item.subItems.map((subItem, subIndex) => (
-                                              <li key={subIndex}>
-                                                <a
-                                                  href={subItem.href}
-                                                  className="block px-3 py-1 hover:bg-gray-100"
-                                                >
-                                                  {subItem.label}
-                                                </a>
-                                              </li>
-                                            ))}
-                                          </ul>
-                                        )}
-                                    </li>
-                                  ))}
-                                </ul> */}
+                          <ul className="mt-2 space-y-1">
+                            {submenu.items?.map((item, itemIndex) => (
+                              <li
+                                key={itemIndex}
+                                className="relative group"
+                              >
+                                <div
+                                  onClick={() => setOpenSubMenu(openSubMenu === item.label ? null : item.label)}
+                                  className="block px-2 py-1 hover:bg-gray-100 cursor-pointer"
+                                >
+                                  {item.label}
+                                </div>
+                                {openSubMenu === item.label && item.subItems && (
+                                  <ul className="absolute w-full left-full top-0 bg-white border shadow-md">
+                                    {item.subItems.map((subItem, subIndex) => (
+                                      <li key={subIndex}>
+                                        <a
+                                          href={subItem.href}
+                                          className="block px-3 py-1 hover:bg-gray-100"
+                                        >
+                                          {subItem.label}
+                                        </a>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       ))}
                   </div>
                 )}
-
-                {/* Close Button */}
+                <div>
                 <button
                   onClick={closeSubMenu}
                   className="absolute top-3 right-3 text-gray-700"
                 >
                   <IoMdClose className="w-6 h-6" />
                 </button>
+                </div>
+               
               </div>
             </section>
           )}
