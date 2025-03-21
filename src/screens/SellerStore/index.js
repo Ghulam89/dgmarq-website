@@ -10,6 +10,9 @@ import BottomHeader from "../../components/Header/BottomHeader";
 const SellerStore = () => {
   const { id } = useParams();
   const [getSeller, setGetSeller] = useState({});
+
+  console.log(getSeller);
+  
   const fetchSellers = () => {
     axios.get(`${Base_url}/seller/get/${id}`)
       .then((res) => {
@@ -98,7 +101,7 @@ const SellerStore = () => {
           </div>
         </div>
 
-        <Outlet />
+        {/* <Outlet /> */}
 
       </div>
       <Gather />

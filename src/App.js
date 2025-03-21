@@ -84,10 +84,10 @@ if (myObject) {
       <Route path="/forgot-password" element={<ForgetPassword/>} />
       <Route path="/new-password" element={<NewPassword/>} />
       <Route path="/news" element={<News/>} />
-      <Route path="/seller-store" element={<SellerStore/>} >
+      {/* <Route path="/seller-store" element={<SellerStore/>} > */}
          <Route path="store-products/:id" element={<StoreProduct/>} /> 
          <Route path="about" element={<AboutSellerStore/>} /> 
-      </Route>
+      {/* </Route> */}
       <Route path="/new-details/:id" element={<NewDetails/>} />
       <Route path="/gather-details/:id" element={<GatherDetails/>} />
       <Route path="/cart" element={<Cart/>} />

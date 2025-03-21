@@ -14,11 +14,14 @@ const AboutSellerStore = () => {
 
   const { id } = useParams();
   const [getSeller, setGetSeller] = useState({});
+  const [details,setDetails] = useState({});
   const fetchSellers = () => {
     axios.get(`${Base_url}/seller/get/${id}`)
       .then((res) => {
         console.log(res);
         setGetSeller(res?.data?.data);
+
+        setDetails(JSON.parse(res?.data?.data?.bankDetails))
 
       })
       .catch((error) => {
@@ -118,24 +121,25 @@ const AboutSellerStore = () => {
               <span>{getSeller?.companyName}</span>
             </li>
             <li className=' flex justify-between items-center '>
-              <p className=' text-gray-400 m-0'>CRN:</p>
-              <span>22656</span>
+              <p className=' text-gray-400 m-0'>Email:</p>
+              <span>{getSeller?.email}</span>
             </li>
             <li className=' flex justify-between items-center '>
-              <p className=' text-gray-400 m-0'>Street:</p>
-              <span>22656</span>
+              <p className=' text-gray-400 m-0'>Phone:</p>
+              <span>{getSeller?.registrationNumber}</span>
             </li>
             <li className=' flex justify-between items-center '>
               <p className=' text-gray-400 m-0'>City:</p>
-              <span>Escas</span>
-            </li>
-            <li className=' flex justify-between items-center '>
-              <p className=' text-gray-400 m-0'>Postal code:</p>
-              <span>AD400</span>
+              <span>{details?.city}</span>
             </li>
             <li className=' flex justify-between items-center '>
               <p className=' text-gray-400 m-0'>Country:</p>
-              <span>AD400</span>
+              <span>{details?.nationality}</span>
+            </li>
+           
+            <li className=' flex justify-between items-center '>
+              <p className=' text-gray-400 m-0'>Address:</p>
+              <span>{details?.address}</span>
             </li>
          </ul>
 

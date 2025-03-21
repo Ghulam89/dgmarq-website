@@ -24,6 +24,7 @@ const ProductDetails = ({
   const { id } = useParams();
   const [products, setProducts] = useState({});
   const [rating, setRatings] = useState([]);
+  const [overall,setOverall] = useState({});
   const { userInfo } = useSelector((state) => state.next);
   console.log(userInfo);
   const images = products?.images || [];
@@ -71,6 +72,15 @@ const ProductDetails = ({
         setRatings(res?.data?.data);
       })
       .catch((error) => { });
+
+      axios
+      .get(`${Base_url}/rating/getOverall/${id}`)
+      .then((res) => {
+        console.log(res);
+        setOverall(res?.data?.data);
+      })
+      .catch((error) => { });
+
 
 
   }, [])
@@ -131,20 +141,18 @@ const ProductDetails = ({
           </div>
           {/* Rating */}
           <div className="flex mb-8 items-center mt-2 text-yellow-500">
-            <span className="text-sm font-medium mr-1">4.75</span>
+            {/* <span className="text-sm font-medium mr-1">4.75</span> */}
             <div className="flex space-x-1">
-              {[...Array(4)].map((_, index) => (
-                <svg
-                  key={index}
-                  className="w-5 h-5 fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 .587l3.668 7.431L24 9.587l-6 5.847 1.416 8.253L12 18.73l-7.416 4.957L6 15.434 0 9.587l8.332-1.569z" />
-                </svg>
-              ))}
+            {[...Array(5)].map((_, index) => (
+            <div key={index}>
+              <FaStar
+                className={index < overall?.overallRating ? 'text-yellow-500' : 'text-gray-300'}
+                size={20}
+              />
             </div>
-            <span className="text-sm ml-2 text-gray-600">(4 reviews)</span>
+          ))}
+            </div>
+            <span className="text-sm ml-2 text-gray-600">({overall?.overallRating} reviews)</span>
           </div>
 
           <div className=' flex md:flex-row flex-col gap-5 justify-between '>
@@ -247,7 +255,7 @@ const ProductDetails = ({
             {/* Price and Buttons */}
             <div className="mt-6 flex md:w-5/12 w-11/12 h-64  relative border p-4 flex-col space-y-2">
               <div className=' flex gap-2'>
-                <Link to={`/seller-store/store-products/${products?.sellerId?._id}`} className=' relative'>
+                <Link to={`/store-products/${products?.sellerId?._id}`} className=' relative'>
                   <img src={products?.sellerId?.logo} className=' w-16 h-16 object-cover  border border-secondary p-0.5 object-center rounded-full' alt='' />
                   <div className=' absolute -top-3 left-0 text-secondary'>
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.39 5.544l-.91-1.776-.878 1.792L9.9 9.032l-4.048.608-2.06.309 1.53 1.414 2.923 2.703-.765 3.733-.417 2.034 1.85-.942 3.587-1.826 3.587 1.826 1.85.942-.417-2.034-.765-3.733 2.924-2.703 1.524-1.409-2.052-.314-3.974-.608-1.787-3.488z" fill="currentColor" stroke="#FAFAFA"></path></svg>
@@ -309,7 +317,7 @@ const ProductDetails = ({
             <div className=''>
               <h2 className=' font-semibold text-black'>Overall item rating</h2>
               <div className=' flex  items-center py-2 gap-3'>
-                <div className="text-5xl font-bold text-black">5</div>
+                <div className="text-5xl font-bold text-black">{overall?.overallRating}</div>
                 <div>
                   <div className=' flex gap-1 items-center'>
                     <FaStar className=' text-yellow-500' size={20} />
@@ -318,14 +326,12 @@ const ProductDetails = ({
                     <FaStar className=' text-yellow-500' size={20} />
                     <FaStar className=' text-yellow-500' size={20} />
                   </div>
-                  <div className="text-black text-sm   font-medium  pt-1">9 reviews</div>
+                  <div className="text-black text-sm   font-medium  pt-1">{overall?.totalRatings} reviews</div>
                 </div>
               </div>
               <div>
 
-                <div className="text-gray-600 text-sm">
-                  9 out of 9  <span className=' text-green-500'>(100%)</span> reviewers recommend this item
-                </div>
+              
               </div>
             </div>
             <div className=' sm:w-5/12 w-12/12'>
@@ -334,18 +340,26 @@ const ProductDetails = ({
                 <p className=' text-sm text-gray-500'>Select a row to filter reviews</p>
               </div>
               <div className=' flex flex-col gap-2'>
-                {[5, 4, 3, 2, 1].map((star, index) => (
-                  <div key={index} className="flex items-center gap-2">
-                    <span className="text-black font-bold items-center flex  gap-2">{star} <FaStar className=' text-yellow-500' /> </span>
-                    <div className="w-full bg-gray-300  rounded h-3">
-                      <div
-                        className="bg-black h-3 w-full rounded"
-                        style={{ width: star === 5 ? "100%" : "0%" }}
-                      ></div>
-                    </div>
-                    <span className="text-gray-600 text-sm">{star === 5 ? "9" : "0"}</span>
-                  </div>
-                ))}
+              {[5, 4, 3, 2, 1].map((star, index) => {
+  // Ensure ratingCounts and totalRatings are defined
+  const ratingCount = overall?.ratingCounts?.[star] || 0;
+  const totalRatings = overall?.totalRatings || 1; // Avoid division by zero
+
+  return (
+    <div key={index} className="flex items-center gap-2 mb-2">
+      <span className="text-black font-bold items-center flex gap-2">
+        {star} <FaStar className="text-yellow-500" />
+      </span>
+      <div className="w-full bg-gray-300 rounded h-3">
+        <div
+          className="bg-black h-3 rounded"
+          style={{ width: `${(ratingCount / totalRatings) * 100}%` }}
+        ></div>
+      </div>
+      <span className="text-gray-600 text-sm">{ratingCount}</span>
+    </div>
+  );
+})}
               </div>
             </div>
 
@@ -385,11 +399,14 @@ const ProductDetails = ({
                 <div className=' flex justify-between gap-2'>
                   <ul className=' m-0 flex gap-1'>
                     
-                    <li><FaStar className=' text-yellow-500' size={18} /></li>
-                    <li><FaStar className=' text-yellow-500' size={18} /></li>
-                    <li><FaStar className=' text-yellow-500' size={18} /></li>
-                    <li><FaStar className=' text-yellow-500' size={18} /></li>
-                    <li><FaStar className=' text-yellow-500' size={18} /></li>
+                  {[...Array(5)].map((_, index) => (
+            <li key={index}>
+              <FaStar
+                className={index < review.rating ? 'text-yellow-500' : 'text-gray-300'}
+                size={18}
+              />
+            </li>
+          ))}
                   </ul>
                   
                   <p className="text-sm text-gray-500 flex  gap-2">{review?.platform}  <img src='https://static.g2a.com/_/pc-drmGaming/steam.svg' className=' w-4 h-4' alt='' /> </p>
