@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Sidebar = ({ side, closeSidebar }) => {
   return (
     <div
-      className={` shadow-xl fixed top-20 ${side} sm:left-64 w-20 overflow-x-auto h-screen bg-[#000] z-10 transition-all`}
+      className={` shadow-xl fixed top-20  sm:left-0 w-20 overflow-x-auto h-screen bg-[#000] z-10 transition-all`}
     >
       <i
         className="bi bi-x-lg absolute text-black top-4 right-4 sm:hidden block cursor-pointer text-lg"
