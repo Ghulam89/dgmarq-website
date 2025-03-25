@@ -61,7 +61,7 @@ const Settings = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 md:py-10">
                 <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Settings</h1>
                 
-                {/* Profile Section */}
+{/*                 
                 <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 mb-6">
                     <div className="flex flex-col sm:flex-row items-center mb-4">
                         <div className="relative w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center mb-4 sm:mb-0">
@@ -144,9 +144,226 @@ const Settings = () => {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> */}
+<div className="border p-4 mb-6 flex flex-col sm:flex-row bg-white shadow-md rounded-lg">
+                    <div className="w-full sm:w-2/12 flex justify-center mb-4 sm:mb-0">
+                    <svg
+  width={120}
+  height={111}
+  viewBox="0 0 120 111"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g id="Frame 313853">
+    <g id={43}>
+      <g id="Group 748">
+        <g id="Group 733">
+          <path
+            id="Vector"
+            d="M107.045 50.3488C107.045 61.7625 102.977 72.144 96.1775 80.2793C87.6173 90.5395 74.7466 97.0355 60.2974 97.0355C46.4553 97.0355 34.0703 91.0251 25.51 81.4935C18.164 73.2368 13.6714 62.3089 13.6714 50.3488C13.6714 24.5467 34.5559 3.66211 60.3581 3.66211C86.1602 3.66211 107.045 24.5467 107.045 50.3488Z"
+            fill="#EAEEF9"
+          />
+          <path
+            id="Vector_2"
+            d="M105.469 20.6873C107.407 20.6873 108.978 19.1164 108.978 17.1786C108.978 15.2408 107.407 13.6699 105.469 13.6699C103.531 13.6699 101.96 15.2408 101.96 17.1786C101.96 19.1164 103.531 20.6873 105.469 20.6873Z"
+            fill="#EAEEF9"
+          />
+          <path
+            id="Vector_3"
+            d="M110.599 6.99547C111.922 6.99547 112.995 5.92267 112.995 4.5993C112.995 3.27593 111.922 2.20312 110.599 2.20312C109.275 2.20312 108.203 3.27593 108.203 4.5993C108.203 5.92267 109.275 6.99547 110.599 6.99547Z"
+            fill="#EAEEF9"
+          />
+          <path
+            id="Vector_4"
+            d="M13.6145 17.683C14.9378 17.683 16.0107 16.6102 16.0107 15.2868C16.0107 13.9634 14.9378 12.8906 13.6145 12.8906C12.2911 12.8906 11.2183 13.9634 11.2183 15.2868C11.2183 16.6102 12.2911 17.683 13.6145 17.683Z"
+            fill="#EAEEF9"
+          />
+          <path
+            id="Vector_5"
+            d="M6.44959 85.5309C8.9073 85.5309 10.8997 83.5386 10.8997 81.0809C10.8997 78.6232 8.9073 76.6309 6.44959 76.6309C3.99188 76.6309 1.99951 78.6232 1.99951 81.0809C1.99951 83.5386 3.99188 85.5309 6.44959 85.5309Z"
+            fill="#EAEEF9"
+          />
+          <g id="User male 1">
+            <path
+              id="Vector_6"
+              d="M96.2298 80.2798C87.6695 90.5399 74.7988 97.036 60.3496 97.036C46.5075 97.036 34.1225 91.0256 25.5623 81.494C27.0193 80.3405 28.8406 79.3084 31.087 78.3977L32.7869 77.7299C36.0045 76.455 40.1936 74.8765 45.8397 72.5088C47.1146 71.9624 48.1467 70.991 48.6931 69.7161C48.9967 69.0482 49.1788 68.259 49.1788 67.4698V56.9668C48.9967 56.7239 48.8145 56.5418 48.6931 56.299C47.7825 54.9633 47.1753 53.3848 46.9932 51.6849L46.0826 51.2599C43.3506 51.9278 43.5327 49.0136 42.8649 43.4282C42.5613 41.1212 42.9256 40.6355 43.9577 40.2713L44.8076 39.1178C39.5865 27.2791 42.1971 19.8724 47.3575 17.2618C45.6576 13.4977 45.5362 12.1621 45.5362 12.1621C45.5362 12.1621 56.5248 13.9834 60.3496 13.2549C65.1458 12.2835 72.5525 13.437 75.2845 19.8117C79.8378 21.633 81.6591 24.4864 82.0234 27.6434C82.6912 32.6217 79.8378 38.0857 79.2914 40.2106C79.3521 40.332 79.4128 40.3927 79.4128 40.4534C80.1414 40.8177 80.3842 41.4248 80.1414 43.4282C79.4736 48.7101 79.6557 51.9885 76.9237 51.2599L74.4953 55.5097C74.3738 55.9954 74.3738 56.1775 74.3131 56.5418C74.1917 57.331 74.2524 58.9095 74.2524 67.5912C74.2524 68.6233 74.556 69.5946 75.1024 70.5053C75.7095 71.416 76.5594 72.2052 77.6522 72.6302C77.6522 72.6302 77.7129 72.6302 77.7737 72.6909C84.0269 75.3015 88.5195 77.0014 91.7979 78.2763C93.4978 78.8227 94.9548 79.5512 96.2298 80.2798Z"
+              fill="white"
+            />
+            <g id="Group">
+              <path
+                id="Vector_7"
+                d="M79.4032 40.1499C79.6461 38.8142 79.039 37.175 78.5533 36.0215C78.4926 35.8394 78.3712 35.6572 78.3104 35.4144C76.1856 31.1646 71.5108 29.4647 67.0182 29.2219C55.5438 28.6148 54.5118 30.8004 50.9298 27.522C52.0226 29.2219 52.144 31.8325 50.4441 35.1108C49.2299 37.4179 46.9229 38.4499 44.9194 39.1178C39.6983 27.2791 42.3089 19.8724 47.4693 17.2618C45.7694 13.4977 45.648 12.1621 45.648 12.1621C45.648 12.1621 56.6366 13.9834 60.4007 13.2549C65.1969 12.2835 72.6036 13.437 75.3356 19.8117C79.8889 21.633 81.6495 24.4864 82.0745 27.6434C82.7423 32.561 79.9496 37.9643 79.4032 40.1499Z"
+                fill="#172D45"
+              />
+            </g>
+            <path
+              id="Vector_8"
+              d="M75.2257 70.3835V72.4476H48.6951V69.7763C48.9986 69.1085 49.1808 68.3193 49.1808 67.53V56.9663C48.9986 56.7235 48.8165 56.5414 48.6951 56.2985V55.6914C49.2415 56.6628 49.97 57.5734 50.8807 58.302L59.1981 64.0695C61.1408 65.7087 63.9335 65.7694 65.937 64.1909L73.708 57.2092C73.9508 56.9663 74.2544 56.7235 74.4972 56.4807C74.3758 57.2699 74.4365 58.8484 74.4365 67.53C74.3758 68.5621 74.6793 69.5942 75.2257 70.3835Z"
+              fill="url(#paint0_linear_1871_25960)"
+            />
+          </g>
+        </g>
+      </g>
+      <g id="Group 734">
+        <g id="Vector_9" filter="url(#filter0_d_1871_25960)">
+          <path
+            d="M110.376 84.791C110.04 86.2185 109.536 87.73 108.948 88.9896C107.353 92.0966 104.833 94.5319 101.726 96.1273C98.5353 97.7228 94.7565 98.3946 90.9777 97.5549C82.0766 95.7075 76.3664 86.9743 78.2138 78.0731C80.0612 69.172 88.7105 63.3778 97.6116 65.3092C100.803 65.981 103.574 67.5765 105.925 69.7598C109.872 73.7065 111.551 79.4167 110.376 84.791Z"
+            fill="url(#paint1_linear_1871_25960)"
+          />
+        </g>
+        <g id="Icons/Basic Icons/edit">
+          <g id="Icons/24 icons/edit">
+            <g id="pencil">
+              <path
+                id="Path"
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M91.4947 87.1825L87.7339 87.8094L88.3607 84.0485L96.7687 75.6405C97.2583 75.1511 98.0518 75.1511 98.5413 75.6405L99.9028 77.0019C100.392 77.4914 100.392 78.285 99.9028 78.7745L91.4947 87.1825Z"
+                fill="white"
+                stroke="white"
+                strokeWidth="1.22748"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </g>
+            <rect
+              id="Rectangle"
+              opacity="0.01"
+              x="86.8433"
+              y="73.4824"
+              width="15.2222"
+              height="15.2222"
+              fill="white"
+            />
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <defs>
+    <filter
+      id="filter0_d_1871_25960"
+      x="69.8667"
+      y="61.9375"
+      width="48.8772"
+      height="48.9805"
+      filterUnits="userSpaceOnUse"
+      colorInterpolationFilters="sRGB"
+    >
+      <feFlood floodOpacity={0} result="BackgroundImageFix" />
+      <feColorMatrix
+        in="SourceAlpha"
+        type="matrix"
+        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+        result="hardAlpha"
+      />
+      <feOffset dy={5} />
+      <feGaussianBlur stdDeviation={4} />
+      <feColorMatrix
+        type="matrix"
+        values="0 0 0 0 0.113725 0 0 0 0 0.294118 0 0 0 0 1 0 0 0 0.22 0"
+      />
+      <feBlend
+        mode="normal"
+        in2="BackgroundImageFix"
+        result="effect1_dropShadow_1871_25960"
+      />
+      <feBlend
+        mode="normal"
+        in="SourceGraphic"
+        in2="effect1_dropShadow_1871_25960"
+        result="shape"
+      />
+    </filter>
+    <linearGradient
+      id="paint0_linear_1871_25960"
+      x1="61.9684"
+      y1="72.5496"
+      x2="61.9684"
+      y2="63.3187"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stopColor="white" />
+      <stop offset={1} stopColor="#E2E5EC" />
+    </linearGradient>
+    <linearGradient
+      id="paint1_linear_1871_25960"
+      x1="72.3539"
+      y1="77.3032"
+      x2="90.3301"
+      y2="104.152"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stopColor="#7EB3FF" />
+      <stop offset={1} stopColor="#2F82FB" />
+    </linearGradient>
+  </defs>
+</svg>
 
-                {/* Security Settings Card */}
+
+                    </div>
+                    <div className="sm:w-10/12 w-full">
+                        <div>
+                            <h2 className="font-semibold text-lg">Personal details and preferences</h2>
+                            <p className="text-xs pt-2 text-gray-600">
+                                Manage your details, set your region, and select your language and currency.
+                            </p>
+                        </div>
+                        
+                        <div className="flex py-3 mt-4 items-center justify-between border-t">
+                            <div>
+                                <h4 className="text-sm font-semibold">Personal details</h4>
+                                <ul className="flex pt-2 gap-3 items-center">
+                                    <li className="text-gray-500 text-xs">
+                                        Country:
+                                    </li>
+                                    <li className="flex items-center gap-1">
+                                        <img src='https://static.g2a.com/f62u8cXh5KEWkXVVaseGkX/flag-PL.svg' className=' w-4 h-4'  alt='' />
+                                        <span className="text-sm">United States</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <FaAngleRight className="text-gray-500" />
+                        </div>
+                        
+                        <div className="flex py-3 mt-4 items-center justify-between border-t">
+                            <div>
+                                <h4 className="text-sm font-semibold">Regional preferences</h4>
+                              <div className=' pt-2 flex items-center flex-wrap gap-4'>
+                              <ul className="flex gap-3 items-center">
+                                    <li className="text-gray-500 text-xs">
+                                        Region:
+                                    </li>
+                                    <li className="flex items-center gap-1">
+                                        <img src='https://www.g2a.com/static/assets/flags/englishus.svg' className=' w-4 h-4'  alt='' />
+                                        <span className="text-sm">United States</span>
+                                    </li>
+                                </ul>
+                                <ul className="flex gap-3 items-center">
+                                    <li className="text-gray-500 text-xs">
+                                        Language:
+                                    </li>
+                                    <li className="flex items-center gap-1">
+                                        <span className="text-sm">English</span>
+                                    </li>
+                                </ul>
+                                <ul className="flex gap-3 items-center">
+                                    <li className="text-gray-500 text-xs">
+                                        Currency:
+                                    </li>
+                                    <li className="flex items-center gap-1">
+                                        <span className="text-sm">USD</span>
+                                    </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <FaAngleRight className="text-gray-500" />
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+           
                 <div className="border p-4 mb-6 flex flex-col sm:flex-row bg-white shadow-md rounded-lg">
                     <div className="w-full sm:w-2/12 flex justify-center mb-4 sm:mb-0">
                     <svg
