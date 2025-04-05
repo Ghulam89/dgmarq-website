@@ -6,9 +6,13 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { H1 } from "../../../components/common/Heading";
 import jsPDF from "jspdf";
+import { toast } from "react-toastify";
 
 const Keys = () => {
   const { userInfo } = useSelector((state) => state.next);
+
+  console.log(userInfo);
+  
   const [orders, setOrders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredOrders, setFilteredOrders] = useState([]);
@@ -78,10 +82,8 @@ const Keys = () => {
   const handleSortChange = (e) => {
     setSortOrder(e.target.value);
   };
-
   const downloadPdf = (order) => {
     const doc = new jsPDF();
-
     doc.setFontSize(18);
     doc.text(`Product Key - ${order._id}`, 10, 10);
 
@@ -99,6 +101,23 @@ const Keys = () => {
     });
 
     doc.save(`order_${order._id}.pdf`);
+
+    axios.post(`${Base_url}/products/sendEmail`, {
+      userId:userInfo._id,
+      productId: order?.productIds?.[0]?._id,
+    }).then((res)=>{
+      console.log(res);
+      if(res?.data?.status === "success"){
+         toast.success(res?.data?.data?.message)
+        
+      }else{
+
+      }
+      
+    }).catch((error)=>{
+       console.log(error);
+       
+    })
   };
 
   return (
@@ -158,7 +177,7 @@ const Keys = () => {
             {filteredOrders?.map((item, index) => (
               <div
                 key={index}
-                className="rounded-sm  mb-2 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                className="rounded-sm  mb-2 bg-white shadow-sm"
               >
                 <div className="px-6 bg-gray-100 flex justify-between items-center pt-4 pb-4">
                   <p className="m-0 text-lg">
@@ -186,7 +205,7 @@ const Keys = () => {
                       </a>
                     </div>
                     <div>
-                      <p className="  text-lg font-bold text-gray-900 dark:text-white">
+                      <p className="  text-lg font-bold text-gray-900 ">
                         ${item?.productIds?.[0]?.title}
                       </p>
                       <button 
@@ -211,7 +230,7 @@ const Keys = () => {
                   <div className="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
                     <Link
                       to={`/product_details/${item?._id}`}
-                      className="text-base font-medium text-gray-900 hover:underline dark:text-white"
+                      className="text-base font-medium text-gray-900 hover:underline "
                     >
                       {item?.title}
                     </Link>
